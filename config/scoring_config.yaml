@@ -52,3 +52,15 @@ timeframe_gate_overrides:
   "4h":  { confluence_low: 45, confluence_medium: 65, confluence_high: 75 }
   "1d":  { confluence_low: 48, confluence_medium: 68, confluence_high: 78 }
   "1w":  { confluence_low: 50, confluence_medium: 70, confluence_high: 80 }
+
+
+# Candles shown to AI per timeframe (raw OHLC for pattern recognition)
+# These are SEPARATE from the indicator fetch count (which is always 300-500)
+ai_candle_counts:
+  "15m": 40    # ~10 hours of context
+  "30m": 40    # ~20 hours
+  "1h":  40    # ~40 hours / ~5 sessions
+  "4h":  30    # ~5 days
+  "1d":  30    # ~6 weeks
+  "1w":  20    # ~5 months
+

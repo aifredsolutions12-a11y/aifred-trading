@@ -58,24 +58,45 @@ def _format_headlines(news, max_items=8):
     return "\n".join(lines)
 
 
+
 def _format_multi_tf_block(per_tf_data: dict) -> str:
-    """Format each TF's snapshot for the prompt."""
+    """Format each TF's snapshot + recent candles for the prompt."""
+    from ai_analyzer.confluence_engine import load_config
+    candle_counts = load_config().get("ai_candle_counts", {})
+
     lines = []
     for tf in TIMEFRAMES:
         data = per_tf_data.get(tf, {})
         if not data:
             lines.append(f"\n[{tf}] No data available")
             continue
+
         snap = data.get("ta_snapshot", {})
         classical = data.get("classical_ta_score", {})
-        lines.append(f"\n[{tf}] (TF weight applies in Python scoring)")
+        df = data.get("df")
+        n = candle_counts.get(tf, 20)
+
+        lines.append(f"\n[{tf}] (showing last {n} candles)")
         lines.append(f"  Trend: {snap.get('trend', 'N/A')}")
         lines.append(f"  Price vs EMA21/50/200: {snap.get('above_ema21')}/{snap.get('above_ema50')}/{snap.get('above_ema200')}")
         lines.append(f"  RSI(14): {snap.get('rsi_14', 'N/A')} ({snap.get('rsi_state', 'N/A')})")
         lines.append(f"  MACD: bias={snap.get('macd_bias')}, hist={snap.get('macd_histogram', 0):+.2f}")
         lines.append(f"  Bollinger position: {snap.get('bb_position_pct', 'N/A')}%")
         lines.append(f"  Classical TA score (Python-computed): {classical.get('score', 'N/A')}")
+
+        # NEW: append the actual recent candles (compact OHLCV format)
+        if df is not None and not df.empty:
+            tail = df.tail(n)[["timestamp", "open", "high", "low", "close", "volume"]]
+            lines.append(f"  Recent candles:")
+            for _, row in tail.iterrows():
+                ts = pd.Timestamp(row["timestamp"]).strftime("%m-%d %H:%M")
+                lines.append(
+                    f"    {ts} O:{row['open']:.4f} H:{row['high']:.4f} "
+                    f"L:{row['low']:.4f} C:{row['close']:.4f} V:{row['volume']:.0f}"
+                )
+
     return "\n".join(lines)
+
 
 
 def _clean_json_response(text):
@@ -113,6 +134,7 @@ def save_signal(verdict: dict, symbol: str) -> Path:
 # ════════════════════════════════════════════════════════════════
 # MULTI-TF DATA FETCHING
 # ════════════════════════════════════════════════════════════════
+
 def fetch_per_tf_data(symbol: str) -> dict:
     """Fetches OHLCV + indicators for all 6 TFs."""
     cfg = load_config()
@@ -131,12 +153,14 @@ def fetch_per_tf_data(symbol: str) -> dict:
                 "ta_snapshot":         ta_snapshot,
                 "classical_ta_score":  classical_ta,
                 "atr_14":              ta_snapshot.get("atr_14"),
+                "df":                  df_ind,   # ⬅️ NEW: keep df for prompt formatting
             }
         except Exception as e:
             print(f"  ⚠️  {tf} failed: {e}")
             per_tf[tf] = {}
 
     return per_tf
+
 
 
 # ════════════════════════════════════════════════════════════════
