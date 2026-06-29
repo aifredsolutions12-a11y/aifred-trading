@@ -1,0 +1,54 @@
+# ═══════════════════════════════════════════════════════════════
+# Scoring Configuration — single source of truth for all math
+# Changes here apply immediately. No prompt or code edits needed.
+# ═══════════════════════════════════════════════════════════════
+
+# Timeframe weights — heavier on 4h + 1d (your execution sweet spot)
+timeframe_weights:
+  "15m": 0.05
+  "30m": 0.05
+  "1h":  0.10
+  "4h":  0.30
+  "1d":  0.40
+  "1w":  0.10
+
+# Base methodology weights (sum must = 1.0)
+# These are starting points. weight_tracker.py adjusts them per coin.
+methodology_weights_base:
+  wyckoff:      0.20
+  smc:          0.20
+  elliott:      0.15
+  classical_ta: 0.20
+  sentiment:    0.15
+  ev_edge:      0.10
+
+# Adaptive bounds (moderate setting)
+adaptive_weights:
+  enabled: true
+  min_samples_per_coin: 20      # need 20 closed trades before adjusting
+  max_drift_pct: 0.10           # max ±10% deviation from base
+  win_rate_boost_threshold: 0.55   # boost if win rate > 55%
+  win_rate_cut_threshold:   0.45   # cut if win rate < 45%
+
+# Decision gates (per-timeframe profiles override these)
+default_gates:
+  confluence_high:   75
+  confluence_medium: 65
+  confluence_low:    45     # lowered from 50 to reduce SKIPs
+  wait_band_low:     49     # tightened from 48
+  wait_band_high:    51     # tightened from 52
+
+# EV thresholds (per-timeframe profiles override these)
+ev_defaults:
+  threshold_pct:    3.0
+  rr_win:           2.0    # TP1 = 2× risk
+  rr_loss:          1.0    # SL = 1× risk
+
+# Confluence override per timeframe (loaded into regime_defaults.py)
+timeframe_gate_overrides:
+  "15m": { confluence_low: 40, confluence_medium: 55, confluence_high: 70 }
+  "30m": { confluence_low: 42, confluence_medium: 60, confluence_high: 72 }
+  "1h":  { confluence_low: 45, confluence_medium: 62, confluence_high: 75 }
+  "4h":  { confluence_low: 45, confluence_medium: 65, confluence_high: 75 }
+  "1d":  { confluence_low: 48, confluence_medium: 68, confluence_high: 78 }
+  "1w":  { confluence_low: 50, confluence_medium: 70, confluence_high: 80 }

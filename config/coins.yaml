@@ -1,0 +1,103 @@
+# ═══════════════════════════════════════════════════════════════
+# Watchlist — 16 coins (3 majors + 13 alts)
+# ═══════════════════════════════════════════════════════════════
+
+watchlist:
+  # Majors — highest priority
+  BTC:
+    symbol: BTCUSDT
+    category: major
+    enabled: true
+    tier: 1
+  ETH:
+    symbol: ETHUSDT
+    category: major
+    enabled: true
+    tier: 1
+  SOL:
+    symbol: SOLUSDT
+    category: major
+    enabled: true
+    tier: 1
+
+  # Alts
+  BNB:
+    symbol: BNBUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  XRP:
+    symbol: XRPUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  ADA:
+    symbol: ADAUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  AVAX:
+    symbol: AVAXUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  LINK:
+    symbol: LINKUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  DOGE:
+    symbol: DOGEUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  POL:
+    symbol: POLUSDT
+    category: alt
+    enabled: true
+    tier: 2
+    note: "Renamed from MATIC in 2024"
+  DOT:
+    symbol: DOTUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  ARB:
+    symbol: ARBUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  OP:
+    symbol: OPUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  ZEC:
+    symbol: ZECUSDT
+    category: alt
+    enabled: true
+    tier: 3
+  SUI:
+    symbol: SUIUSDT
+    category: alt
+    enabled: true
+    tier: 2
+  SEI:
+    symbol: SEIUSDT
+    category: alt
+    enabled: true
+    tier: 2
+
+# Timeframes analyzed per coin (all 6, weighted in scoring_config.yaml)
+timeframes_analyzed:
+  - 15m
+  - 30m
+  - 1h
+  - 4h
+  - 1d
+  - 1w
+
+# Schedule — agent runs every 4h, all enabled coins
+run_schedule:
+  cron: "5 */4 * * *"
+  description: "Every 4 hours at :05"

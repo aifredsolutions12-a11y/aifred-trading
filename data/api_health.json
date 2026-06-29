@@ -1,0 +1,86 @@
+{
+  "providers": {
+    "gemini": {
+      "calls": 5,
+      "errors": 0,
+      "last_error": null,
+      "avg_latency_ms": 1702,
+      "error_rate_pct": 0.0,
+      "status": "\ud83d\udfe2"
+    },
+    "tool:funding": {
+      "calls": 2,
+      "errors": 0,
+      "last_error": null,
+      "avg_latency_ms": 307,
+      "error_rate_pct": 0.0,
+      "status": "\ud83d\udfe2"
+    },
+    "tool:cross_tf": {
+      "calls": 1,
+      "errors": 1,
+      "last_error": "TypeError: cross_timeframe_check() got an unexpected keyword argument 'target_timeframe'",
+      "avg_latency_ms": 0,
+      "error_rate_pct": 100.0,
+      "status": "\ud83d\udd34"
+    }
+  },
+  "events": [
+    {
+      "ts": "2026-06-27T10:43:59.358216+00:00",
+      "provider": "gemini",
+      "ok": true,
+      "latency_ms": 1552,
+      "error": null
+    },
+    {
+      "ts": "2026-06-27T10:43:59.710688+00:00",
+      "provider": "tool:funding",
+      "ok": true,
+      "latency_ms": 343,
+      "error": null
+    },
+    {
+      "ts": "2026-06-27T10:44:01.773616+00:00",
+      "provider": "gemini",
+      "ok": true,
+      "latency_ms": 2054,
+      "error": null
+    },
+    {
+      "ts": "2026-06-29T16:51:06.023160+00:00",
+      "provider": "gemini",
+      "ok": true,
+      "latency_ms": 1631,
+      "error": null
+    },
+    {
+      "ts": "2026-06-29T16:51:06.029543+00:00",
+      "provider": "tool:cross_tf",
+      "ok": false,
+      "latency_ms": 0,
+      "error": "TypeError: cross_timeframe_check() got an unexpected keyword argument 'target_timeframe'"
+    },
+    {
+      "ts": "2026-06-29T16:51:07.310623+00:00",
+      "provider": "gemini",
+      "ok": true,
+      "latency_ms": 1272,
+      "error": null
+    },
+    {
+      "ts": "2026-06-29T16:51:07.591499+00:00",
+      "provider": "tool:funding",
+      "ok": true,
+      "latency_ms": 272,
+      "error": null
+    },
+    {
+      "ts": "2026-06-29T16:51:09.608830+00:00",
+      "provider": "gemini",
+      "ok": true,
+      "latency_ms": 2008,
+      "error": null
+    }
+  ]
+}
