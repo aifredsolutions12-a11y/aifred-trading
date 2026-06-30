@@ -1,11 +1,11 @@
 name: Agent - Hourly Multi-TF Analysis
 
+
 on:
-  schedule:
-    - cron: "7 * * * *"   # Every hour at :07 UTC (avoids peak load)
   workflow_dispatch:
   repository_dispatch:
     types: [run-agent]
+
 
 concurrency:
   group: agent-lock

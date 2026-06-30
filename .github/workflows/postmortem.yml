@@ -1,11 +1,11 @@
 name: Post-Mortem - End of Cycle (11 AM PH)
 
+
 on:
-  schedule:
-    - cron: "5 3 * * *"   # 11:05 AM PH = 03:05 UTC
   workflow_dispatch:
   repository_dispatch:
     types: [run-postmortem]
+
 
 concurrency:
   group: postmortem-lock
