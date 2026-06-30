@@ -1,6 +1,6 @@
 """
 Adaptive methodology weight tracker.
-Reads closed trade outcomes from memory journal and adjusts weights per coin.
+v3 — supports new outcome types (BE_STOP, TIME_WIN/LOSS/FLAT) via win_loss_class.
 """
 import json
 from pathlib import Path
@@ -8,6 +8,7 @@ from typing import Dict, List
 from collections import defaultdict
 
 from ai_analyzer.confluence_engine import load_config, normalize_weights
+from memory.journal import classify_outcome  # 🆕 v3
 
 WEIGHTS_DIR = Path("data/adaptive_weights")
 WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -50,25 +51,34 @@ def compute_method_winrate(
 ) -> Dict[str, float]:
     """
     For each methodology, computes win rate when it was CONFIDENT.
-    A method is 'confident' when its score >= high_threshold (bullish call)
-    or <= low_threshold (bearish call).
+    
+    v3 changes:
+      - Uses win_loss_class (or classify_outcome fallback) instead of outcome string
+      - Counts WIN class: TP_HIT, TP1, TIME_WIN
+      - Counts LOSS class: SL, TIME_LOSS
+      - Skips BE_STOP, TIME_FLAT, NO_TRADE/OPEN (neutral outcomes don't train weights)
     """
     method_stats = defaultdict(lambda: {"wins": 0, "losses": 0})
 
     for trade in closed_trades:
         scores = trade.get(method_score_field, {})
-        outcome = trade.get("outcome")
         position = trade.get("position")
+        outcome = trade.get("outcome")
 
-        if outcome not in ("TP1", "SL") or position not in ("LONG", "SHORT"):
+        # v3: use win_loss_class for classification, fallback to classify_outcome
+        cls = trade.get("win_loss_class") or classify_outcome(outcome)
+
+        # Only count clear wins/losses — neutrals don't train weights
+        if cls not in ("WIN", "LOSS"):
+            continue
+        if position not in ("LONG", "SHORT"):
             continue
 
-        is_win = outcome == "TP1"
+        is_win = (cls == "WIN")
 
         for method, score in scores.items():
             if not isinstance(score, (int, float)):
                 continue
-
             # Was this method confidently bullish or bearish?
             if position == "LONG" and score >= high_threshold:
                 method_stats[method]["wins" if is_win else "losses"] += 1
@@ -85,13 +95,16 @@ def compute_method_winrate(
                 "wins":     stats["wins"],
                 "losses":   stats["losses"],
             }
-
     return win_rates
 
 
 def adjust_weights_for_coin(coin: str, closed_trades: List[dict]) -> dict:
     """
     Main entry — recalculates and saves adaptive weights for one coin.
+    
+    v3: closed_trades input must include trades with win_loss_class field set
+        (resolver v3 sets this on every closure). Legacy TP1/SL entries are
+        handled via classify_outcome() fallback.
     """
     cfg = load_config()
     base = cfg["methodology_weights_base"].copy()
@@ -120,19 +133,15 @@ def adjust_weights_for_coin(coin: str, closed_trades: List[dict]) -> dict:
 
         wr = stats["win_rate"]
         if wr >= boost_threshold:
-            # Boost up to max_drift
             boost = min(max_drift, (wr - 0.5) * 0.4)
             adjusted[method] = base_weight * (1 + boost)
             notes.append(f"{method}: WR {wr:.0%} → +{boost*100:.1f}%")
         elif wr <= cut_threshold:
-            # Cut down to max_drift
             cut = min(max_drift, (0.5 - wr) * 0.4)
             adjusted[method] = base_weight * (1 - cut)
             notes.append(f"{method}: WR {wr:.0%} → -{cut*100:.1f}%")
 
-    # Normalize so weights sum to 1.0
     final = normalize_weights(adjusted)
-
     save_adaptive_weights(coin, final, metadata={
         "win_rates": win_rates,
         "notes":     notes,
