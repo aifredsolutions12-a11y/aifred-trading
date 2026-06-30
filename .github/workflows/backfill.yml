@@ -1,0 +1,82 @@
+name: V3 Backfill (one-time)
+
+# ⚠️ This workflow has NO schedule — only manual or Telegram trigger.
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [run-backfill]
+
+concurrency:
+  group: backfill-lock
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run v3 backfill
+        id: backfill
+        run: python scripts/backfill_v3.py | tee backfill_output.txt
+
+      - name: Send Telegram summary
+        if: always()
+        run: |
+          python - <<'EOF'
+          import os, requests
+          from pathlib import Path
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+          if not token or not chat_id:
+              print("⚠️ Telegram secrets missing, skipping notify")
+              exit(0)
+
+          output = Path("backfill_output.txt").read_text(encoding="utf-8") if Path("backfill_output.txt").exists() else "(no output)"
+          # Trim to last 2500 chars to fit Telegram limits
+          tail = output[-2500:] if len(output) > 2500 else output
+
+          msg = f"🔧 *V3 BACKFILL COMPLETE*\n\n```\n{tail}\n```"
+          requests.post(
+              f"https://api.telegram.org/bot{token}/sendMessage",
+              json={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
+              timeout=15,
+          )
+          EOF
+
+      - name: Commit results
+        run: |
+          git config user.name  "backfill-bot"
+          git config user.email "backfill-bot@users.noreply.github.com"
+          git add data/journal.jsonl 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: v3 backfill — enrich existing open positions with ATR/BE/max_hold"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin main && exit 0
+            sleep 5
+          done
+          exit 1
