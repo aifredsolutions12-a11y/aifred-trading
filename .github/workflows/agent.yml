@@ -1,15 +1,10 @@
-name: Agent - Multi-TF Analysis (every 4h)
+name: Agent - Hourly Multi-TF Analysis
 
 on:
   schedule:
-    # Avoid GitHub cron peak times (top of hour) — :07 minute offset
-    - cron: "7 */4 * * *"
+    # Every hour at :00 UTC (covers full 24h cycle)
+    - cron: "0 * * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "config/coins.yaml"
-      - "config/scoring_config.yaml"
 
 concurrency:
   group: workflow-commit-lock
@@ -18,11 +13,14 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     permissions:
       contents: write
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,59 +37,122 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verify config files exist
-        run: |
-          test -f config/coins.yaml || { echo "❌ coins.yaml missing"; exit 1; }
-          test -f config/scoring_config.yaml || { echo "❌ scoring_config.yaml missing"; exit 1; }
-          test -f ai_analyzer/analyzer.py || { echo "❌ analyzer.py missing"; exit 1; }
-          echo "✅ All config files present"
-
-      - name: Run multi-TF analyzer per enabled coin
+      - name: Run multi-TF analyzer with Telegram alerts
         run: |
           python - <<'EOF'
+          import os
           import yaml
           import time
-          import sys
-          import traceback
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
           from ai_analyzer.analyzer import analyze
+          from notifications.telegram import (
+              send_opening_report, send_hourly_update, is_cycle_start
+          )
+          from notifications.diff_analyzer import (
+              load_previous_state, save_current_state,
+              build_state_from_signals, compare_states,
+          )
 
-          with open("config/coins.yaml", "r", encoding="utf-8") as f:
+          # Load coins
+          with open("config/coins.yaml") as f:
               cfg = yaml.safe_load(f)
-
           coins = cfg.get("watchlist", {})
-          enabled_symbols = [c["symbol"] for c in coins.values() if c.get("enabled", True)]
+          enabled = [c["symbol"] for c in coins.values() if c.get("enabled", True)]
 
-          print(f"\n🚀 Analyzing {len(enabled_symbols)} coins")
-          print(f"   Symbols: {', '.join(enabled_symbols)}\n")
+          print(f"\n🚀 Analyzing {len(enabled)} coins")
+          print(f"   Cycle start: {is_cycle_start()}\n")
 
-          results = []
+          all_signals = []
           failures = []
-
-          for sym in enabled_symbols:
+          for sym in enabled:
               try:
                   verdict = analyze(sym)
                   if "error" not in verdict:
-                      results.append(verdict)
+                      all_signals.append(verdict)
                   else:
                       failures.append((sym, verdict["error"]))
               except Exception as e:
                   print(f"❌ {sym}: {e}")
-                  traceback.print_exc()
                   failures.append((sym, str(e)))
-              time.sleep(5)   # space out Gemini calls (15 RPM safety)
+              time.sleep(5)
 
-          # Summary
-          print(f"\n{'='*60}")
-          print(f"📊 AGENT RUN SUMMARY")
-          print(f"{'='*60}")
-          print(f"  ✅ Successful:  {len(results)}")
-          print(f"  ❌ Failed:      {len(failures)}")
-          for sym, err in failures:
-              print(f"     {sym}: {err[:80]}")
-          print(f"{'='*60}\n")
+          print(f"\n✅ {len(all_signals)} successful │ ❌ {len(failures)} failed")
 
-          # Fail the workflow if every coin failed
-          if len(results) == 0 and len(failures) > 0:
+          # Build state for diff comparison
+          current_state = build_state_from_signals(all_signals)
+
+          # Compare with previous run
+          prev_state = load_previous_state()
+          diff = compare_states(prev_state, current_state)
+
+          # ── Get open positions from journal ──
+          try:
+              from memory.journal import read_journal
+              journal = read_journal()
+              active_positions = [
+                  t for t in journal
+                  if t.get("outcome") is None
+                  and t.get("position") in ("LONG", "SHORT")
+              ]
+          except Exception as e:
+              print(f"⚠️ Could not load journal: {e}")
+              active_positions = []
+
+          # Identify waiting coins
+          waiting = [s["symbol"] for s in all_signals if s.get("position") not in ("LONG", "SHORT")]
+
+          # Identify run number (UTC hour - 4 + 1, clamped 1-24)
+          utc_hour = datetime.now(timezone.utc).hour
+          run_number = ((utc_hour - 4) % 24) + 1
+
+          # Send appropriate Telegram alert
+          dashboard_url = os.getenv("DASHBOARD_URL", "")
+
+          if is_cycle_start():
+              # Full opening report
+              print("\n📱 Sending OPENING REPORT...")
+
+              # Try to load yesterday's summary
+              yesterday_summary = {}
+              try:
+                  ys_file = Path("data/yesterday_summary.json")
+                  if ys_file.exists():
+                      yesterday_summary = json.loads(ys_file.read_text())
+              except Exception:
+                  pass
+
+              new_signals_actionable = [
+                  s for s in all_signals
+                  if s.get("position") in ("LONG", "SHORT")
+              ]
+
+              send_opening_report(
+                  active_positions=active_positions,
+                  new_signals=new_signals_actionable,
+                  waiting_coins=waiting,
+                  yesterday_summary=yesterday_summary,
+                  dashboard_url=dashboard_url,
+              )
+          else:
+              # Hourly update
+              print(f"\n📱 Sending HOURLY UPDATE (run #{run_number})...")
+              send_hourly_update(
+                  unchanged=diff["unchanged"],
+                  attention_needed=diff["attention"],
+                  new_opens=diff["new_opens"],
+                  flipped=diff["flipped"],
+                  run_number=run_number,
+                  dashboard_url=dashboard_url,
+              )
+
+          # Save current state for next comparison
+          save_current_state(current_state)
+
+          if failures and len(all_signals) == 0:
+              import sys
               sys.exit(1)
           EOF
 
@@ -99,19 +160,7 @@ jobs:
         run: |
           if [ -f export_dashboard.py ]; then
             python export_dashboard.py
-          else
-            echo "ℹ️ export_dashboard.py not found — skipping"
           fi
-
-      - name: Run summary
-        run: |
-          echo "::group::Agent Summary"
-          echo "Run at: $(date -u +%FT%TZ)"
-          if [ -d data/signals ]; then
-            echo "Total signals: $(ls data/signals/*.json 2>/dev/null | wc -l)"
-            echo "New (this hour): $(find data/signals -name "*.json" -mmin -60 2>/dev/null | wc -l)"
-          fi
-          echo "::endgroup::"
 
       - name: Commit results
         run: |
@@ -119,11 +168,10 @@ jobs:
           git config user.email "agent-bot@users.noreply.github.com"
           git add data/ docs/data/ 2>/dev/null || true
           git diff --staged --quiet && exit 0
-          git commit -m "agent multi-tf $(date -u +%FT%TZ)"
+          git commit -m "agent run $(date -u +%FT%TZ)"
           for i in 1 2 3 4 5; do
             git pull --rebase origin main && git push origin main && exit 0
-            echo "Push attempt $i failed, retrying in 5s..."
+            echo "Push attempt $i failed, retrying..."
             sleep 5
           done
-          echo "❌ All push attempts failed"
           exit 1

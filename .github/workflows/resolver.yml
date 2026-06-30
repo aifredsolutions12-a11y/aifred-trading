@@ -1,8 +1,8 @@
-name: Resolver - Check TP/SL every 30m
+name: Resolver - Every 15 Minutes
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -12,8 +12,12 @@ concurrency:
 jobs:
   resolve:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     permissions:
       contents: write
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,29 +27,59 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: requirements.txt
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Resolve open signals
-        run: python -m memory.resolver
+      - name: Run resolver with Telegram alerts on closures
+        run: |
+          python - <<'EOF'
+          import os
+          from datetime import datetime, timezone
+          from memory.resolver import resolve_all
+          from memory.journal import read_journal
+          from notifications.telegram import send_closure_alert
+
+          # Snapshot before
+          before = read_journal()
+          before_open_ids = {t.get("logged_at") for t in before if t.get("outcome") is None}
+
+          # Run resolver
+          resolve_all()
+
+          # Snapshot after
+          after = read_journal()
+
+          # Detect newly closed
+          newly_closed = []
+          for t in after:
+              if t.get("outcome") in ("TP1", "SL") and t.get("logged_at") in before_open_ids:
+                  newly_closed.append(t)
+
+          # Alert on closures
+          for trade in newly_closed:
+              print(f"📱 Sending closure alert: {trade.get('symbol')} {trade.get('outcome')}")
+              send_closure_alert(trade)
+          EOF
 
       - name: Export dashboard JSON
-        run: python export_dashboard.py
+        run: |
+          if [ -f export_dashboard.py ]; then
+            python export_dashboard.py
+          fi
 
       - name: Commit results
         run: |
           git config user.name  "resolver-bot"
           git config user.email "resolver-bot@users.noreply.github.com"
-          git add data/ docs/data/
+          git add data/ docs/data/ 2>/dev/null || true
           git diff --staged --quiet && exit 0
           git commit -m "resolver $(date -u +%FT%TZ)"
           for i in 1 2 3 4 5; do
             git pull --rebase origin main && git push origin main && exit 0
-            echo "Push attempt $i failed, retrying in 5s..."
             sleep 5
           done
-          echo "All push attempts failed"
           exit 1
