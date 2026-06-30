@@ -47,7 +47,7 @@
 
   .pos {
     padding: 3px 10px; border-radius: 4px; font-size: 0.85em; font-weight: 600;
-    text-transform: uppercase;
+    text-transform: uppercase; margin-left: 6px;
   }
   .pos-LONG  { background: #1f6f3a; color: white; }
   .pos-SHORT { background: #8b1538; color: white; }
@@ -100,6 +100,30 @@
   .pm-lesson { font-style: italic; margin: 8px 0; color: #c9d1d9; }
   .pm-adjustment { color: #58a6ff; font-size: 0.9em; padding: 6px; background: #0d1117; border-radius: 4px; }
 
+  /* Open Positions tab */
+  .pos-card {
+    background: #161b22; border: 1px solid #30363d;
+    padding: 14px; border-radius: 8px; margin-bottom: 12px;
+  }
+  .pos-card-head {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;
+  }
+  .pos-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .pos-stat { padding: 4px 0; font-size: 0.9em; }
+  .pos-stat-label { color: #8b949e; font-size: 0.75em; text-transform: uppercase; }
+  .pos-stat-val { color: #f0f6fc; font-weight: 500; }
+
+  .pos-refresh-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    background: #1f6feb; color: white; font-size: 0.75em; margin-left: 8px;
+  }
+  .pos-age { color: #8b949e; font-size: 0.85em; margin-top: 6px; }
+  .pos-evolution {
+    margin-top: 10px; padding: 8px; background: #0d1117;
+    border-left: 3px solid #58a6ff; border-radius: 4px; font-size: 0.85em;
+  }
+
   .empty {
     text-align: center; padding: 40px;
     color: #6e7681; background: #161b22;
@@ -127,16 +151,19 @@
 
 <div class="tabs">
   <div class="tab active" data-tab="signals">🎯 Latest Signals</div>
+  <div class="tab" data-tab="positions">📍 Open Positions</div>
   <div class="tab" data-tab="postmortems">📝 Post-Mortems</div>
   <div class="tab" data-tab="weights">🎚️ Adaptive Weights</div>
 </div>
 
 <div id="tab-signals" class="tab-content"><div class="grid" id="signalGrid"><div class="empty">Loading signals…</div></div></div>
+<div id="tab-positions" class="tab-content" style="display:none;"><div id="positionsList"><div class="empty">Loading…</div></div></div>
 <div id="tab-postmortems" class="tab-content" style="display:none;"><div id="pmList"><div class="empty">Loading…</div></div></div>
 <div id="tab-weights" class="tab-content" style="display:none;"><div id="weightsList"><div class="empty">Loading…</div></div></div>
 
 <script>
 const SIGNAL_INDEX = "data/signals_index.json";
+const POSITION_INDEX = "data/position_status.json";
 const POSTMORTEM_INDEX = "data/postmortems_index.json";
 const WEIGHTS_INDEX = "data/weights_index.json";
 
@@ -156,6 +183,24 @@ function fmtPrice(v) {
   if (Math.abs(v) >= 1) return "$" + v.toFixed(4);
   if (Math.abs(v) >= 0.01) return "$" + v.toFixed(6);
   return "$" + v.toFixed(8);
+}
+
+function fmtAge(iso) {
+  if (!iso) return "unknown";
+  const opened = new Date(iso);
+  const now = new Date();
+  const mins = Math.floor((now - opened) / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ${mins % 60}m`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ${hrs % 24}h`;
+}
+
+function fmtTime(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleString();
 }
 
 function renderSignal(s) {
@@ -194,6 +239,68 @@ function renderSignal(s) {
 
       ${s.final_narrative ? `<div class="narrative">${s.final_narrative}</div>` : ""}
       ${s.memory_reflection ? `<div class="memory-reflection"><strong>💭 Memory:</strong> ${s.memory_reflection}</div>` : ""}
+    </div>
+  `;
+}
+
+function renderPosition(p) {
+  const origConf = p.original_confluence || 0;
+  const latestConf = p.latest_confluence || origConf;
+  const hasEvolved = Math.abs(latestConf - origConf) > 0.5;
+
+  const evolution = hasEvolved
+    ? `<div class="pos-evolution">
+         📊 Confluence evolved: ${origConf.toFixed(1)} → 
+         <strong>${latestConf.toFixed(1)}</strong>
+         (latest conviction: <span class="conf-${p.latest_confidence}">${p.latest_confidence}</span>)
+       </div>`
+    : "";
+
+  const refreshBadge = p.refresh_count > 0
+    ? `<span class="pos-refresh-badge">🔁 ${p.refresh_count} refresh${p.refresh_count > 1 ? 'es' : ''}</span>`
+    : "";
+
+  const lastRefreshTxt = p.last_refresh_at
+    ? `Last refresh: ${fmtAge(p.last_refresh_at)} ago`
+    : "Not yet refreshed";
+
+  return `
+    <div class="pos-card">
+      <div class="pos-card-head">
+        <div>
+          <strong style="font-size:1.1em;">${p.symbol}</strong>
+          <span class="pos pos-${p.position}">${p.position}</span>
+          ${refreshBadge}
+        </div>
+        <div style="color:#8b949e; font-size:0.85em;">
+          Opened: ${fmtTime(p.logged_at)}
+        </div>
+      </div>
+
+      <div class="pos-meta">
+        <div class="pos-stat">
+          <div class="pos-stat-label">ENTRY ZONE</div>
+          <div class="pos-stat-val">${fmtPrice(p.entry_zone?.low)} – ${fmtPrice(p.entry_zone?.high)}</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-label">STOP LOSS</div>
+          <div class="pos-stat-val">${fmtPrice(p.stop_loss)}</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-label">TAKE PROFIT 1</div>
+          <div class="pos-stat-val">${fmtPrice(p.take_profit_1)}</div>
+        </div>
+        <div class="pos-stat">
+          <div class="pos-stat-label">LATEST EV (R)</div>
+          <div class="pos-stat-val">${(p.latest_ev_R || 0).toFixed(2)}R</div>
+        </div>
+      </div>
+
+      <div class="pos-age">
+        ⏱️ Active for ${fmtAge(p.logged_at)} · ${lastRefreshTxt}
+      </div>
+
+      ${evolution}
     </div>
   `;
 }
@@ -249,6 +356,7 @@ async function loadJSON(path) {
 }
 
 async function init() {
+  // Latest signals
   const signals = await loadJSON(SIGNAL_INDEX);
   if (signals && signals.length > 0) {
     document.getElementById("signalGrid").innerHTML = signals.map(renderSignal).join("");
@@ -257,6 +365,15 @@ async function init() {
     document.getElementById("signalGrid").innerHTML = '<div class="empty">No signals yet. Agent runs every 4 hours.</div>';
   }
 
+  // Open positions (NEW)
+  const positions = await loadJSON(POSITION_INDEX);
+  if (positions && positions.length > 0) {
+    document.getElementById("positionsList").innerHTML = positions.map(renderPosition).join("");
+  } else {
+    document.getElementById("positionsList").innerHTML = '<div class="empty">No open positions right now.</div>';
+  }
+
+  // Post-mortems
   const pms = await loadJSON(POSTMORTEM_INDEX);
   if (pms && pms.length > 0) {
     document.getElementById("pmList").innerHTML = pms.map(renderPostmortem).join("");
@@ -264,6 +381,7 @@ async function init() {
     document.getElementById("pmList").innerHTML = '<div class="empty">No post-mortems yet. Runs daily after midnight UTC.</div>';
   }
 
+  // Adaptive weights
   const ws = await loadJSON(WEIGHTS_INDEX);
   if (ws && ws.length > 0) {
     document.getElementById("weightsList").innerHTML = ws.map(renderWeights).join("");

@@ -9,19 +9,23 @@ async function fetchJson(name, fallback) {
   } catch { return fallback; }
 }
 
+
 async function loadAll() {
-  const [signals, stats, journal, health] = await Promise.all([
+  const [signals, stats, journal, health, positions] = await Promise.all([
     fetchJson("latest_signals.json", []),
     fetchJson("stats.json", {}),
     fetchJson("journal.json", []),
     fetchJson("api_health.json", { providers: {} }),
+    fetchJson("position_status.json", []),    // ← NEW
   ]);
   renderSignals(signals);
   renderStats(stats);
   renderJournal(journal);
   renderHealth(health);
+  renderPositions(positions);                  // ← NEW
   $("#updated").textContent = "Updated " + new Date().toLocaleString();
 }
+
 
 function renderSignals(rows) {
   const grid = $("#signals-grid");
@@ -125,6 +129,74 @@ function renderHealth(h) {
   }
 }
 
+function fmtAge(iso) {
+  if (!iso) return "—";
+  const opened = new Date(iso);
+  const mins = Math.floor((Date.now() - opened) / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return mins + "m";
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + "h " + (mins % 60) + "m";
+  const days = Math.floor(hrs / 24);
+  return days + "d " + (hrs % 24) + "h";
+}
+
+function renderPositions(rows) {
+  const grid = $("#positions-grid");
+  if (!grid) return; // Tab doesn't exist yet in HTML
+
+  grid.innerHTML = "";
+  if (!rows.length) {
+    grid.innerHTML = "<p style='color:var(--muted);'>No open positions right now.</p>";
+    return;
+  }
+
+  // Sort by most recently opened
+  rows.sort((a, b) => (b.logged_at || "").localeCompare(a.logged_at || ""));
+
+  for (const p of rows) {
+    const pos = p.position || "WAIT";
+    const entry = p.entry_zone || {};
+    const refreshCount = p._refresh_count ?? p.refresh_count ?? 0;
+    const origConf = p.original_confluence ?? p.confluence_score ?? "—";
+    const latestConf = p._latest_confluence ?? p.latest_confluence ?? origConf;
+    const latestConfidence = p._latest_confidence ?? p.latest_confidence ?? p.confidence ?? "—";
+    const latestEvR = p._latest_ev_R ?? p.latest_ev_R ?? p.ev_R ?? null;
+    const lastRefresh = p._last_refresh_at ?? p.last_refresh_at ?? null;
+
+    const evolved = origConf !== "—" && latestConf !== "—" &&
+                   Math.abs(parseFloat(latestConf) - parseFloat(origConf)) > 0.5;
+
+    const evolutionHTML = evolved
+      ? `<div style="margin-top:8px; padding:8px; background:var(--bg); border-left:3px solid #58a6ff; border-radius:4px; font-size:0.85em;">
+           📊 Confluence: ${parseFloat(origConf).toFixed(1)} → <b>${parseFloat(latestConf).toFixed(1)}</b>
+           &nbsp;·&nbsp; Now: <b>${latestConfidence}</b>
+         </div>`
+      : "";
+
+    const refreshBadgeHTML = refreshCount > 0
+      ? `<span style="display:inline-block; padding:2px 8px; border-radius:10px; background:#1f6feb; color:white; font-size:0.75em; margin-left:8px;">🔁 ${refreshCount}×</span>`
+      : "";
+
+    grid.innerHTML += `
+      <div class="card">
+        <h3>
+          <span>${p.symbol || "?"} ${refreshBadgeHTML}</span>
+          <span class="badge ${pos}">${pos}</span>
+        </h3>
+        <div class="meta">Opened: ${p.logged_at ? new Date(p.logged_at).toLocaleString() : "—"}</div>
+        <div>Entry: ${entry.low?.toFixed?.(4) ?? "—"} – ${entry.high?.toFixed?.(4) ?? "—"}</div>
+        <div>SL: ${p.stop_loss?.toFixed?.(4) ?? "—"} | TP1: ${p.take_profit_1?.toFixed?.(4) ?? "—"}</div>
+        <div>Latest EV: <b>${latestEvR != null ? parseFloat(latestEvR).toFixed(2) + "R" : "—"}</b></div>
+        <div class="meta" style="margin-top:6px;">
+          ⏱️ Active for ${fmtAge(p.logged_at)}
+          ${lastRefresh ? ` · Last refresh ${fmtAge(lastRefresh)} ago` : ""}
+        </div>
+        ${evolutionHTML}
+      </div>`;
+  }
+}
+
 // Tab switching
 document.querySelectorAll(".tab").forEach(btn => {
   btn.onclick = () => {
@@ -135,3 +207,4 @@ document.querySelectorAll(".tab").forEach(btn => {
 });
 
 loadAll();
+

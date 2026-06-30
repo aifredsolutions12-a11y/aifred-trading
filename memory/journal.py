@@ -59,3 +59,56 @@ def recent_signals(symbol: str = None, timeframe: str = None, n: int = 10) -> li
     if timeframe:
         rows = [r for r in rows if r.get("timeframe") == timeframe]
     return rows[-n:]
+
+
+from datetime import datetime, timezone
+
+
+def find_open_position(journal: list, symbol: str) -> dict | None:
+    """Return the most recent OPEN position for a symbol, or None."""
+    open_positions = [
+        t for t in journal
+        if t.get("symbol") == symbol
+        and t.get("outcome") is None
+        and t.get("position") in ("LONG", "SHORT")
+    ]
+    if not open_positions:
+        return None
+    # Most recent open position
+    return sorted(
+        open_positions,
+        key=lambda t: t.get("logged_at", ""),
+        reverse=True,
+    )[0]
+
+
+def close_position_as_flipped(position: dict, new_direction: str) -> None:
+    """Mark a position as closed due to direction flip. Modifies dict in place."""
+    position["outcome"] = "FLIPPED"
+    position["outcome_resolved_at"] = datetime.now(timezone.utc).isoformat()
+    position["outcome_note"] = (
+        f"Direction changed: {position.get('position')} → {new_direction}"
+    )
+
+
+def update_position_refresh(position: dict, verdict: dict) -> None:
+    """Update an open position's refresh metadata. Modifies dict in place."""
+    now = datetime.now(timezone.utc).isoformat()
+    position["_last_refresh_at"] = now
+    position["_refresh_count"] = position.get("_refresh_count", 0) + 1
+    position["_latest_confluence"] = verdict.get("final_confluence")
+    position["_latest_confidence"] = verdict.get("confidence")
+    position["_latest_ev_R"] = verdict.get("ev_R")
+    position["_latest_win_prob"] = verdict.get("estimated_win_prob_pct")
+
+
+def append_new_position(journal: list, verdict: dict, signal_filename: str) -> dict:
+    """Add a brand new trade entry to the journal."""
+    entry = {
+        **verdict,
+        "logged_at": datetime.now(timezone.utc).isoformat(),
+        "_signal_file": signal_filename,
+        "_refresh_count": 0,
+    }
+    journal.append(entry)
+    return entry

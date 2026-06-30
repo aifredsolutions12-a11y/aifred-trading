@@ -123,12 +123,139 @@ def call_gemini(prompt: str) -> dict:
         return {"error": f"JSON parse failed: {e}", "raw_response": raw[:1000]}
 
 
-def save_signal(verdict: dict, symbol: str) -> Path:
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-    filepath = SIGNALS_DIR / f"{symbol}_multitf_{ts}.json"
-    with open(filepath, "w", encoding="utf-8") as f:
+
+def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
+    """
+    Position-aware save logic.
+
+    Decides one of 4 actions:
+      - NEW      → No open position. Logged a fresh trade.
+      - UPDATED  → Same direction as open position. Refreshed metadata only.
+      - FLIPPED  → Direction changed. Closed old, opened new.
+      - SKIPPED  → AI said WAIT/HOLD and no open position to update.
+
+    Always overwrites <SYMBOL>_latest.json so the dashboard stays fresh.
+    Also archives every analysis (regardless of action) to history/ for audit.
+
+    Returns:
+      {
+        "filepath":      str,
+        "action":        "NEW" | "UPDATED" | "FLIPPED" | "SKIPPED",
+        "reason":        str,
+        "position_age":  str (optional, e.g. "8h 23m")
+      }
+    """
+    from memory.journal import (
+        read_journal,
+        write_journal,
+        find_open_position,
+        close_position_as_flipped,
+        update_position_refresh,
+        append_new_position,
+    )
+
+    # ── 1. Always save the latest snapshot for the dashboard ──
+    latest_path = SIGNALS_DIR / f"{symbol}_latest.json"
+    with open(latest_path, "w", encoding="utf-8") as f:
         json.dump(verdict, f, indent=2, default=str)
-    return filepath
+
+    # ── 2. Always archive a timestamped copy for full history ──
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    archive_dir = SIGNALS_DIR / "history"
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    archive_path = archive_dir / f"{symbol}_{ts}.json"
+    with open(archive_path, "w", encoding="utf-8") as f:
+        json.dump(verdict, f, indent=2, default=str)
+
+    # ── 3. Decide what to do based on current journal state ──
+    journal = read_journal()
+    open_pos = find_open_position(journal, symbol)
+    new_pos = verdict.get("position")
+
+    # Case A: No open position
+    if open_pos is None:
+        if new_pos in ("LONG", "SHORT"):
+            entry = append_new_position(journal, verdict, archive_path.name)
+            write_journal(journal)
+            return {
+                "filepath": str(latest_path),
+                "action": "NEW",
+                "reason": f"No open position → opened {new_pos}",
+            }
+        else:
+            # AI says WAIT or HOLD with nothing open
+            return {
+                "filepath": str(latest_path),
+                "action": "SKIPPED",
+                "reason": f"AI says {new_pos}, nothing to do",
+            }
+
+    # Case B: Has open position
+    old_pos = open_pos.get("position")
+    open_age = _compute_position_age(open_pos.get("logged_at"))
+
+    # Case B1: Direction flipped
+    if new_pos in ("LONG", "SHORT") and new_pos != old_pos:
+        close_position_as_flipped(open_pos, new_pos)
+        new_entry = append_new_position(journal, verdict, archive_path.name)
+        new_entry["_previous_position_logged_at"] = open_pos.get("logged_at")
+        write_journal(journal)
+
+        # Mark this as a flip in the archive
+        flip_archive = archive_dir / f"{symbol}_{ts}_flip.json"
+        archive_path.rename(flip_archive)
+
+        return {
+            "filepath": str(latest_path),
+            "action": "FLIPPED",
+            "reason": f"Closed {old_pos} (age {open_age}), opened {new_pos}",
+            "position_age": open_age,
+        }
+
+    # Case B2: Same direction → refresh metadata
+    if new_pos == old_pos:
+        update_position_refresh(open_pos, verdict)
+        write_journal(journal)
+        return {
+            "filepath": str(latest_path),
+            "action": "UPDATED",
+            "reason": (
+                f"Same direction ({new_pos}), refreshed metadata "
+                f"(refresh #{open_pos.get('_refresh_count')})"
+            ),
+            "position_age": open_age,
+        }
+
+    # Case B3: AI now says WAIT/HOLD but position is still open
+    return {
+        "filepath": str(latest_path),
+        "action": "SKIPPED",
+        "reason": (
+            f"AI says {new_pos}, but {old_pos} position still open "
+            f"(age {open_age}). Resolver will close on SL/TP1/EXPIRED."
+        ),
+        "position_age": open_age,
+    }
+
+
+def _compute_position_age(logged_at: str) -> str:
+    """Compute human-readable age of an open position."""
+    if not logged_at:
+        return "unknown"
+    try:
+        opened = datetime.fromisoformat(logged_at.replace("Z", "+00:00"))
+        delta = datetime.now(timezone.utc) - opened
+        hrs = int(delta.total_seconds() // 3600)
+        mins = int((delta.total_seconds() % 3600) // 60)
+        if hrs > 24:
+            days = hrs // 24
+            return f"{days}d {hrs % 24}h"
+        if hrs > 0:
+            return f"{hrs}h {mins}m"
+        return f"{mins}m"
+    except Exception:
+        return "unknown"
+
 
 
 # ════════════════════════════════════════════════════════════════
@@ -342,9 +469,21 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
         "gates_used":        decision["gates_used"],
     }
 
-    # 12. Save
-    filepath = save_signal(verdict, symbol)
-    print(f"💾 Saved: {filepath}")
+
+    # 12. Save with position-aware logic
+    result = save_signal_with_logic(verdict, symbol)
+    action_emoji = {
+        "NEW": "🆕",
+        "UPDATED": "🔁",
+        "FLIPPED": "🔄",
+        "SKIPPED": "⏭️",
+    }.get(result["action"], "💾")
+
+    print(f"\n{action_emoji} {result['action']}: {result['reason']}")
+    print(f"   File: {result['filepath']}")
+    if "position_age" in result:
+        print(f"   Position age: {result['position_age']}")
+
 
     # 13. Display summary
     print(f"\n{'─'*60}")
