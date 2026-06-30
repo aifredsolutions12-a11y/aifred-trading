@@ -165,7 +165,7 @@ def _hit_check(row: dict) -> dict | None:
     if df is None or df.empty:
         return None
 
-    df = df[df["timestamp"] >= pd.Timestamp(logged, tz="UTC")].reset_index(drop=True)
+    df = df[df["timestamp"] >= pd.Timestamp(logged)].reset_index(drop=True)
     if df.empty:
         return None
 
@@ -184,7 +184,7 @@ def _hit_check(row: dict) -> dict | None:
     row["entry_filled_at"] = fill_time.isoformat() if hasattr(fill_time, "isoformat") else str(fill_time)
 
     # Step 6: scan post-fill candles for SL or TP1 (FIX A: TP1 only)
-    df_after_fill = df[df["timestamp"] >= pd.Timestamp(fill_time, tz="UTC")].reset_index(drop=True)
+    df_after_fill = df[df["timestamp"] >= pd.Timestamp(fill_time)].reset_index(drop=True)
 
     ez = row["entry_zone"]
     entry_mid = (float(ez["low"]) + float(ez["high"])) / 2
