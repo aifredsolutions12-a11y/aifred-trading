@@ -1,0 +1,109 @@
+name: Agent Reset (manual + confirm required)
+
+# ⚠️ NO SCHEDULE — manual only via workflow_dispatch or Telegram.
+on:
+  workflow_dispatch:
+    inputs:
+      level:
+        description: 'Reset level'
+        required: true
+        type: choice
+        options:
+          - soft
+          - medium
+          - hard
+          - nuclear
+      confirm:
+        description: 'Type "YES" to confirm (required for non-soft)'
+        required: true
+        default: 'NO'
+  repository_dispatch:
+    types: [run-reset-soft, run-reset-medium, run-reset-hard, run-reset-nuclear]
+
+concurrency:
+  group: reset-lock
+  cancel-in-progress: false
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine level (from dispatch type or input)
+        id: level
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            EVENT_TYPE="${{ github.event.action }}"
+            LEVEL="${EVENT_TYPE#run-reset-}"
+          else
+            LEVEL="${{ inputs.level }}"
+            if [ "$LEVEL" != "soft" ] && [ "${{ inputs.confirm }}" != "YES" ]; then
+              echo "❌ Confirmation required for non-soft resets."
+              exit 1
+            fi
+          fi
+          echo "level=$LEVEL" >> $GITHUB_OUTPUT
+          echo "Resetting at level: $LEVEL"
+
+      - name: Run reset
+        run: |
+          python scripts/reset_agent.py --level ${{ steps.level.outputs.level }} --confirm \
+            | tee reset_output.txt
+
+      - name: Send Telegram summary
+        if: always()
+        run: |
+          python - <<'EOF'
+          import os, requests
+          from pathlib import Path
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+          if not token or not chat_id:
+              exit(0)
+
+          output = Path("reset_output.txt").read_text(encoding="utf-8") if Path("reset_output.txt").exists() else "(no output)"
+          tail = output[-2500:] if len(output) > 2500 else output
+
+          msg = f"🧹 *AGENT RESET COMPLETE*\n\n```\n{tail}\n```"
+          requests.post(
+              f"https://api.telegram.org/bot{token}/sendMessage",
+              json={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
+              timeout=15,
+          )
+          EOF
+
+      - name: Commit results
+        run: |
+          git config user.name  "reset-bot"
+          git config user.email "reset-bot@users.noreply.github.com"
+          git add -A data/ docs/data/ 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: agent reset (${{ steps.level.outputs.level }}) — clean slate"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin main && exit 0
+            sleep 5
+          done
+          exit 1
