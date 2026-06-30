@@ -35,18 +35,139 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: requirements.txt
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run hourly multi-TF analyzer
-        run: python -m ai_analyzer.analyzer
+      - name: Run multi-TF analyzer with Telegram alerts
+        run: |
+          python - <<'EOF'
+          import os
+          import yaml
+          import time
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from ai_analyzer.analyzer import analyze
+          from notifications.telegram import (
+              send_opening_report, send_hourly_update, is_cycle_start
+          )
+          from notifications.diff_analyzer import (
+              load_previous_state, save_current_state,
+              build_state_from_signals, compare_states,
+          )
 
-      - name: Commit & push results
+          # Load coins
+          with open("config/coins.yaml") as f:
+              cfg = yaml.safe_load(f)
+          coins = cfg.get("watchlist", {})
+          enabled = [c["symbol"] for c in coins.values() if c.get("enabled", True)]
+          print(f"\n🚀 Analyzing {len(enabled)} coins")
+          print(f"   Cycle start: {is_cycle_start()}\n")
+
+          all_signals = []
+          failures = []
+          for sym in enabled:
+              try:
+                  verdict = analyze(sym)
+                  if "error" not in verdict:
+                      all_signals.append(verdict)
+                  else:
+                      failures.append((sym, verdict["error"]))
+              except Exception as e:
+                  print(f"❌ {sym}: {e}")
+                  failures.append((sym, str(e)))
+              time.sleep(5)
+
+          print(f"\n✅ {len(all_signals)} successful │ ❌ {len(failures)} failed")
+
+          # Build state for diff comparison
+          current_state = build_state_from_signals(all_signals)
+          prev_state = load_previous_state()
+          diff = compare_states(prev_state, current_state)
+
+          # ── Get open positions from journal ──
+          try:
+              from memory.journal import read_journal
+              journal = read_journal()
+              active_positions = [
+                  t for t in journal
+                  if t.get("outcome") is None
+                  and t.get("position") in ("LONG", "SHORT")
+              ]
+          except Exception as e:
+              print(f"⚠️ Could not load journal: {e}")
+              active_positions = []
+
+          # Identify waiting coins
+          waiting = [s["symbol"] for s in all_signals if s.get("position") not in ("LONG", "SHORT")]
+
+          # Identify run number (UTC hour - 4 + 1, clamped 1-24)
+          utc_hour = datetime.now(timezone.utc).hour
+          run_number = ((utc_hour - 4) % 24) + 1
+
+          # Send appropriate Telegram alert
+          dashboard_url = os.getenv("DASHBOARD_URL", "")
+
+          if is_cycle_start():
+              print("\n📱 Sending OPENING REPORT...")
+              yesterday_summary = {}
+              try:
+                  ys_file = Path("data/yesterday_summary.json")
+                  if ys_file.exists():
+                      yesterday_summary = json.loads(ys_file.read_text())
+              except Exception:
+                  pass
+
+              new_signals_actionable = [
+                  s for s in all_signals
+                  if s.get("position") in ("LONG", "SHORT")
+              ]
+
+              send_opening_report(
+                  active_positions=active_positions,
+                  new_signals=new_signals_actionable,
+                  waiting_coins=waiting,
+                  yesterday_summary=yesterday_summary,
+                  dashboard_url=dashboard_url,
+              )
+          else:
+              print(f"\n📱 Sending HOURLY UPDATE (run #{run_number})...")
+              send_hourly_update(
+                  unchanged=diff["unchanged"],
+                  attention_needed=diff["attention"],
+                  new_opens=diff["new_opens"],
+                  flipped=diff["flipped"],
+                  run_number=run_number,
+                  dashboard_url=dashboard_url,
+              )
+
+          save_current_state(current_state)
+
+          if failures and len(all_signals) == 0:
+              import sys
+              sys.exit(1)
+          EOF
+
+      - name: Export dashboard JSON
+        run: |
+          if [ -f export_dashboard.py ]; then
+            python export_dashboard.py
+          fi
+
+      - name: Commit results
         run: |
           git config user.name  "agent-bot"
           git config user.email "agent-bot@users.noreply.github.com"
-          git pull --rebase origin main || true
-          git add -A
-          git diff --cached --quiet || git commit -m "agent run $(date -u +%FT%TZ)"
-          git push origin main || git push origin main --force-with-lease
+          git add data/ docs/data/ 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m "agent run $(date -u +%FT%TZ)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep 5
+          done
+          exit 1

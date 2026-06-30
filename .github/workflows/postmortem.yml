@@ -34,18 +34,129 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: requirements.txt
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run post-mortem
+      - name: Run AI post-mortem
         run: python -m memory.postmortem
 
-      - name: Commit & push results
+      - name: Update adaptive weights
+        run: |
+          python - <<'EOF'
+          import yaml
+          from ai_analyzer.weight_tracker import adjust_weights_for_coin
+          from ai_analyzer.memory import load_closed_trades
+
+          with open("config/coins.yaml") as f:
+              cfg = yaml.safe_load(f)
+          enabled = [c["symbol"] for c in cfg.get("watchlist", {}).values() if c.get("enabled", True)]
+
+          for sym in enabled:
+              closed = load_closed_trades(sym)
+              result = adjust_weights_for_coin(sym, closed)
+              if result.get("adjusted"):
+                  print(f"✅ {sym}: weights adjusted")
+          EOF
+
+      - name: Send end-of-cycle Telegram report
+        run: |
+          python - <<'EOF'
+          import json
+          from datetime import datetime, timezone, timedelta
+          from pathlib import Path
+          from memory.journal import read_journal, write_journal
+          from notifications.telegram import send_postmortem_report
+
+          journal = read_journal()
+          now = datetime.now(timezone.utc)
+          cutoff_24h = now - timedelta(hours=24)
+
+          # Closed in last 24h
+          closed_today = []
+          for t in journal:
+              outcome = t.get("outcome")
+              resolved_at = t.get("outcome_resolved_at")
+              if outcome in ("TP1", "SL") and resolved_at:
+                  try:
+                      resolved_dt = datetime.fromisoformat(resolved_at.replace("Z", "+00:00"))
+                      if resolved_dt >= cutoff_24h:
+                          closed_today.append(t)
+                  except Exception:
+                      continue
+
+          # Still open
+          still_open = [t for t in journal if t.get("outcome") is None and t.get("position") in ("LONG", "SHORT")]
+
+          # Load AI lessons from postmortem files (today's)
+          pm_dir = Path("data/postmortems")
+          ai_lessons = []
+          if pm_dir.exists():
+              today_str = now.date().isoformat()
+              for f in sorted(pm_dir.glob(f"*_{today_str.replace('-','')}_*.json")):
+                  try:
+                      pm = json.loads(f.read_text())
+                      ai_lessons.append(pm)
+                  except Exception:
+                      continue
+
+          # Weekly stats (last 7 days)
+          cutoff_7d = now - timedelta(days=7)
+          weekly = [
+              t for t in journal
+              if t.get("outcome") in ("TP1", "SL")
+              and t.get("outcome_resolved_at")
+              and datetime.fromisoformat(t["outcome_resolved_at"].replace("Z", "+00:00")) >= cutoff_7d
+          ]
+          weekly_wins = sum(1 for t in weekly if t.get("outcome") == "TP1")
+          weekly_losses = sum(1 for t in weekly if t.get("outcome") == "SL")
+          weekly_pnl = sum(float(t.get("pnl_pct", 0)) for t in weekly)
+          weekly_stats = {
+              "total": len(weekly),
+              "wins": weekly_wins,
+              "losses": weekly_losses,
+              "total_pnl_pct": weekly_pnl,
+          }
+
+          # Save today's summary for tomorrow's opening report
+          today_wins = sum(1 for t in closed_today if t.get("outcome") == "TP1")
+          today_losses = sum(1 for t in closed_today if t.get("outcome") == "SL")
+          today_pnl = sum(float(t.get("pnl_pct", 0)) for t in closed_today)
+          today_total = today_wins + today_losses
+          today_wr = (today_wins / today_total * 100) if today_total > 0 else 0
+          summary = {
+              "closed_count": len(closed_today),
+              "wins": today_wins,
+              "losses": today_losses,
+              "win_rate": today_wr,
+              "total_pnl_R": today_pnl / 2.0,
+              "total_pnl_pct": today_pnl,
+              "date": now.date().isoformat(),
+          }
+          Path("data").mkdir(exist_ok=True)
+          with open("data/yesterday_summary.json", "w") as f:
+              json.dump(summary, f, indent=2)
+
+          send_postmortem_report(
+              closed_today=closed_today,
+              still_open=still_open,
+              ai_lessons=ai_lessons,
+              weekly_stats=weekly_stats,
+          )
+          EOF
+
+      - name: Commit results
         run: |
           git config user.name  "postmortem-bot"
           git config user.email "postmortem-bot@users.noreply.github.com"
-          git pull --rebase origin main || true
-          git add -A
-          git diff --cached --quiet || git commit -m "post-mortem $(date -u +%FT%TZ)"
-          git push origin main || git push origin main --force-with-lease
+          git add data/ 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m "postmortem $(date -u +%FT%TZ)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin main && exit 0
+            sleep 5
+          done
+          exit 1
