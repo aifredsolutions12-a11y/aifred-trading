@@ -101,3 +101,49 @@ timeframes_analyzed:
 run_schedule:
   cron: "5 */4 * * *"
   description: "Every 4 hours at :05"
+
+  
+# ═══════════════════════════════════════════════════════════════
+# ATR-based SL/TP system (v3 resolver)
+# ═══════════════════════════════════════════════════════════════
+atr_multipliers:
+  # Tier 1 — Majors: clean structure, tighter stops work
+  tier_1:
+    sl_mult: 1.3   # SL = entry ± (1.3 × ATR)
+    tp_mult: 2.0   # TP = entry ± (2.0 × ATR)
+
+  # Tier 2 — Standard alts: balanced default
+  tier_2:
+    sl_mult: 1.5
+    tp_mult: 2.5
+
+  # Tier 3 — Volatile alts: wider cushion
+  tier_3:
+    sl_mult: 1.8
+    tp_mult: 3.0
+
+# Blend guardrail — AI's SL/TP clipped to within ±50% of ATR-based before midpoint
+atr_blend:
+  guardrail_pct: 0.50    # 50% — if AI is further than this from ATR-based, clip
+  fallback_if_no_ai: true # if AI didn't provide SL/TP, use pure ATR-based
+
+# Max-hold hours by timeframe (used for time-out force-close in resolver)
+max_hold_defaults:
+  "15m": 4
+  "30m": 8
+  "1h":  18
+  "4h":  48
+  "1d":  168     # 7 days
+  "1w":  504     # 21 days
+
+# Confidence-based hold time multiplier
+# Note: max confidence in your system is ~50, so 50+ is the "A+" tier
+max_hold_confidence_boost:
+  high_threshold: 50      # confidence >= 50  → +50% hold
+  high_boost: 1.50
+  medium_low: 35          # 35-49 → base
+  medium_high: 49
+  weak_low: 20            # 20-34 → -25% hold
+  weak_boost: 0.75
+  very_weak_below: 20     # <20 → -50% hold
+  very_weak_boost: 0.50

@@ -1,10 +1,11 @@
 """
-Multi-TF AI Analyzer (v4)
+Multi-TF AI Analyzer (v4) — patched with v3 trade params
 - 1 Gemini call per coin (all 6 TFs analyzed together)
 - Code-driven confluence (no AI math)
 - Adaptive methodology weights per coin
 - Memory injection (past verdicts + outcomes)
 - Post-mortem awareness
+- v3: ATR-based blended SL/TP + BE trigger + max_hold_hours
 """
 import os
 import json
@@ -34,6 +35,7 @@ from ai_analyzer.confluence_engine import (
 from ai_analyzer.decision_engine import decide_position
 from ai_analyzer.weight_tracker import load_adaptive_weights
 from ai_analyzer.memory import build_memory_block, load_closed_trades
+from ai_analyzer.trade_params import compute_trade_params   # 🆕 v3
 
 load_dotenv("config/.env")
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
@@ -47,7 +49,7 @@ TIMEFRAMES = ["15m", "30m", "1h", "4h", "1d", "1w"]
 
 
 # ════════════════════════════════════════════════════════════════
-# HELPERS
+# HELPERS (unchanged from your version)
 # ════════════════════════════════════════════════════════════════
 def _format_headlines(news, max_items=8):
     if not news or not news.get("headlines"):
@@ -56,7 +58,6 @@ def _format_headlines(news, max_items=8):
     for h in news["headlines"][:max_items]:
         lines.append(f"  - [{h['source']}] {h['title'][:120]}")
     return "\n".join(lines)
-
 
 
 def _format_multi_tf_block(per_tf_data: dict) -> str:
@@ -84,7 +85,6 @@ def _format_multi_tf_block(per_tf_data: dict) -> str:
         lines.append(f"  Bollinger position: {snap.get('bb_position_pct', 'N/A')}%")
         lines.append(f"  Classical TA score (Python-computed): {classical.get('score', 'N/A')}")
 
-        # NEW: append the actual recent candles (compact OHLCV format)
         if df is not None and not df.empty:
             tail = df.tail(n)[["timestamp", "open", "high", "low", "close", "volume"]]
             lines.append(f"  Recent candles:")
@@ -96,7 +96,6 @@ def _format_multi_tf_block(per_tf_data: dict) -> str:
                 )
 
     return "\n".join(lines)
-
 
 
 def _clean_json_response(text):
@@ -123,28 +122,8 @@ def call_gemini(prompt: str) -> dict:
         return {"error": f"JSON parse failed: {e}", "raw_response": raw[:1000]}
 
 
-
 def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
-    """
-    Position-aware save logic.
-
-    Decides one of 4 actions:
-      - NEW      → No open position. Logged a fresh trade.
-      - UPDATED  → Same direction as open position. Refreshed metadata only.
-      - FLIPPED  → Direction changed. Closed old, opened new.
-      - SKIPPED  → AI said WAIT/HOLD and no open position to update.
-
-    Always overwrites <SYMBOL>_latest.json so the dashboard stays fresh.
-    Also archives every analysis (regardless of action) to history/ for audit.
-
-    Returns:
-      {
-        "filepath":      str,
-        "action":        "NEW" | "UPDATED" | "FLIPPED" | "SKIPPED",
-        "reason":        str,
-        "position_age":  str (optional, e.g. "8h 23m")
-      }
-    """
+    """Position-aware save logic. (unchanged from your version)"""
     from memory.journal import (
         read_journal,
         write_journal,
@@ -154,12 +133,10 @@ def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
         append_new_position,
     )
 
-    # ── 1. Always save the latest snapshot for the dashboard ──
     latest_path = SIGNALS_DIR / f"{symbol}_latest.json"
     with open(latest_path, "w", encoding="utf-8") as f:
         json.dump(verdict, f, indent=2, default=str)
 
-    # ── 2. Always archive a timestamped copy for full history ──
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
     archive_dir = SIGNALS_DIR / "history"
     archive_dir.mkdir(parents=True, exist_ok=True)
@@ -167,12 +144,10 @@ def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
     with open(archive_path, "w", encoding="utf-8") as f:
         json.dump(verdict, f, indent=2, default=str)
 
-    # ── 3. Decide what to do based on current journal state ──
     journal = read_journal()
     open_pos = find_open_position(journal, symbol)
     new_pos = verdict.get("position")
 
-    # Case A: No open position
     if open_pos is None:
         if new_pos in ("LONG", "SHORT"):
             entry = append_new_position(journal, verdict, archive_path.name)
@@ -183,25 +158,21 @@ def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
                 "reason": f"No open position → opened {new_pos}",
             }
         else:
-            # AI says WAIT or HOLD with nothing open
             return {
                 "filepath": str(latest_path),
                 "action": "SKIPPED",
                 "reason": f"AI says {new_pos}, nothing to do",
             }
 
-    # Case B: Has open position
     old_pos = open_pos.get("position")
     open_age = _compute_position_age(open_pos.get("logged_at"))
 
-    # Case B1: Direction flipped
     if new_pos in ("LONG", "SHORT") and new_pos != old_pos:
         close_position_as_flipped(open_pos, new_pos)
         new_entry = append_new_position(journal, verdict, archive_path.name)
         new_entry["_previous_position_logged_at"] = open_pos.get("logged_at")
         write_journal(journal)
 
-        # Mark this as a flip in the archive
         flip_archive = archive_dir / f"{symbol}_{ts}_flip.json"
         archive_path.rename(flip_archive)
 
@@ -212,7 +183,6 @@ def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
             "position_age": open_age,
         }
 
-    # Case B2: Same direction → refresh metadata
     if new_pos == old_pos:
         update_position_refresh(open_pos, verdict)
         write_journal(journal)
@@ -226,7 +196,6 @@ def save_signal_with_logic(verdict: dict, symbol: str) -> dict:
             "position_age": open_age,
         }
 
-    # Case B3: AI now says WAIT/HOLD but position is still open
     return {
         "filepath": str(latest_path),
         "action": "SKIPPED",
@@ -257,11 +226,9 @@ def _compute_position_age(logged_at: str) -> str:
         return "unknown"
 
 
-
 # ════════════════════════════════════════════════════════════════
-# MULTI-TF DATA FETCHING
+# MULTI-TF DATA FETCHING (unchanged)
 # ════════════════════════════════════════════════════════════════
-
 def fetch_per_tf_data(symbol: str) -> dict:
     """Fetches OHLCV + indicators for all 6 TFs."""
     cfg = load_config()
@@ -280,14 +247,13 @@ def fetch_per_tf_data(symbol: str) -> dict:
                 "ta_snapshot":         ta_snapshot,
                 "classical_ta_score":  classical_ta,
                 "atr_14":              ta_snapshot.get("atr_14"),
-                "df":                  df_ind,   # ⬅️ NEW: keep df for prompt formatting
+                "df":                  df_ind,
             }
         except Exception as e:
             print(f"  ⚠️  {tf} failed: {e}")
             per_tf[tf] = {}
 
     return per_tf
-
 
 
 # ════════════════════════════════════════════════════════════════
@@ -415,7 +381,7 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
         timeframe="4h",
     )
 
-    # 11. Build final verdict
+    # 11. Build base verdict (AI-side SL/TP via your existing legacy formula)
     current_price = price_info["price"]
     atr_4h = atr_14_4h or current_price * 0.02
     is_long = decision["position"] == "LONG"
@@ -424,23 +390,25 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
     entry_high = round(current_price * 1.002, 6)
     entry_mid = (entry_low + entry_high) / 2
 
+    # These remain your "AI side" levels — used as one input to v3 blending
     if is_long:
-        stop_loss = round(entry_mid - (1.5 * atr_4h), 6)
-        take_profit_1 = round(entry_mid + (3.0 * atr_4h), 6)
-        take_profit_2 = round(entry_mid + (6.0 * atr_4h), 6)
+        legacy_sl = round(entry_mid - (1.5 * atr_4h), 6)
+        legacy_tp_1 = round(entry_mid + (3.0 * atr_4h), 6)
+        legacy_tp_2 = round(entry_mid + (6.0 * atr_4h), 6)
     elif decision["position"] == "SHORT":
-        stop_loss = round(entry_mid + (1.5 * atr_4h), 6)
-        take_profit_1 = round(entry_mid - (3.0 * atr_4h), 6)
-        take_profit_2 = round(entry_mid - (6.0 * atr_4h), 6)
+        legacy_sl = round(entry_mid + (1.5 * atr_4h), 6)
+        legacy_tp_1 = round(entry_mid - (3.0 * atr_4h), 6)
+        legacy_tp_2 = round(entry_mid - (6.0 * atr_4h), 6)
     else:
-        stop_loss = current_price
-        take_profit_1 = current_price
-        take_profit_2 = current_price
+        legacy_sl = current_price
+        legacy_tp_1 = current_price
+        legacy_tp_2 = current_price
 
     verdict = {
         "symbol":            symbol,
         "current_price":     current_price,
         "timestamp":         datetime.now(timezone.utc).isoformat(),
+        "timeframe":         "4h",   # 🆕 v3: explicit primary TF for resolver
         "position":          decision["position"],
         "confidence":        decision["confidence"],
         "final_confluence":  final_confluence,
@@ -449,9 +417,9 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
         "ev_positive":       final_ev["ev_R"] > 0,
         "estimated_win_prob_pct": round(final_win_prob, 1),
         "entry_zone":        {"low": entry_low, "high": entry_high},
-        "stop_loss":         stop_loss,
-        "take_profit_1":     take_profit_1,
-        "take_profit_2":     take_profit_2,
+        "stop_loss":         legacy_sl,        # legacy compatibility
+        "take_profit_1":     legacy_tp_1,      # legacy compatibility
+        "take_profit_2":     legacy_tp_2,      # legacy compatibility
         "risk_reward_ratio": 2.0,
 
         "per_tf_details":    per_tf_details,
@@ -469,6 +437,27 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
         "gates_used":        decision["gates_used"],
     }
 
+    # ════════════════════════════════════════════════════════════
+    # 🆕 v3: Enrich with ATR-based blended SL/TP + BE + max_hold
+    # ════════════════════════════════════════════════════════════
+    # The "AI side" (legacy_sl/legacy_tp_1) is fed in as the AI suggestion
+    # via the standard stop_loss/take_profit_1 fields the verdict already has.
+    # compute_trade_params will:
+    #   - compute pure ATR-based SL/TP using per-coin tier multipliers
+    #   - clip the legacy SL/TP to ±50% guardrail of ATR-based
+    #   - midpoint-blend → stop_loss_effective / take_profit_effective
+    #   - set BE trigger at 50% of effective TP distance
+    #   - set max_hold_hours from TF + confidence boost
+    # Skips entirely if position is not LONG/SHORT.
+    primary_snapshot = per_tf_data.get("4h", {}).get("ta_snapshot", {})
+    verdict = compute_trade_params(
+        verdict=verdict,
+        symbol=symbol,
+        timeframe="4h",
+        confidence_score=final_confluence,   # numeric — your typical range 0-50
+        ta_snapshot=primary_snapshot,
+    )
+    # ════════════════════════════════════════════════════════════
 
     # 12. Save with position-aware logic
     result = save_signal_with_logic(verdict, symbol)
@@ -484,8 +473,7 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
     if "position_age" in result:
         print(f"   Position age: {result['position_age']}")
 
-
-    # 13. Display summary
+    # 13. Display summary (now showing v3 levels)
     print(f"\n{'─'*60}")
     print(f"🎯 VERDICT — {symbol}")
     print(f"{'─'*60}")
@@ -494,7 +482,13 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
     print(f"   EV (R):           {verdict['ev_R']:+.3f}R")
     print(f"   Win Prob:         {verdict['estimated_win_prob_pct']}%")
     print(f"   Entry:            ${entry_low} – ${entry_high}")
-    print(f"   SL / TP1 / TP2:   ${stop_loss} / ${take_profit_1} / ${take_profit_2}")
+    print(f"   AI side  SL/TP1:  ${legacy_sl} / ${legacy_tp_1}")
+    if verdict.get("stop_loss_atr") is not None:
+        print(f"   ATR side SL/TP:   ${verdict['stop_loss_atr']} / ${verdict['take_profit_atr']}")
+        print(f"   ⚡ EFFECTIVE:      ${verdict['stop_loss_effective']} / ${verdict['take_profit_effective']}")
+        print(f"   BE trigger:       ${verdict.get('be_trigger_price', 'N/A')}")
+        print(f"   Max hold:         {verdict.get('max_hold_hours', 'N/A')}h")
+        print(f"   ATR%:             {verdict.get('atr_pct', 'N/A')}%")
     print(f"   Reason:           {decision['reason']}")
     print(f"{'─'*60}\n")
 
@@ -502,7 +496,7 @@ def analyze(symbol: str = "BTCUSDT") -> dict:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Multi-TF AI Crypto Analyzer v4")
+    parser = argparse.ArgumentParser(description="Multi-TF AI Crypto Analyzer v4 (v3 trade params)")
     parser.add_argument("--symbol", default="BTCUSDT", help="Trading pair")
     args = parser.parse_args()
     analyze(args.symbol)
