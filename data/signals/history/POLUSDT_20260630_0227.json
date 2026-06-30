@@ -1,0 +1,189 @@
+{
+  "symbol": "POLUSDT",
+  "current_price": 0.0698,
+  "timestamp": "2026-06-30T02:27:14.688231+00:00",
+  "position": "SHORT",
+  "confidence": "LOW",
+  "final_confluence": 37.15,
+  "ev_R": 0.0687,
+  "ev_pct": 0.0687,
+  "ev_positive": true,
+  "estimated_win_prob_pct": 35.6,
+  "entry_zone": {
+    "low": 0.06966,
+    "high": 0.06994
+  },
+  "stop_loss": 0.071822,
+  "take_profit_1": 0.065756,
+  "take_profit_2": 0.061713,
+  "risk_reward_ratio": 2.0,
+  "per_tf_details": {
+    "15m": {
+      "method_scores": {
+        "wyckoff": 25,
+        "smc": 20,
+        "elliott": 30,
+        "classical_ta": 12.5,
+        "sentiment": 75,
+        "ev_edge": 52.5
+      },
+      "tf_confluence": 32.5,
+      "ev_R": 0.05,
+      "win_prob": 35
+    },
+    "30m": {
+      "method_scores": {
+        "wyckoff": 30,
+        "smc": 25,
+        "elliott": 35,
+        "classical_ta": 25.0,
+        "sentiment": 75,
+        "ev_edge": 60.0
+      },
+      "tf_confluence": 38.5,
+      "ev_R": 0.2,
+      "win_prob": 40
+    },
+    "1h": {
+      "method_scores": {
+        "wyckoff": 20,
+        "smc": 15,
+        "elliott": 25,
+        "classical_ta": 12.5,
+        "sentiment": 75,
+        "ev_edge": 45.0
+      },
+      "tf_confluence": 29.0,
+      "ev_R": -0.1,
+      "win_prob": 30
+    },
+    "4h": {
+      "method_scores": {
+        "wyckoff": 40,
+        "smc": 35,
+        "elliott": 45,
+        "classical_ta": 37.5,
+        "sentiment": 75,
+        "ev_edge": 67.5
+      },
+      "tf_confluence": 47.25,
+      "ev_R": 0.35,
+      "win_prob": 45
+    },
+    "1d": {
+      "method_scores": {
+        "wyckoff": 20,
+        "smc": 15,
+        "elliott": 20,
+        "classical_ta": 12.5,
+        "sentiment": 75,
+        "ev_edge": 37.5
+      },
+      "tf_confluence": 27.5,
+      "ev_R": -0.25,
+      "win_prob": 25
+    },
+    "1w": {
+      "method_scores": {
+        "wyckoff": 50,
+        "smc": 45,
+        "elliott": 50,
+        "classical_ta": 50.0,
+        "sentiment": 75,
+        "ev_edge": 75.0
+      },
+      "tf_confluence": 55.25,
+      "ev_R": 0.5,
+      "win_prob": 50
+    }
+  },
+  "tf_aggregate": {
+    "final_confluence": 37.15,
+    "tf_trail": [
+      {
+        "tf": "15m",
+        "score": 32.5,
+        "weight": 0.05,
+        "contribution": 1.62
+      },
+      {
+        "tf": "30m",
+        "score": 38.5,
+        "weight": 0.05,
+        "contribution": 1.93
+      },
+      {
+        "tf": "1h",
+        "score": 29.0,
+        "weight": 0.1,
+        "contribution": 2.9
+      },
+      {
+        "tf": "4h",
+        "score": 47.2,
+        "weight": 0.3,
+        "contribution": 14.17
+      },
+      {
+        "tf": "1d",
+        "score": 27.5,
+        "weight": 0.4,
+        "contribution": 11.0
+      },
+      {
+        "tf": "1w",
+        "score": 55.2,
+        "weight": 0.1,
+        "contribution": 5.53
+      }
+    ],
+    "total_weight": 1.0
+  },
+  "methodology_weights_used": {
+    "wyckoff": 0.2,
+    "smc": 0.2,
+    "elliott": 0.15,
+    "classical_ta": 0.2,
+    "sentiment": 0.15,
+    "ev_edge": 0.1
+  },
+  "wyckoff": {
+    "phase": "Markdown",
+    "sub_phase": "D",
+    "dominant_tf": "1h",
+    "bias": "SHORT",
+    "reasoning": "Price is consistently breaking lower support levels with increasing volume, indicating a continuation of the markdown phase."
+  },
+  "smc": {
+    "order_block": "0.0715",
+    "fvg": "0.0705-0.0712",
+    "liquidity_sweep": true,
+    "bos_choch": "BOS",
+    "dominant_tf": "30m",
+    "bias": "SHORT"
+  },
+  "elliott_wave": {
+    "current_wave": "C",
+    "target_fib": "0.618",
+    "invalidation_level": 0.0725,
+    "dominant_tf": "4h",
+    "bias": "SHORT"
+  },
+  "memory_reflection": "Recent short trades were caught in minor mean-reversion bounces that failed to hold. I am adjusting by prioritizing the 30m/1h bearish structure over the 15m noise and waiting for clearer rejection at resistance rather than chasing momentum.",
+  "key_catalyst": "none identified",
+  "final_narrative": "POLUSDT remains in a clear downtrend across all major timeframes, with the 30m RSI oversold condition failing to trigger a meaningful reversal. The lack of positive funding and the broader market's extreme fear suggest that any attempt to catch a bottom is high-risk; the path of least resistance remains lower until a structural break of the 0.0725 level occurs.",
+  "decision_reason": "Confluence 37.15 <= SHORT-LOW gate 55",
+  "gates_used": {
+    "long_high": 75,
+    "long_medium": 65,
+    "long_low": 45,
+    "short_high": 25,
+    "short_medium": 35,
+    "short_low": 55,
+    "wait_band": [
+      49,
+      51
+    ],
+    "ev_threshold": 3.0
+  }
+}
