@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "3,18,33,48 * * * *"   # Offset 3 min from quarters
   workflow_dispatch:
+  repository_dispatch:
+    types: [run-resolver]
 
 concurrency:
   group: resolver-lock
