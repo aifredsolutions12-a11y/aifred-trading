@@ -351,3 +351,58 @@ def send_postmortem_report(
 
     lines.append(f"\n🌅 *Next cycle starts at 12:00 PM PH*")
     return send_telegram("\n".join(lines))
+
+
+# ════════════════════════════════════════════════════════════
+# ALERT 3: TRADE CLOSED (from resolver) — v3 with BE + Time-out
+# ════════════════════════════════════════════════════════════
+def send_closure_alert(trade: Dict) -> bool:
+    outcome = trade.get("outcome", "?")
+    sym = trade.get("symbol", "?")
+    pos = trade.get("position", "?")
+    pnl = float(trade.get("pnl_pct", 0))
+    pnl_R = trade.get("pnl_R")
+
+    icon_map = {
+        "TP_HIT":    ("✅", "TAKE PROFIT HIT"),
+        "TP1":       ("✅", "TAKE PROFIT HIT"),
+        "SL":        ("🛑", "STOP LOSS HIT"),
+        "BE_STOP":   ("🟦", "BREAK-EVEN STOP — Trade exited flat (BE was armed)"),
+        "TIME_WIN":  ("⏰✅", "TIME-OUT WIN — Force-closed in profit"),
+        "TIME_LOSS": ("⏰🛑", "TIME-OUT LOSS — Force-closed in loss"),
+        "TIME_FLAT": ("⏰⚪", "TIME-OUT FLAT — Force-closed near breakeven"),
+    }
+    icon, label = icon_map.get(outcome, ("❓", outcome))
+
+    pnl_R_str = f" ({pnl_R:+.2f}R)" if isinstance(pnl_R, (int, float)) else ""
+
+    msg = (
+        f"{icon} *{label} — {sym}*\n"
+        f"{pos} closed │ PnL: {pnl:+.2f}%{pnl_R_str}\n"
+        f"Logged: {_fmt_age(trade.get('logged_at'))} ago"
+    )
+
+    # Add BE context if relevant
+    if trade.get("be_activated") and outcome != "BE_STOP":
+        msg += f"\n🟦 BE was armed during trade"
+
+    note = trade.get("outcome_note")
+    if note:
+        msg += f"\n💬 {note}"
+
+    return send_telegram(msg)
+
+
+# Add this NEW alert function for BE arming (called from resolver workflow)
+def send_be_armed_alert(trade: Dict) -> bool:
+    sym = trade.get("symbol", "?")
+    pos = trade.get("position", "?")
+    entry_mid = trade.get("entry_zone", {})
+    age = _fmt_age(trade.get("logged_at"))
+
+    msg = (
+        f"🟦 *BREAK-EVEN ARMED — {sym}*\n"
+        f"{pos} │ Stop moved to entry\n"
+        f"Age: {age} │ Risk-free from here ✅"
+    )
+    return send_telegram(msg)
