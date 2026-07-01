@@ -1,5 +1,15 @@
 [
   {
+    "coin": "ADAUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short entry failed due to a lack of confirmation on the lower timeframe, as the price reclaimed the EMA50 instead of respecting it as resistance. The system correctly identified the macro downtrend but ignored the potential for a Wyckoff spring or liquidity sweep before the continuation.",
+    "adjustment": "Require a confirmed Market Structure Shift (MSS) on the 15m timeframe before entering short positions in a downtrend to avoid front-running liquidity sweeps.",
+    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend-following on ADAUSDT."
+  },
+  {
     "coin": "ARBUSDT",
     "date": "2026-07-01",
     "trades_reviewed": 1,
@@ -10,6 +20,16 @@
     "methodology_flag": "Trust SMC liquidity sweeps more than macro bearish sentiment on ARBUSDT."
   },
   {
+    "coin": "BTCUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The trade failed because the bearish structural breakdown was treated as a continuation signal rather than a potential Wyckoff Spring or localized liquidity sweep. The system correctly identified the bearish trend but failed to account for the high probability of a mean-reversion bounce at key psychological support levels.",
+    "adjustment": "Require a confirmed bearish retest of the broken $59,000 support level as resistance before entering any further short positions.",
+    "methodology_flag": "Trust Wyckoff accumulation/distribution phases more than pure structural trend alignment during extreme fear sentiment."
+  },
+  {
     "coin": "DOGEUSDT",
     "date": "2026-07-01",
     "trades_reviewed": 1,
@@ -18,5 +38,45 @@
     "lesson": "The short position failed because it ignored the exhaustion phase of the markdown, attempting to trend-follow into an oversold liquidity trap. The system correctly identified the bearish structure but failed to account for the high probability of a mean-reversion bounce at extreme RSI levels.",
     "adjustment": "Require a confirmed bearish market structure break (MSB) on the 1h timeframe before entering shorts when the 4h RSI is below 30.",
     "methodology_flag": "Trust RSI oversold conditions more than trend-following momentum in deep markdown phases."
+  },
+  {
+    "coin": "DOTUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The trade failed because it attempted to short an asset already deeply oversold on higher timeframes, ignoring the potential for a mean-reversion bounce. The system correctly identified the trend but failed to account for the exhaustion of selling pressure indicated by the RSI divergence.",
+    "adjustment": "Require a confirmed break of structure (BOS) on the 4H timeframe before entering a continuation short when the daily RSI is below 30.",
+    "methodology_flag": "Trust RSI oversold conditions more as a filter to avoid shorting into potential liquidity sweeps."
+  },
+  {
+    "coin": "ETHUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short position failed because the market absorbed overhead supply at 1580, indicating a potential Wyckoff Spring or accumulation phase rather than a continuation of the bearish structure. The system incorrectly prioritized macro bearish bias over the immediate failure of sellers to defend key resistance levels.",
+    "adjustment": "Require a confirmed break of market structure (BOS) on the 15-minute timeframe before entering shorts, rather than relying solely on macro-level overhead supply.",
+    "methodology_flag": "Trust Wyckoff accumulation patterns more than macro bearish structure when price fails to reject key resistance."
+  },
+  {
+    "coin": "LINKUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short entry failed because it ignored a localized Wyckoff Spring at the 22.95 support level, leading to a liquidity sweep rather than a breakdown. The system correctly identified the macro downtrend but failed to account for short-term demand absorption at key structural lows.",
+    "adjustment": "Require a confirmed break of market structure (BOS) on the 15m timeframe following a sweep of liquidity before entering shorts at established support levels.",
+    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend alignment for entry timing on alts."
+  },
+  {
+    "coin": "XRPUSDT",
+    "date": "2026-07-01",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short entry failed because it ignored the weekly RSI oversold condition, leading to a liquidity trap despite the bearish EMA alignment. The system incorrectly prioritized trend-following momentum over mean-reversion signals in a low-volatility environment.",
+    "adjustment": "Require a confirmed break and retest of a 15m structural support level before entering shorts when the weekly RSI is below 30.",
+    "methodology_flag": "Trust EMA trend-following less on XRP when weekly RSI is oversold."
   }
 ]
