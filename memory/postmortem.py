@@ -18,7 +18,7 @@ from memory.journal import read_journal, write_journal
 load_dotenv("config/.env")
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-MODEL_NAME = "gemini-2.0-flash-lite"
+MODEL_NAME = "gemini-3.1-flash-lite"
 POSTMORTEM_DIR = Path("data/postmortems")
 POSTMORTEM_DIR.mkdir(parents=True, exist_ok=True)
 
