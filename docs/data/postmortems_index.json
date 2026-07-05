@@ -20,6 +20,16 @@
     "methodology_flag": "Trust SMC liquidity sweeps more than macro bearish sentiment on ARBUSDT."
   },
   {
+    "coin": "AVAXUSDT",
+    "date": "2026-07-05",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The trade failed by attempting to catch a falling knife during a blow-off top, ignoring the Wyckoff distribution phase forming on the 30m timeframe. The system incorrectly prioritized short-term bullish momentum over the overextended RSI and Bollinger Band exhaustion signals.",
+    "adjustment": "Implement a mandatory 'no-long' filter when RSI exceeds 75 on the 30m timeframe until a clear re-accumulation structure is confirmed.",
+    "methodology_flag": "Trust Wyckoff distribution patterns more than momentum indicators during high-volatility AVAX breakouts."
+  },
+  {
     "coin": "BNBUSDT",
     "date": "2026-07-03",
     "trades_reviewed": 1,
@@ -51,13 +61,13 @@
   },
   {
     "coin": "DOTUSDT",
-    "date": "2026-07-01",
-    "trades_reviewed": 1,
+    "date": "2026-07-05",
+    "trades_reviewed": 2,
     "wins": 0,
-    "losses": 1,
-    "lesson": "The trade failed because it attempted to short an asset already deeply oversold on higher timeframes, ignoring the potential for a mean-reversion bounce. The system correctly identified the trend but failed to account for the exhaustion of selling pressure indicated by the RSI divergence.",
-    "adjustment": "Require a confirmed break of structure (BOS) on the 4H timeframe before entering a continuation short when the daily RSI is below 30.",
-    "methodology_flag": "Trust RSI oversold conditions more as a filter to avoid shorting into potential liquidity sweeps."
+    "losses": 2,
+    "lesson": "The system is failing to distinguish between genuine trend reversals and liquidity sweeps, as both the short and long entries were trapped by volatility around key support/resistance levels. The reliance on low-timeframe CHoCH signals is proving insufficient against the dominant bearish HTF trend, leading to premature entries.",
+    "adjustment": "Require a confirmed Wyckoff Spring or Test pattern on the 4H timeframe before validating any 15m/1h CHoCH signals to avoid liquidity traps.",
+    "methodology_flag": "Trust SMC market structure shifts less on DOTUSDT until HTF volume confirms a trend change."
   },
   {
     "coin": "ETHUSDT",
@@ -71,13 +81,23 @@
   },
   {
     "coin": "LINKUSDT",
-    "date": "2026-07-01",
+    "date": "2026-07-05",
+    "trades_reviewed": 2,
+    "wins": 0,
+    "losses": 2,
+    "lesson": "Both trades failed due to over-reliance on local momentum indicators while ignoring the macro bearish trend, resulting in premature entries against the dominant structural flow. The system is currently misinterpreting liquidity sweeps as trend reversals rather than simple volatility within a larger distribution phase.",
+    "adjustment": "Require a confirmed Wyckoff Spring or Test on the 4H timeframe before entering any long position, regardless of 1H bullish BOS.",
+    "methodology_flag": "Trust SMC liquidity sweeps less on LINKUSDT until the 4H market structure shifts to bullish."
+  },
+  {
+    "coin": "SUIUSDT",
+    "date": "2026-07-05",
     "trades_reviewed": 1,
     "wins": 0,
     "losses": 1,
-    "lesson": "The short entry failed because it ignored a localized Wyckoff Spring at the 22.95 support level, leading to a liquidity sweep rather than a breakdown. The system correctly identified the macro downtrend but failed to account for short-term demand absorption at key structural lows.",
-    "adjustment": "Require a confirmed break of market structure (BOS) on the 15m timeframe following a sweep of liquidity before entering shorts at established support levels.",
-    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend alignment for entry timing on alts."
+    "lesson": "The trade failed because it prioritized 15m bullish momentum against a dominant 4h/1d bearish market structure, leading to a classic trend-continuation trap. The system incorrectly identified a local higher-low as a reversal point rather than a liquidity sweep within a larger distribution phase.",
+    "adjustment": "Require a confirmed Market Structure Shift (MSS) on the 4h timeframe before entering any long positions, regardless of 15m bullish patterns.",
+    "methodology_flag": "Trust HTF market structure over LTF momentum indicators."
   },
   {
     "coin": "XRPUSDT",
