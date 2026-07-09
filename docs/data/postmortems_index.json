@@ -90,6 +90,16 @@
     "methodology_flag": "Trust SMC liquidity sweeps less on LINKUSDT until the 4H market structure shifts to bullish."
   },
   {
+    "coin": "OPUSDT",
+    "date": "2026-07-09",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short position failed because it attempted to capitalize on a markdown phase during an oversold RSI condition without waiting for a confirmed Wyckoff 'Spring' or structural liquidity sweep. The system incorrectly prioritized momentum over the exhaustion of selling volume, leading to a premature entry into a potential accumulation zone.",
+    "adjustment": "Require a confirmed bullish divergence on the 4H timeframe or a reclaim of the previous session low before considering any short entries in oversold conditions.",
+    "methodology_flag": "Trust RSI oversold signals less during high-volume markdown phases; prioritize Wyckoff accumulation structures."
+  },
+  {
     "coin": "POLUSDT",
     "date": "2026-07-07",
     "trades_reviewed": 1,
@@ -98,6 +108,16 @@
     "lesson": "The short position failed as the distribution structure lacked a confirmed break of market structure (BOS) on the higher timeframe, leading to a liquidity sweep rather than a trend reversal. The system incorrectly prioritized EMA resistance over the underlying order flow, which remained bullish despite the local distribution narrative.",
     "adjustment": "Require a confirmed 15m/1h structural break (BOS) below the previous swing low before entering shorts, rather than relying solely on EMA rejections.",
     "methodology_flag": "Trust EMA resistance less on POLUSDT; prioritize SMC structural breaks."
+  },
+  {
+    "coin": "SEIUSDT",
+    "date": "2026-07-09",
+    "trades_reviewed": 1,
+    "wins": 0,
+    "losses": 1,
+    "lesson": "The short entry failed because it ignored the potential for a mean reversion bounce despite the bearish trend. Relying solely on EMA failure without waiting for a confirmed SMC structural break or liquidity sweep led to entering at the local bottom.",
+    "adjustment": "Require a confirmed bearish market structure shift (MSS) on the 15m timeframe before entering shorts, rather than entering based on trend-following EMA alignment alone.",
+    "methodology_flag": "Trust EMA trend-following less during oversold RSI conditions on SEIUSDT."
   },
   {
     "coin": "SOLUSDT",
@@ -131,12 +151,12 @@
   },
   {
     "coin": "ZECUSDT",
-    "date": "2026-07-08",
-    "trades_reviewed": 2,
+    "date": "2026-07-09",
+    "trades_reviewed": 3,
     "wins": 0,
-    "losses": 2,
-    "lesson": "The system failed by attempting to buy into local exhaustion (RSI > 80) and misinterpreting 4h bearish structure as mere absorption. Both trades ignored the reality of mean reversion, leading to entries at local tops rather than structural support.",
-    "adjustment": "Implement a mandatory 'Cooling-Off' rule: prohibit long entries on ZECUSDT if the 1h RSI is above 70, regardless of higher timeframe bullish structure.",
-    "methodology_flag": "Trust RSI-based overbought signals more than structural bullish bias during high-volatility extensions."
+    "losses": 3,
+    "lesson": "The system consistently attempted to catch long entries into bearish 4h momentum and overextended RSI levels, ignoring clear signs of distribution. These losses highlight a failure to respect the higher timeframe trend and mean-reversion signals during corrective phases.",
+    "adjustment": "Mandate a 4h EMA alignment filter that prohibits long entries when price is trading below the 4h 50-period EMA, regardless of 1h bullish structure.",
+    "methodology_flag": "Trust 4h trend structure over 1h bullish micro-patterns for ZECUSDT."
   }
 ]
