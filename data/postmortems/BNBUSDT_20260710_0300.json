@@ -1,0 +1,10 @@
+{
+  "coin": "BNBUSDT",
+  "date": "2026-07-10",
+  "trades_reviewed": 3,
+  "wins": 0,
+  "losses": 3,
+  "lesson": "The system is failing to account for high-volatility mean reversion, as all three trades were stopped out by liquidity sweeps despite correct directional bias. The low confidence scores (avg 39.7) indicate the model is entering trades during consolidation phases rather than waiting for confirmed Wyckoff spring or upthrust events.",
+  "adjustment": "Implement a mandatory 'volatility filter' that requires a minimum 60.0 confidence score and a confirmed structural break on the 1H timeframe before entering any position.",
+  "methodology_flag": "Trust SMC liquidity sweeps less; prioritize Wyckoff accumulation/distribution phases for entry confirmation."
+}
