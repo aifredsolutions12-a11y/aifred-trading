@@ -101,13 +101,13 @@
   },
   {
     "coin": "POLUSDT",
-    "date": "2026-07-07",
-    "trades_reviewed": 1,
+    "date": "2026-07-11",
+    "trades_reviewed": 2,
     "wins": 0,
-    "losses": 1,
-    "lesson": "The short position failed as the distribution structure lacked a confirmed break of market structure (BOS) on the higher timeframe, leading to a liquidity sweep rather than a trend reversal. The system incorrectly prioritized EMA resistance over the underlying order flow, which remained bullish despite the local distribution narrative.",
-    "adjustment": "Require a confirmed 15m/1h structural break (BOS) below the previous swing low before entering shorts, rather than relying solely on EMA rejections.",
-    "methodology_flag": "Trust EMA resistance less on POLUSDT; prioritize SMC structural breaks."
+    "losses": 2,
+    "lesson": "Both trades were stopped out by volatility traps, indicating the system is misinterpreting noise as structural Wyckoff distribution or impulse. The low win probability (sub-45%) suggests the current trend-following logic is failing to account for POLUSDT's tendency to sweep liquidity before establishing a true trend.",
+    "adjustment": "Require a confirmed Liquidity Sweep (SMC) on the 15m timeframe before entering any position, rather than relying on EMA rejections or local breakouts.",
+    "methodology_flag": "Trust EMA-based trend following less; prioritize SMC liquidity sweeps."
   },
   {
     "coin": "SEIUSDT",
@@ -131,13 +131,13 @@
   },
   {
     "coin": "SUIUSDT",
-    "date": "2026-07-05",
-    "trades_reviewed": 1,
+    "date": "2026-07-11",
+    "trades_reviewed": 2,
     "wins": 0,
-    "losses": 1,
-    "lesson": "The trade failed because it prioritized 15m bullish momentum against a dominant 4h/1d bearish market structure, leading to a classic trend-continuation trap. The system incorrectly identified a local higher-low as a reversal point rather than a liquidity sweep within a larger distribution phase.",
-    "adjustment": "Require a confirmed Market Structure Shift (MSS) on the 4h timeframe before entering any long positions, regardless of 15m bullish patterns.",
-    "methodology_flag": "Trust HTF market structure over LTF momentum indicators."
+    "losses": 2,
+    "lesson": "Both trades failed due to low-confidence setups (52% and 21%) that ignored the dominant bearish structure on higher timeframes. The system is currently over-leveraging local 15m/30m micro-trends while failing to respect the macro supply zones identified in the SMC framework.",
+    "adjustment": "Implement a 'Macro-Filter' rule: strictly prohibit long entries unless the 4h timeframe confirms a bullish Market Structure Shift (MSS) or a confirmed Wyckoff Spring.",
+    "methodology_flag": "Trust SMC macro-structure over 15m momentum indicators."
   },
   {
     "coin": "XRPUSDT",
