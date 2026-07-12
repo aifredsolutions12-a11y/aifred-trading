@@ -51,13 +51,13 @@
   },
   {
     "coin": "DOGEUSDT",
-    "date": "2026-07-06",
-    "trades_reviewed": 3,
+    "date": "2026-07-12",
+    "trades_reviewed": 4,
     "wins": 0,
-    "losses": 3,
-    "lesson": "The system is consistently attempting to short into oversold conditions, failing to account for Wyckoffian 'Springs' or liquidity sweeps that trigger relief rallies. By ignoring the lack of bearish follow-through despite the overall downtrend, the strategy has been trapped by selling into institutional accumulation zones.",
-    "adjustment": "Require a confirmed break of market structure (BOS) on the 1h timeframe before entering any short position, rather than relying on high-timeframe bearish alignment alone.",
-    "methodology_flag": "Trust RSI-based oversold signals more as a counter-trend reversal indicator rather than a confirmation for continuation shorts."
+    "losses": 4,
+    "lesson": "The system is consistently failing to distinguish between genuine trend reversals and liquidity sweeps, as evidenced by the 0% win rate across both long and short setups. The low confidence scores (avg <39%) indicate the model is attempting to trade noise rather than established Wyckoff accumulation or distribution phases.",
+    "adjustment": "Implement a mandatory 'Trend Filter' rule: only execute trades if the 4h and 1d timeframes are in alignment, ignoring all setups where the higher timeframe structure contradicts the local CHoCH.",
+    "methodology_flag": "Trust SMC liquidity sweeps less on DOGEUSDT until higher timeframe trend alignment is confirmed."
   },
   {
     "coin": "DOTUSDT",
@@ -71,13 +71,13 @@
   },
   {
     "coin": "ETHUSDT",
-    "date": "2026-07-10",
-    "trades_reviewed": 4,
+    "date": "2026-07-12",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 4,
-    "lesson": "The system is consistently failing to distinguish between genuine structural shifts and localized liquidity sweeps, leading to premature entries against the dominant 4h/daily bearish trend. By prioritizing low-timeframe SMC signals over the macro distribution phase, the strategy is repeatedly catching falling knives.",
-    "adjustment": "Implement a 'Trend Alignment Filter' that mandates a 4h market structure break in the direction of the trade before allowing any 15m/1h entry signals.",
-    "methodology_flag": "Trust SMC liquidity sweeps less when the 4h/daily timeframe shows clear distribution."
+    "losses": 5,
+    "lesson": "The system is consistently attempting to counter-trend trade against a dominant bearish structure, leading to premature entries during liquidity sweeps that fail to initiate a true market structure shift. By prioritizing low-confidence setups (avg 45.9) in a distribution phase, the strategy is getting trapped in 'bull traps' rather than waiting for confirmed Wyckoffian accumulation.",
+    "adjustment": "Implement a strict filter requiring a 4H market structure break (MSB) before considering any LONG setups, regardless of 15m or 1H liquidity sweeps.",
+    "methodology_flag": "Trust SMC liquidity sweeps LESS on ETHUSDT until a confirmed 4H trend reversal is established."
   },
   {
     "coin": "LINKUSDT",
@@ -91,13 +91,13 @@
   },
   {
     "coin": "OPUSDT",
-    "date": "2026-07-10",
-    "trades_reviewed": 3,
+    "date": "2026-07-12",
+    "trades_reviewed": 4,
     "wins": 0,
-    "losses": 3,
-    "lesson": "The system is consistently attempting to chase momentum into oversold conditions, resulting in 'selling the bottom' during potential Wyckoffian selling climaxes. By ignoring the lack of bearish follow-through on RSI, the strategy is failing to identify exhaustion points where institutional absorption occurs.",
-    "adjustment": "Require a confirmed break and retest of a lower timeframe structural support level before entering any further shorts, rather than entering based on trend alignment alone.",
-    "methodology_flag": "Trust RSI oversold signals LESS on OPUSDT; prioritize Wyckoff accumulation patterns over trend-following EMAs."
+    "losses": 4,
+    "lesson": "The system is consistently attempting to fade momentum or catch reversals in a high-velocity trend, resulting in 4 consecutive stop-outs. Relying on local RSI oversold conditions or minor CHoCH patterns within a dominant bearish macro structure has proven ineffective as the price continues to expand into lower liquidity zones.",
+    "adjustment": "Implement a strict 'Trend-Filter' rule: ignore all long setups until the price closes above the 50 EMA on the 1H timeframe, and avoid shorting into extreme oversold RSI levels without a confirmed bearish retest of a broken support level.",
+    "methodology_flag": "Trust local SMC reversal patterns less when the macro trend is in a strong markdown phase."
   },
   {
     "coin": "POLUSDT",
