@@ -11,13 +11,13 @@
   },
   {
     "coin": "ARBUSDT",
-    "date": "2026-07-13",
-    "trades_reviewed": 4,
+    "date": "2026-07-14",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 4,
-    "lesson": "The system is consistently failing by attempting to front-run trend reversals in high-volatility environments, resulting in stop-outs during liquidity sweeps. The reliance on oversold RSI and sentiment metrics is proving ineffective against the prevailing bearish SMC structure.",
-    "adjustment": "Implement a strict 'Trend-Only' filter that prohibits counter-trend entries until a confirmed Wyckoff Change of Character (CHoCH) is established on the 4H timeframe.",
-    "methodology_flag": "Trust RSI-based oversold signals significantly less on ARBUSDT during bearish market regimes."
+    "losses": 5,
+    "lesson": "The system is consistently failing by attempting to front-run reversals against strong momentum, resulting in 5 consecutive stop-outs. The reliance on 'oversold' indicators and local liquidity sweeps is proving premature, as the asset continues to respect bearish market structure without confirming a Wyckoff accumulation phase.",
+    "adjustment": "Mandate a confirmed Change of Character (CHoCH) on the 4H timeframe before considering any long entries, ignoring all lower-timeframe liquidity sweeps until the daily trend aligns.",
+    "methodology_flag": "Trust SMC liquidity sweeps less on ARBUSDT until a clear 4H structural shift is established."
   },
   {
     "coin": "AVAXUSDT",
@@ -71,23 +71,23 @@
   },
   {
     "coin": "ETHUSDT",
-    "date": "2026-07-12",
-    "trades_reviewed": 5,
+    "date": "2026-07-14",
+    "trades_reviewed": 6,
     "wins": 0,
-    "losses": 5,
-    "lesson": "The system is consistently attempting to counter-trend trade against a dominant bearish structure, leading to premature entries during liquidity sweeps that fail to initiate a true market structure shift. By prioritizing low-confidence setups (avg 45.9) in a distribution phase, the strategy is getting trapped in 'bull traps' rather than waiting for confirmed Wyckoffian accumulation.",
-    "adjustment": "Implement a strict filter requiring a 4H market structure break (MSB) before considering any LONG setups, regardless of 15m or 1H liquidity sweeps.",
-    "methodology_flag": "Trust SMC liquidity sweeps LESS on ETHUSDT until a confirmed 4H trend reversal is established."
+    "losses": 6,
+    "lesson": "The system is consistently attempting to front-run reversals against strong 4h/Daily trends, leading to premature entries during distribution or accumulation phases. By prioritizing local liquidity sweeps over the dominant trend, the strategy is getting trapped in 'fakeouts' that fail to initiate a structural shift.",
+    "adjustment": "Implement a 'Trend Alignment Filter' that mandates a 4h market structure break in the direction of the trade before allowing any entry on lower timeframes.",
+    "methodology_flag": "Trust SMC liquidity sweeps less when they contradict the 4h/Daily Wyckoff trend."
   },
   {
     "coin": "LINKUSDT",
-    "date": "2026-07-10",
-    "trades_reviewed": 3,
+    "date": "2026-07-14",
+    "trades_reviewed": 4,
     "wins": 0,
-    "losses": 3,
-    "lesson": "The system is consistently entering positions during high-volatility liquidity sweeps that fail to establish structural support, leading to premature stop-outs. The reliance on low-confidence trend-following in a choppy environment has resulted in a 0% win rate across all three trades.",
-    "adjustment": "Require a confirmed Wyckoff Spring or secondary test on the 4H timeframe before entering, rather than relying on 1H/30m BOS signals which are currently acting as liquidity traps.",
-    "methodology_flag": "Trust SMC market structure signals less on LINKUSDT until the 4H timeframe shows a clear shift in order flow."
+    "losses": 4,
+    "lesson": "The system is failing by attempting to counter-trend trade against a dominant macro downtrend, resulting in premature entries during liquidity sweeps that lack structural confirmation. The low confidence scores (avg <40%) indicate that the model is forcing setups in a high-volatility environment where bearish momentum consistently invalidates support-based longs.",
+    "adjustment": "Implement a strict 'Trend-Filter' rule: only execute trades that align with the 4H EMA trend, ignoring all counter-trend liquidity sweeps until a confirmed Wyckoff Change of Character (CHoCH) occurs on the 1H timeframe.",
+    "methodology_flag": "Trust SMC liquidity sweeps less on LINKUSDT until a confirmed structural shift occurs."
   },
   {
     "coin": "OPUSDT",
@@ -101,13 +101,13 @@
   },
   {
     "coin": "POLUSDT",
-    "date": "2026-07-11",
-    "trades_reviewed": 2,
+    "date": "2026-07-14",
+    "trades_reviewed": 3,
     "wins": 0,
-    "losses": 2,
-    "lesson": "Both trades were stopped out by volatility traps, indicating the system is misinterpreting noise as structural Wyckoff distribution or impulse. The low win probability (sub-45%) suggests the current trend-following logic is failing to account for POLUSDT's tendency to sweep liquidity before establishing a true trend.",
-    "adjustment": "Require a confirmed Liquidity Sweep (SMC) on the 15m timeframe before entering any position, rather than relying on EMA rejections or local breakouts.",
-    "methodology_flag": "Trust EMA-based trend following less; prioritize SMC liquidity sweeps."
+    "losses": 3,
+    "lesson": "The system is consistently failing to distinguish between genuine trend reversals and liquidity sweeps, leading to entries during high-volatility mean reversion attempts that ignore the dominant trend. By prioritizing RSI exhaustion and local EMA resistance over the broader market structure, the strategy is repeatedly catching falling knives or fading strong impulses.",
+    "adjustment": "Require a confirmed Market Structure Shift (MSS) on the 4H timeframe before executing any counter-trend or mean-reversion trade on the 1H/30m charts.",
+    "methodology_flag": "Trust RSI-based exhaustion signals less in high-volatility regimes; prioritize SMC order flow over oscillator extremes."
   },
   {
     "coin": "SEIUSDT",
@@ -151,12 +151,12 @@
   },
   {
     "coin": "ZECUSDT",
-    "date": "2026-07-09",
-    "trades_reviewed": 3,
+    "date": "2026-07-14",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 3,
-    "lesson": "The system consistently attempted to catch long entries into bearish 4h momentum and overextended RSI levels, ignoring clear signs of distribution. These losses highlight a failure to respect the higher timeframe trend and mean-reversion signals during corrective phases.",
-    "adjustment": "Mandate a 4h EMA alignment filter that prohibits long entries when price is trading below the 4h 50-period EMA, regardless of 1h bullish structure.",
-    "methodology_flag": "Trust 4h trend structure over 1h bullish micro-patterns for ZECUSDT."
+    "losses": 5,
+    "lesson": "All five trades were long entries into local exhaustion or distribution phases, consistently ignoring bearish 4h EMA structures and overbought RSI signals. The system is incorrectly prioritizing higher-timeframe bullish bias while failing to respect immediate Wyckoff distribution patterns.",
+    "adjustment": "Implement a mandatory 'No-Long' filter if the 4h RSI is above 70 or if price is trading below the 4h 50-period EMA, regardless of the daily trend.",
+    "methodology_flag": "Trust Wyckoff distribution signals over higher-timeframe trend bias for ZECUSDT."
   }
 ]
