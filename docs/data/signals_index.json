@@ -1,23 +1,23 @@
 [
   {
     "symbol": "ADAUSDT",
-    "current_price": 0.1623,
-    "timestamp": "2026-07-16T19:02:36.688645+00:00",
+    "current_price": 0.1626,
+    "timestamp": "2026-07-16T20:02:41.651950+00:00",
     "timeframe": "4h",
     "position": "SHORT",
     "confidence": "LOW",
-    "final_confluence": 40.06,
-    "ev_R": 0.3125,
-    "ev_pct": 0.3125,
+    "final_confluence": 38.66,
+    "ev_R": 0.2375,
+    "ev_pct": 0.2375,
     "ev_positive": true,
-    "estimated_win_prob_pct": 43.8,
+    "estimated_win_prob_pct": 41.2,
     "entry_zone": {
-      "low": 0.161975,
-      "high": 0.162625
+      "low": 0.162275,
+      "high": 0.162925
     },
     "stop_loss": 0.167094,
-    "take_profit_1": 0.152713,
-    "take_profit_2": 0.143126,
+    "take_profit_1": 0.153612,
+    "take_profit_2": 0.144624,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
@@ -25,15 +25,28 @@
           "wyckoff": 35,
           "smc": 30,
           "elliott": 40,
-          "classical_ta": 12.5,
+          "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 31.0,
+        "tf_confluence": 27.25,
         "ev_R": 0.05,
         "win_prob": 35
       },
       "30m": {
+        "method_scores": {
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 45,
+          "classical_ta": 14.3,
+          "sentiment": 75,
+          "ev_edge": 60.0
+        },
+        "tf_confluence": 35.04,
+        "ev_R": 0.2,
+        "win_prob": 40
+      },
+      "1h": {
         "method_scores": {
           "wyckoff": 30,
           "smc": 25,
@@ -46,97 +59,84 @@
         "ev_R": -0.1,
         "win_prob": 30
       },
-      "1h": {
-        "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 35,
-          "classical_ta": 12.5,
-          "sentiment": 75,
-          "ev_edge": 45.0
-        },
-        "tf_confluence": 27.5,
-        "ev_R": -0.1,
-        "win_prob": 30
-      },
       "4h": {
-        "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 45,
-          "classical_ta": 33.3,
-          "sentiment": 75,
-          "ev_edge": 60.0
-        },
-        "tf_confluence": 40.74,
-        "ev_R": 0.2,
-        "win_prob": 40
-      },
-      "1d": {
         "method_scores": {
           "wyckoff": 45,
           "smc": 40,
-          "elliott": 45,
+          "elliott": 50,
           "classical_ta": 33.3,
           "sentiment": 75,
           "ev_edge": 67.5
         },
-        "tf_confluence": 43.74,
+        "tf_confluence": 44.24,
         "ev_R": 0.35,
         "win_prob": 45
       },
+      "1d": {
+        "method_scores": {
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 40,
+          "classical_ta": 33.3,
+          "sentiment": 75,
+          "ev_edge": 60.0
+        },
+        "tf_confluence": 40.24,
+        "ev_R": 0.2,
+        "win_prob": 40
+      },
       "1w": {
         "method_scores": {
-          "wyckoff": 50,
-          "smc": 45,
-          "elliott": 50,
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 35,
           "classical_ta": 37.5,
           "sentiment": 75,
-          "ev_edge": 75.0
+          "ev_edge": 52.5
         },
-        "tf_confluence": 48.5,
-        "ev_R": 0.5,
-        "win_prob": 50
+        "tf_confluence": 38.0,
+        "ev_R": 0.05,
+        "win_prob": 35
       }
     },
     "tf_aggregate": {
-      "final_confluence": 40.06,
+      "final_confluence": 38.66,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 31.0,
+          "score": 27.2,
           "weight": 0.05,
-          "contribution": 1.55
+          "contribution": 1.36
         },
         {
           "tf": "30m",
-          "score": 23.8,
+          "score": 35.0,
           "weight": 0.05,
-          "contribution": 1.19
+          "contribution": 1.75
         },
         {
           "tf": "1h",
-          "score": 27.5,
+          "score": 23.8,
           "weight": 0.1,
-          "contribution": 2.75
+          "contribution": 2.38
         },
         {
           "tf": "4h",
-          "score": 40.7,
+          "score": 44.2,
           "weight": 0.3,
-          "contribution": 12.22
+          "contribution": 13.27
         },
         {
           "tf": "1d",
-          "score": 43.7,
+          "score": 40.2,
           "weight": 0.4,
-          "contribution": 17.5
+          "contribution": 16.1
         },
         {
           "tf": "1w",
-          "score": 48.5,
+          "score": 38.0,
           "weight": 0.1,
-          "contribution": 4.85
+          "contribution": 3.8
         }
       ],
       "total_weight": 1.0
@@ -151,14 +151,14 @@
     },
     "wyckoff": {
       "phase": "Markdown",
-      "sub_phase": "B",
+      "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is consistently failing to reclaim key EMAs, indicating a continuation of the markdown phase within a broader distribution structure."
+      "reasoning": "Price is struggling to reclaim key EMAs, suggesting a continuation of the markdown phase following a failed rally attempt."
     },
     "smc": {
       "order_block": "0.1650",
-      "fvg": "0.1640-0.1650",
+      "fvg": "0.1610-0.1620",
       "liquidity_sweep": true,
       "bos_choch": "BOS",
       "dominant_tf": "1h",
@@ -171,10 +171,10 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from premature short entries during minor corrective bounces that reclaimed the EMA50. I am now prioritizing confirmation of resistance rejection at the 0.1650 level rather than front-running the trend.",
-    "key_catalyst": "US stocks sell-off and broader crypto market weakness following Fed commentary.",
-    "final_narrative": "ADA remains in a clear bearish trend across all timeframes, characterized by consistent failure to hold EMA support levels. The market is currently in a state of extreme fear, and with BTC dominance high, altcoins like ADA are struggling to find a floor. I am maintaining a bearish bias, looking for further downside continuation unless the price can decisively reclaim the 0.1680 level, which would invalidate the current bearish structure.",
-    "decision_reason": "Confluence 40.06 <= SHORT-LOW gate 55",
+    "memory_reflection": "Recent short trades failed because I underestimated the strength of local support levels and the tendency for mean reversion in low-volatility environments. I am now incorporating a stricter filter for EMA alignment to avoid shorting into potential reclaim scenarios.",
+    "key_catalyst": "none identified",
+    "final_narrative": "ADA remains in a precarious position, trapped below major moving averages across most timeframes. While the sentiment is neutral, the technical structure suggests a bearish bias as the asset fails to sustain momentum above the 0.1650 level. I expect continued downward pressure unless a significant volume-backed breakout occurs above the 4h EMA50.",
+    "decision_reason": "Confluence 38.66 <= SHORT-LOW gate 55",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -189,36 +189,36 @@
       "ev_threshold": 3.0
     },
     "stop_loss_ai": 0.167094,
-    "take_profit_ai": 0.152713,
+    "take_profit_ai": 0.153612,
     "max_hold_hours": 48.0,
-    "stop_loss_atr": 0.16709358,
-    "take_profit_atr": 0.1543107,
-    "stop_loss_effective": 0.16709379,
-    "take_profit_effective": 0.15351185,
-    "atr_at_entry": 0.00319572,
-    "atr_pct": 1.97,
+    "stop_loss_atr": 0.16709404,
+    "take_profit_atr": 0.15510994,
+    "stop_loss_effective": 0.16709402,
+    "take_profit_effective": 0.15436097,
+    "atr_at_entry": 0.00299602,
+    "atr_pct": 1.84,
     "atr_tf": "4h",
-    "be_trigger_price": 0.15790593
+    "be_trigger_price": 0.15848049
   },
   {
     "symbol": "ARBUSDT",
-    "current_price": 0.0895,
-    "timestamp": "2026-07-16T19:04:00.535334+00:00",
+    "current_price": 0.0897,
+    "timestamp": "2026-07-16T20:04:09.253258+00:00",
     "timeframe": "4h",
     "position": "LONG",
     "confidence": "LOW",
-    "final_confluence": 58.09,
-    "ev_R": 0.2375,
-    "ev_pct": 0.2375,
+    "final_confluence": 59.37,
+    "ev_R": 0.2713,
+    "ev_pct": 0.2713,
     "ev_positive": true,
-    "estimated_win_prob_pct": 41.2,
+    "estimated_win_prob_pct": 42.4,
     "entry_zone": {
-      "low": 0.089321,
-      "high": 0.089679
+      "low": 0.089521,
+      "high": 0.089879
     },
-    "stop_loss": 0.085641,
-    "take_profit_1": 0.097218,
-    "take_profit_2": 0.104936,
+    "stop_loss": 0.086026,
+    "take_profit_1": 0.097049,
+    "take_profit_2": 0.104398,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
@@ -263,26 +263,26 @@
       "4h": {
         "method_scores": {
           "wyckoff": 55,
-          "smc": 50,
+          "smc": 60,
           "elliott": 50,
           "classical_ta": 66.7,
           "sentiment": 75,
-          "ev_edge": 67.5
+          "ev_edge": 72.0
         },
-        "tf_confluence": 58.76,
-        "ev_R": 0.35,
-        "win_prob": 45
+        "tf_confluence": 62.21,
+        "ev_R": 0.44,
+        "win_prob": 48
       },
       "1d": {
         "method_scores": {
           "wyckoff": 45,
           "smc": 40,
-          "elliott": 40,
+          "elliott": 45,
           "classical_ta": 71.4,
           "sentiment": 75,
           "ev_edge": 60.0
         },
-        "tf_confluence": 53.92,
+        "tf_confluence": 54.42,
         "ev_R": 0.2,
         "win_prob": 40
       },
@@ -290,18 +290,18 @@
         "method_scores": {
           "wyckoff": 35,
           "smc": 30,
-          "elliott": 30,
+          "elliott": 35,
           "classical_ta": 42.9,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 39.12,
+        "tf_confluence": 39.62,
         "ev_R": 0.05,
         "win_prob": 35
       }
     },
     "tf_aggregate": {
-      "final_confluence": 58.09,
+      "final_confluence": 59.37,
       "tf_trail": [
         {
           "tf": "15m",
@@ -323,21 +323,21 @@
         },
         {
           "tf": "4h",
-          "score": 58.8,
+          "score": 62.2,
           "weight": 0.3,
-          "contribution": 17.63
+          "contribution": 18.66
         },
         {
           "tf": "1d",
-          "score": 53.9,
+          "score": 54.4,
           "weight": 0.4,
-          "contribution": 21.57
+          "contribution": 21.77
         },
         {
           "tf": "1w",
-          "score": 39.1,
+          "score": 39.6,
           "weight": 0.1,
-          "contribution": 3.91
+          "contribution": 3.96
         }
       ],
       "total_weight": 1.0
@@ -355,7 +355,7 @@
       "sub_phase": "C",
       "dominant_tf": "1h",
       "bias": "LONG",
-      "reasoning": "Price is showing signs of a spring/test phase following a period of consolidation, with bullish EMA alignment on the 1h timeframe."
+      "reasoning": "Price is showing signs of a spring/test phase following a period of markdown, with increasing volume on local recovery."
     },
     "smc": {
       "order_block": "0.0865",
@@ -367,15 +367,15 @@
     },
     "elliott_wave": {
       "current_wave": "3",
-      "target_fib": "1.618",
+      "target_fib": "0.618",
       "invalidation_level": 0.0855,
       "dominant_tf": "1h",
       "bias": "LONG"
     },
-    "memory_reflection": "Recent losses were driven by aggressive counter-trend shorting during local liquidity sweeps. This analysis shifts focus to the 1h bullish structure and respects the recent CHoCH, avoiding the trap of front-running reversals against the primary momentum.",
+    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during high-volatility liquidity sweeps. This analysis shifts focus to confirming structural CHoCH on the 1h timeframe rather than blindly front-running oversold RSI, ensuring we align with the emerging bullish momentum.",
     "key_catalyst": "none identified",
-    "final_narrative": "ARBUSDT is exhibiting a constructive recovery on the 1h timeframe, supported by a clear CHoCH and a successful test of the 0.0865 support level. While higher timeframes remain mixed, the immediate momentum is shifting bullish, suggesting a potential move toward higher liquidity targets if the 0.0855 invalidation level holds.",
-    "decision_reason": "Confluence 58.09 >= LOW gate 45",
+    "final_narrative": "ARBUSDT is exhibiting a constructive short-term recovery pattern, characterized by a successful test of the 0.0865 support level and a subsequent bullish shift in market structure on the 1h timeframe. While the daily and weekly trends remain pressured, the immediate price action suggests a potential move toward the 0.618 Fibonacci retracement level. I am prioritizing structural confirmation over pure indicator-based oversold signals to avoid the stop-outs that plagued recent trading sessions.",
+    "decision_reason": "Confluence 59.37 >= LOW gate 45",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -389,156 +389,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 0.085641,
-    "take_profit_ai": 0.097218,
+    "stop_loss_ai": 0.086026,
+    "take_profit_ai": 0.097049,
     "max_hold_hours": 72.0,
-    "stop_loss_atr": 0.08564104,
-    "take_profit_atr": 0.09593159,
-    "stop_loss_effective": 0.08564102,
-    "take_profit_effective": 0.0965748,
-    "atr_at_entry": 0.00257264,
-    "atr_pct": 2.87,
+    "stop_loss_atr": 0.08602561,
+    "take_profit_atr": 0.09582398,
+    "stop_loss_effective": 0.08602581,
+    "take_profit_effective": 0.09643649,
+    "atr_at_entry": 0.00244959,
+    "atr_pct": 2.73,
     "atr_tf": "4h",
-    "be_trigger_price": 0.0930374
+    "be_trigger_price": 0.09306824
   },
   {
     "symbol": "AVAXUSDT",
-    "current_price": 6.588,
-    "timestamp": "2026-07-16T19:02:54.981810+00:00",
+    "current_price": 6.597,
+    "timestamp": "2026-07-16T20:02:56.304079+00:00",
     "timeframe": "4h",
     "position": "SHORT",
     "confidence": "LOW",
-    "final_confluence": 28.15,
-    "ev_R": -0.1937,
-    "ev_pct": -0.1937,
+    "final_confluence": 29.92,
+    "ev_R": -0.2125,
+    "ev_pct": -0.2125,
     "ev_positive": false,
-    "estimated_win_prob_pct": 26.9,
+    "estimated_win_prob_pct": 26.3,
     "entry_zone": {
-      "low": 6.574824,
-      "high": 6.601176
+      "low": 6.583806,
+      "high": 6.610194
     },
-    "stop_loss": 6.758242,
-    "take_profit_1": 6.247515,
-    "take_profit_2": 5.90703,
+    "stop_loss": 6.756047,
+    "take_profit_1": 6.278907,
+    "take_profit_2": 5.960814,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
+          "wyckoff": 45,
+          "smc": 40,
           "elliott": 40,
-          "classical_ta": 16.7,
+          "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 52.5
+          "ev_edge": 67.5
         },
-        "tf_confluence": 32.26,
-        "ev_R": 0.05,
-        "win_prob": 35
+        "tf_confluence": 48.25,
+        "ev_R": 0.35,
+        "win_prob": 45
       },
       "30m": {
         "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 45,
-          "classical_ta": 16.7,
+          "wyckoff": 50,
+          "smc": 50,
+          "elliott": 50,
+          "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 60.0
+          "ev_edge": 75.0
         },
-        "tf_confluence": 35.76,
-        "ev_R": 0.2,
-        "win_prob": 40
+        "tf_confluence": 53.75,
+        "ev_R": 0.5,
+        "win_prob": 50
       },
       "1h": {
         "method_scores": {
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 35,
+          "classical_ta": 0.0,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 26.75,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "4h": {
+        "method_scores": {
           "wyckoff": 30,
           "smc": 25,
-          "elliott": 35,
+          "elliott": 30,
           "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 45.0
         },
-        "tf_confluence": 23.75,
+        "tf_confluence": 23.25,
         "ev_R": -0.1,
         "win_prob": 30
-      },
-      "4h": {
-        "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 30,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 37.5
-        },
-        "tf_confluence": 20.25,
-        "ev_R": -0.25,
-        "win_prob": 25
       },
       "1d": {
         "method_scores": {
           "wyckoff": 30,
-          "smc": 25,
-          "elliott": 35,
+          "smc": 20,
+          "elliott": 25,
           "classical_ta": 33.3,
           "sentiment": 75,
-          "ev_edge": 45.0
+          "ev_edge": 37.5
         },
-        "tf_confluence": 33.74,
-        "ev_R": -0.1,
-        "win_prob": 30
+        "tf_confluence": 30.49,
+        "ev_R": -0.25,
+        "win_prob": 25
       },
       "1w": {
         "method_scores": {
-          "wyckoff": 20,
-          "smc": 15,
-          "elliott": 25,
+          "wyckoff": 25,
+          "smc": 20,
+          "elliott": 20,
           "classical_ta": 37.5,
           "sentiment": 75,
           "ev_edge": 30.0
         },
-        "tf_confluence": 28.0,
+        "tf_confluence": 29.75,
         "ev_R": -0.4,
         "win_prob": 20
       }
     },
     "tf_aggregate": {
-      "final_confluence": 28.15,
+      "final_confluence": 29.92,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 32.3,
+          "score": 48.2,
           "weight": 0.05,
-          "contribution": 1.61
+          "contribution": 2.41
         },
         {
           "tf": "30m",
-          "score": 35.8,
+          "score": 53.8,
           "weight": 0.05,
-          "contribution": 1.79
+          "contribution": 2.69
         },
         {
           "tf": "1h",
-          "score": 23.8,
+          "score": 26.8,
           "weight": 0.1,
-          "contribution": 2.38
+          "contribution": 2.68
         },
         {
           "tf": "4h",
-          "score": 20.2,
+          "score": 23.2,
           "weight": 0.3,
-          "contribution": 6.08
+          "contribution": 6.97
         },
         {
           "tf": "1d",
-          "score": 33.7,
+          "score": 30.5,
           "weight": 0.4,
-          "contribution": 13.5
+          "contribution": 12.2
         },
         {
           "tf": "1w",
-          "score": 28.0,
+          "score": 29.8,
           "weight": 0.1,
-          "contribution": 2.8
+          "contribution": 2.98
         }
       ],
       "total_weight": 1.0
@@ -554,16 +554,16 @@
     "wyckoff": {
       "phase": "Distribution",
       "sub_phase": "C",
-      "dominant_tf": "1h",
+      "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to reclaim key EMA levels, showing signs of a potential spring failure or continuation of the markdown phase."
+      "reasoning": "Price is failing to reclaim higher levels after a failed rally, suggesting a potential spring failure or continuation of the markdown phase."
     },
     "smc": {
-      "order_block": "6.65-6.68",
-      "fvg": "6.52-6.55",
+      "order_block": "6.75",
+      "fvg": "6.45-6.52",
       "liquidity_sweep": true,
-      "bos_choch": "CHoCH",
-      "dominant_tf": "15m",
+      "bos_choch": "BOS",
+      "dominant_tf": "1h",
       "bias": "SHORT"
     },
     "elliott_wave": {
@@ -573,10 +573,10 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from premature mean-reversion entries during strong momentum. I am now prioritizing trend-aligned entries and waiting for clear structural breaks (CHoCH) rather than guessing exhaustion points.",
-    "key_catalyst": "US stocks sell-off and broader crypto market weakness",
-    "final_narrative": "AVAX is currently in a weak technical position across all major timeframes, with the 15m and 1h showing clear bearish structural alignment. The lack of buying pressure despite the extreme fear sentiment suggests further downside is likely before any meaningful accumulation can occur. I am maintaining a bearish bias, focusing on resistance levels near 6.65 for potential short entries.",
-    "decision_reason": "Confluence 28.15 <= SHORT-MEDIUM gate 35 | EV -0.194R below threshold \u2192 downgraded",
+    "memory_reflection": "Recent losses stemmed from premature mean-reversion entries during strong momentum, ignoring the broader bearish trend. This analysis now prioritizes trend-following and waits for clear structural breaks (CHoCH) rather than attempting to catch falling knives.",
+    "key_catalyst": "none identified",
+    "final_narrative": "AVAX is currently trapped in a bearish structure across higher timeframes, with recent attempts to reclaim key levels failing. The market sentiment remains in extreme fear, and the lack of a clear accumulation pattern suggests further downside is likely before any meaningful support is established. I am maintaining a cautious, bearish bias, waiting for a definitive structural break or a confirmed Wyckoff spring before considering any long exposure.",
+    "decision_reason": "Confluence 29.92 <= SHORT-MEDIUM gate 35 | EV -0.212R below threshold \u2192 downgraded",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -590,156 +590,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 6.758242,
-    "take_profit_ai": 6.247515,
+    "stop_loss_ai": 6.756047,
+    "take_profit_ai": 6.278907,
     "max_hold_hours": 36.0,
-    "stop_loss_atr": 6.75824244,
-    "take_profit_atr": 6.30426261,
-    "stop_loss_effective": 6.75824222,
-    "take_profit_effective": 6.2758888,
-    "atr_at_entry": 0.11349496,
-    "atr_pct": 1.72,
+    "stop_loss_atr": 6.75604655,
+    "take_profit_atr": 6.33192242,
+    "stop_loss_effective": 6.75604677,
+    "take_profit_effective": 6.30541471,
+    "atr_at_entry": 0.10603103,
+    "atr_pct": 1.61,
     "atr_tf": "4h",
-    "be_trigger_price": 6.4319444
+    "be_trigger_price": 6.45120735
   },
   {
     "symbol": "BNBUSDT",
-    "current_price": 576.11,
-    "timestamp": "2026-07-16T19:02:10.558890+00:00",
+    "current_price": 575.32,
+    "timestamp": "2026-07-16T20:02:11.870245+00:00",
     "timeframe": "4h",
-    "position": "LONG",
+    "position": "SHORT",
     "confidence": "LOW",
-    "final_confluence": 45.61,
-    "ev_R": 0.4213,
-    "ev_pct": 0.4213,
+    "final_confluence": 37.67,
+    "ev_R": 0.05,
+    "ev_pct": 0.05,
     "ev_positive": true,
-    "estimated_win_prob_pct": 47.4,
+    "estimated_win_prob_pct": 35.0,
     "entry_zone": {
-      "low": 574.95778,
-      "high": 577.26222
+      "low": 574.16936,
+      "high": 576.47064
     },
-    "stop_loss": 568.039949,
-    "take_profit_1": 592.250101,
-    "take_profit_2": 608.390203,
+    "stop_loss": 582.887547,
+    "take_profit_1": 560.184906,
+    "take_profit_2": 545.049812,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
-          "elliott": 40,
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 45,
           "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 27.25,
+        "tf_confluence": 30.0,
         "ev_R": 0.05,
         "win_prob": 35
       },
       "30m": {
-        "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 45,
-          "classical_ta": 25.0,
-          "sentiment": 75,
-          "ev_edge": 60.0
-        },
-        "tf_confluence": 38.25,
-        "ev_R": 0.2,
-        "win_prob": 40
-      },
-      "1h": {
         "method_scores": {
           "wyckoff": 45,
           "smc": 40,
           "elliott": 45,
           "classical_ta": 25.0,
           "sentiment": 75,
-          "ev_edge": 63.0
+          "ev_edge": 60.0
         },
-        "tf_confluence": 40.8,
-        "ev_R": 0.26,
-        "win_prob": 42
+        "tf_confluence": 40.5,
+        "ev_R": 0.2,
+        "win_prob": 40
       },
-      "4h": {
+      "1h": {
         "method_scores": {
-          "wyckoff": 50,
+          "wyckoff": 45,
           "smc": 45,
           "elliott": 50,
-          "classical_ta": 16.7,
+          "classical_ta": 25.0,
           "sentiment": 75,
           "ev_edge": 67.5
         },
-        "tf_confluence": 41.51,
+        "tf_confluence": 43.25,
         "ev_R": 0.35,
         "win_prob": 45
       },
+      "4h": {
+        "method_scores": {
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 40,
+          "classical_ta": 0.0,
+          "sentiment": 75,
+          "ev_edge": 45.0
+        },
+        "tf_confluence": 26.5,
+        "ev_R": -0.1,
+        "win_prob": 30
+      },
       "1d": {
         "method_scores": {
-          "wyckoff": 55,
-          "smc": 50,
-          "elliott": 50,
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 45,
           "classical_ta": 33.3,
           "sentiment": 75,
-          "ev_edge": 72.0
+          "ev_edge": 52.5
         },
-        "tf_confluence": 49.19,
-        "ev_R": 0.44,
-        "win_prob": 48
+        "tf_confluence": 39.99,
+        "ev_R": 0.05,
+        "win_prob": 35
       },
       "1w": {
         "method_scores": {
-          "wyckoff": 60,
-          "smc": 55,
+          "wyckoff": 55,
+          "smc": 50,
           "elliott": 55,
           "classical_ta": 62.5,
           "sentiment": 75,
-          "ev_edge": 78.0
+          "ev_edge": 75.0
         },
-        "tf_confluence": 61.3,
-        "ev_R": 0.56,
-        "win_prob": 52
+        "tf_confluence": 58.75,
+        "ev_R": 0.5,
+        "win_prob": 50
       }
     },
     "tf_aggregate": {
-      "final_confluence": 45.61,
+      "final_confluence": 37.67,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 27.2,
+          "score": 30.0,
           "weight": 0.05,
-          "contribution": 1.36
+          "contribution": 1.5
         },
         {
           "tf": "30m",
-          "score": 38.2,
+          "score": 40.5,
           "weight": 0.05,
-          "contribution": 1.91
+          "contribution": 2.02
         },
         {
           "tf": "1h",
-          "score": 40.8,
+          "score": 43.2,
           "weight": 0.1,
-          "contribution": 4.08
+          "contribution": 4.33
         },
         {
           "tf": "4h",
-          "score": 41.5,
+          "score": 26.5,
           "weight": 0.3,
-          "contribution": 12.45
+          "contribution": 7.95
         },
         {
           "tf": "1d",
-          "score": 49.2,
+          "score": 40.0,
           "weight": 0.4,
-          "contribution": 19.68
+          "contribution": 16.0
         },
         {
           "tf": "1w",
-          "score": 61.3,
+          "score": 58.8,
           "weight": 0.1,
-          "contribution": 6.13
+          "contribution": 5.88
         }
       ],
       "total_weight": 1.0
@@ -757,13 +757,13 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is struggling to reclaim key EMAs across multiple timeframes, indicating a potential spring failure within a larger distribution range."
+      "reasoning": "Price is failing to reclaim key EMAs and showing signs of a spring failure within a larger distribution range."
     },
     "smc": {
-      "order_block": "580.50",
-      "fvg": "574.00-576.00",
+      "order_block": "570.00",
+      "fvg": "578.00-580.00",
       "liquidity_sweep": true,
-      "bos_choch": "CHoCH",
+      "bos_choch": "BOS",
       "dominant_tf": "1h",
       "bias": "SHORT"
     },
@@ -774,10 +774,10 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from aggressive short entries during liquidity sweeps in a range-bound market, ignoring the lack of clear structural breaks. This analysis now prioritizes waiting for confirmed CHoCH on higher timeframes rather than chasing local 15m volatility.",
+    "memory_reflection": "Recent trades failed by attempting to front-run liquidity sweeps in a bearish trend without waiting for structural confirmation. This analysis shifts focus to identifying failed rallies into FVG zones rather than blindly buying oversold conditions.",
     "key_catalyst": "none identified",
-    "final_narrative": "BNB is currently trapped in a consolidation phase with bearish undertones as it fails to hold above the 580 level. The market is exhibiting extreme fear, and while the 1w trend remains technically bullish, the immediate price action suggests a retest of lower liquidity zones. I am maintaining a cautious stance, favoring short-side setups only if the 574 support level is decisively broken.",
-    "decision_reason": "Confluence 45.61 >= LOW gate 45",
+    "final_narrative": "BNB is currently trapped in a bearish structure across most timeframes, with recent attempts to reclaim the 580 level failing repeatedly. The market is exhibiting extreme fear, and the lack of a clear accumulation structure suggests that any bounce is likely a liquidity grab before further downside. I am maintaining a cautious short bias, prioritizing entries on failed retests of the 578-580 FVG zone.",
+    "decision_reason": "Confluence 37.67 <= SHORT-LOW gate 55",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -791,49 +791,49 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 568.039949,
-    "take_profit_ai": 592.250101,
+    "stop_loss_ai": 582.887547,
+    "take_profit_ai": 560.184906,
     "max_hold_hours": 48.0,
-    "stop_loss_atr": 568.03994935,
-    "take_profit_atr": 589.56008442,
-    "stop_loss_effective": 568.03994918,
-    "take_profit_effective": 590.90509271,
-    "atr_at_entry": 5.38003377,
-    "atr_pct": 0.93,
+    "stop_loss_atr": 582.88754703,
+    "take_profit_atr": 562.70742161,
+    "stop_loss_effective": 582.88754702,
+    "take_profit_effective": 561.44616381,
+    "atr_at_entry": 5.04503135,
+    "atr_pct": 0.88,
     "atr_tf": "4h",
-    "be_trigger_price": 583.50754635
+    "be_trigger_price": 568.3830819
   },
   {
     "symbol": "BTCUSDT",
-    "current_price": 64283.99,
-    "timestamp": "2026-07-16T19:01:30.851598+00:00",
+    "current_price": 64268.01,
+    "timestamp": "2026-07-16T20:01:26.246875+00:00",
     "timeframe": "4h",
     "position": "LONG",
     "confidence": "LOW",
-    "final_confluence": 45.47,
+    "final_confluence": 45.72,
     "ev_R": 0.2225,
     "ev_pct": 0.2225,
     "ev_positive": true,
     "estimated_win_prob_pct": 40.8,
     "entry_zone": {
-      "low": 64155.42202,
-      "high": 64412.55798
+      "low": 64139.47398,
+      "high": 64396.54602
     },
-    "stop_loss": 63242.91258,
-    "take_profit_1": 66366.144839,
-    "take_profit_2": 68448.299678,
+    "stop_loss": 63300.296682,
+    "take_profit_1": 66203.436636,
+    "take_profit_2": 68138.863273,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
           "wyckoff": 45,
           "smc": 40,
-          "elliott": 40,
+          "elliott": 45,
           "classical_ta": 16.7,
           "sentiment": 75,
           "ev_edge": 63.0
         },
-        "tf_confluence": 37.81,
+        "tf_confluence": 38.31,
         "ev_R": 0.26,
         "win_prob": 42
       },
@@ -841,14 +841,14 @@
         "method_scores": {
           "wyckoff": 45,
           "smc": 45,
-          "elliott": 45,
+          "elliott": 40,
           "classical_ta": 33.3,
           "sentiment": 75,
-          "ev_edge": 67.5
+          "ev_edge": 66.0
         },
-        "tf_confluence": 45.24,
-        "ev_R": 0.35,
-        "win_prob": 45
+        "tf_confluence": 44.59,
+        "ev_R": 0.32,
+        "win_prob": 44
       },
       "1h": {
         "method_scores": {
@@ -880,12 +880,12 @@
         "method_scores": {
           "wyckoff": 35,
           "smc": 30,
-          "elliott": 30,
+          "elliott": 35,
           "classical_ta": 50.0,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 41.25,
+        "tf_confluence": 41.75,
         "ev_R": 0.05,
         "win_prob": 35
       },
@@ -893,30 +893,30 @@
         "method_scores": {
           "wyckoff": 30,
           "smc": 25,
-          "elliott": 25,
+          "elliott": 30,
           "classical_ta": 14.3,
           "sentiment": 75,
           "ev_edge": 45.0
         },
-        "tf_confluence": 27.04,
+        "tf_confluence": 27.54,
         "ev_R": -0.1,
         "win_prob": 30
       }
     },
     "tf_aggregate": {
-      "final_confluence": 45.47,
+      "final_confluence": 45.72,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 37.8,
+          "score": 38.3,
           "weight": 0.05,
-          "contribution": 1.89
+          "contribution": 1.92
         },
         {
           "tf": "30m",
-          "score": 45.2,
+          "score": 44.6,
           "weight": 0.05,
-          "contribution": 2.26
+          "contribution": 2.23
         },
         {
           "tf": "1h",
@@ -932,15 +932,15 @@
         },
         {
           "tf": "1d",
-          "score": 41.2,
+          "score": 41.8,
           "weight": 0.4,
-          "contribution": 16.5
+          "contribution": 16.7
         },
         {
           "tf": "1w",
-          "score": 27.0,
+          "score": 27.5,
           "weight": 0.1,
-          "contribution": 2.7
+          "contribution": 2.75
         }
       ],
       "total_weight": 1.0
@@ -958,27 +958,27 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is struggling to reclaim higher levels after recent liquidity sweeps, suggesting a potential spring failure or secondary test of distribution."
+      "reasoning": "Price is struggling to reclaim higher levels after recent liquidity sweeps, suggesting a potential spring failure and continuation of the markdown phase."
     },
     "smc": {
       "order_block": "64800-65000",
       "fvg": "63800-64000",
       "liquidity_sweep": true,
-      "bos_choch": "CHoCH",
-      "dominant_tf": "1h",
+      "bos_choch": "BOS",
+      "dominant_tf": "4h",
       "bias": "SHORT"
     },
     "elliott_wave": {
       "current_wave": "C",
       "target_fib": "0.618",
-      "invalidation_level": 65600,
+      "invalidation_level": 65600.0,
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from aggressive counter-trend fading of liquidity sweeps during a broader bearish structural regime. This analysis shifts focus toward respecting the 1d/1w bearish alignment and waiting for confirmed structural breaks rather than anticipating reversals.",
-    "key_catalyst": "US stocks sell-off and broader market volatility",
-    "final_narrative": "Bitcoin remains trapped in a corrective structure with significant overhead resistance near the 65k level. While short-term volatility provides noise, the daily and weekly trends remain structurally weak, and the recent failure to hold gains above 64.8k suggests that sellers remain in control of the primary trend. I am prioritizing short-side setups on any retest of local liquidity zones until a clear, high-volume breakout above the 65.6k invalidation level occurs.",
-    "decision_reason": "Confluence 45.47 >= LOW gate 45",
+    "memory_reflection": "Recent losses stemmed from aggressive counter-trend long entries during localized liquidity sweeps within a broader bearish structure. This analysis shifts focus to the dominant 4h/1d bearish alignment, prioritizing trend-following over mean-reversion attempts.",
+    "key_catalyst": "none identified",
+    "final_narrative": "BTC remains trapped in a corrective structure where lower timeframes show exhaustion but higher timeframes maintain a bearish bias. The lack of sustained volume on recent recovery attempts suggests that the market is still in a distribution phase, making any long positions high-risk and prone to failure against the primary trend.",
+    "decision_reason": "Confluence 45.72 >= LOW gate 45",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -992,156 +992,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 63242.91258,
-    "take_profit_ai": 66366.144839,
+    "stop_loss_ai": 63300.296682,
+    "take_profit_ai": 66203.436636,
     "max_hold_hours": 48.0,
-    "stop_loss_atr": 63381.72290304,
-    "take_profit_atr": 65672.09322609,
-    "stop_loss_effective": 63312.31774152,
-    "take_profit_effective": 66019.11903254,
-    "atr_at_entry": 694.05161304,
-    "atr_pct": 1.08,
+    "stop_loss_atr": 63429.32512427,
+    "take_profit_atr": 65558.2944242,
+    "stop_loss_effective": 63364.81090313,
+    "take_profit_effective": 65880.8655301,
+    "atr_at_entry": 645.1422121,
+    "atr_pct": 1.0,
     "atr_tf": "4h",
-    "be_trigger_price": 65151.55451627
+    "be_trigger_price": 65074.43776505
   },
   {
     "symbol": "DOGEUSDT",
-    "current_price": 0.07346,
-    "timestamp": "2026-07-16T19:03:21.519436+00:00",
+    "current_price": 0.07317,
+    "timestamp": "2026-07-16T20:03:25.960913+00:00",
     "timeframe": "4h",
     "position": "SHORT",
     "confidence": "LOW",
-    "final_confluence": 32.52,
-    "ev_R": -0.0625,
-    "ev_pct": -0.0625,
+    "final_confluence": 27.06,
+    "ev_R": -0.3625,
+    "ev_pct": -0.3625,
     "ev_positive": false,
-    "estimated_win_prob_pct": 31.3,
+    "estimated_win_prob_pct": 21.2,
     "entry_zone": {
-      "low": 0.073313,
-      "high": 0.073607
+      "low": 0.073024,
+      "high": 0.073316
     },
-    "stop_loss": 0.075036,
-    "take_profit_1": 0.070307,
-    "take_profit_2": 0.067155,
+    "stop_loss": 0.074643,
+    "take_profit_1": 0.070223,
+    "take_profit_2": 0.067277,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 50,
-          "classical_ta": 50.0,
-          "sentiment": 75,
-          "ev_edge": 67.5
-        },
-        "tf_confluence": 49.25,
-        "ev_R": 0.35,
-        "win_prob": 45
-      },
-      "30m": {
-        "method_scores": {
-          "wyckoff": 55,
-          "smc": 50,
-          "elliott": 50,
-          "classical_ta": 50.0,
-          "sentiment": 75,
-          "ev_edge": 75.0
-        },
-        "tf_confluence": 54.5,
-        "ev_R": 0.5,
-        "win_prob": 50
-      },
-      "1h": {
-        "method_scores": {
           "wyckoff": 40,
           "smc": 35,
           "elliott": 45,
-          "classical_ta": 0.0,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 33.75,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "30m": {
+        "method_scores": {
+          "wyckoff": 45,
+          "smc": 40,
+          "elliott": 45,
+          "classical_ta": 14.3,
           "sentiment": 75,
           "ev_edge": 60.0
         },
-        "tf_confluence": 30.75,
+        "tf_confluence": 37.29,
         "ev_R": 0.2,
         "win_prob": 40
       },
-      "4h": {
+      "1h": {
         "method_scores": {
           "wyckoff": 35,
           "smc": 30,
           "elliott": 40,
           "classical_ta": 0.0,
           "sentiment": 75,
-          "ev_edge": 52.5
+          "ev_edge": 45.0
         },
-        "tf_confluence": 27.25,
-        "ev_R": 0.05,
-        "win_prob": 35
+        "tf_confluence": 26.5,
+        "ev_R": -0.1,
+        "win_prob": 30
       },
-      "1d": {
+      "4h": {
         "method_scores": {
           "wyckoff": 30,
           "smc": 25,
           "elliott": 35,
-          "classical_ta": 28.6,
+          "classical_ta": 0.0,
           "sentiment": 75,
-          "ev_edge": 45.0
+          "ev_edge": 37.5
         },
-        "tf_confluence": 32.33,
-        "ev_R": -0.1,
-        "win_prob": 30
+        "tf_confluence": 23.0,
+        "ev_R": -0.25,
+        "win_prob": 25
       },
-      "1w": {
+      "1d": {
         "method_scores": {
           "wyckoff": 25,
           "smc": 20,
           "elliott": 30,
+          "classical_ta": 28.6,
+          "sentiment": 75,
+          "ev_edge": 30.0
+        },
+        "tf_confluence": 28.08,
+        "ev_R": -0.4,
+        "win_prob": 20
+      },
+      "1w": {
+        "method_scores": {
+          "wyckoff": 20,
+          "smc": 15,
+          "elliott": 25,
           "classical_ta": 37.5,
           "sentiment": 75,
-          "ev_edge": 37.5
+          "ev_edge": 22.5
         },
-        "tf_confluence": 31.5,
-        "ev_R": -0.25,
-        "win_prob": 25
+        "tf_confluence": 27.25,
+        "ev_R": -0.55,
+        "win_prob": 15
       }
     },
     "tf_aggregate": {
-      "final_confluence": 32.52,
+      "final_confluence": 27.06,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 49.2,
+          "score": 33.8,
           "weight": 0.05,
-          "contribution": 2.46
+          "contribution": 1.69
         },
         {
           "tf": "30m",
-          "score": 54.5,
+          "score": 37.3,
           "weight": 0.05,
-          "contribution": 2.73
+          "contribution": 1.86
         },
         {
           "tf": "1h",
-          "score": 30.8,
+          "score": 26.5,
           "weight": 0.1,
-          "contribution": 3.08
+          "contribution": 2.65
         },
         {
           "tf": "4h",
-          "score": 27.2,
+          "score": 23.0,
           "weight": 0.3,
-          "contribution": 8.17
+          "contribution": 6.9
         },
         {
           "tf": "1d",
-          "score": 32.3,
+          "score": 28.1,
           "weight": 0.4,
-          "contribution": 12.93
+          "contribution": 11.23
         },
         {
           "tf": "1w",
-          "score": 31.5,
+          "score": 27.2,
           "weight": 0.1,
-          "contribution": 3.15
+          "contribution": 2.73
         }
       ],
       "total_weight": 1.0
@@ -1155,31 +1155,31 @@
       "ev_edge": 0.1
     },
     "wyckoff": {
-      "phase": "Accumulation",
+      "phase": "Markdown",
       "sub_phase": "C",
-      "dominant_tf": "30m",
-      "bias": "LONG",
-      "reasoning": "Price is showing signs of a potential Spring in the 30m timeframe following a liquidity sweep, suggesting a transition from markdown to accumulation."
+      "dominant_tf": "4h",
+      "bias": "SHORT",
+      "reasoning": "Price is struggling to reclaim key EMAs, showing signs of a potential spring failure or continued distribution."
     },
     "smc": {
-      "order_block": "0.0728",
-      "fvg": "0.0730-0.0732",
+      "order_block": "0.0725",
+      "fvg": "0.0735-0.0740",
       "liquidity_sweep": true,
-      "bos_choch": "CHoCH",
-      "dominant_tf": "15m",
-      "bias": "LONG"
+      "bos_choch": "BOS",
+      "dominant_tf": "1h",
+      "bias": "SHORT"
     },
     "elliott_wave": {
       "current_wave": "C",
       "target_fib": "0.618",
-      "invalidation_level": 0.0726,
-      "dominant_tf": "30m",
-      "bias": "LONG"
+      "invalidation_level": 0.0755,
+      "dominant_tf": "4h",
+      "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from over-leveraging short positions during liquidity sweeps that were actually accumulation springs. This analysis shifts focus to identifying potential reversal structures rather than blindly following bearish trend indicators in oversold conditions.",
+    "memory_reflection": "Recent losses stemmed from over-leveraging into bearish setups during extreme fear, failing to respect the potential for liquidity sweeps. This analysis now prioritizes the 'Extreme Fear' sentiment as a contrarian indicator, tempering the bearish bias despite the technical downtrend.",
     "key_catalyst": "none identified",
-    "final_narrative": "DOGE is currently testing critical support levels where previous liquidity sweeps have occurred. While the higher timeframes remain bearish, the 15m and 30m charts show a potential CHoCH and a structural spring, suggesting that the downside momentum is exhausting. I am favoring a cautious long bias, anticipating a relief rally if the 0.0726 level holds, as the market is currently in a state of extreme fear which often precedes local bottoms.",
-    "decision_reason": "Confluence 32.52 <= SHORT-MEDIUM gate 35 | EV -0.062R below threshold \u2192 downgraded",
+    "final_narrative": "DOGE remains in a precarious position, trapped under major EMAs across most timeframes. While the technicals suggest a continuation of the markdown phase, the extreme fear sentiment and recent liquidity sweeps indicate that shorting at these levels carries significant risk of a sharp relief rally. I am maintaining a cautious bearish outlook but have lowered the win probability estimates to account for the high likelihood of volatility-induced stop-outs.",
+    "decision_reason": "Confluence 27.06 <= SHORT-MEDIUM gate 35 | EV -0.362R below threshold \u2192 downgraded",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -1193,156 +1193,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 0.075036,
-    "take_profit_ai": 0.070307,
+    "stop_loss_ai": 0.074643,
+    "take_profit_ai": 0.070223,
     "max_hold_hours": 36.0,
-    "stop_loss_atr": 0.07503628,
-    "take_profit_atr": 0.07083287,
-    "stop_loss_effective": 0.07503614,
-    "take_profit_effective": 0.07056993,
-    "atr_at_entry": 0.00105085,
-    "atr_pct": 1.43,
+    "stop_loss_atr": 0.07464333,
+    "take_profit_atr": 0.07071445,
+    "stop_loss_effective": 0.07464317,
+    "take_profit_effective": 0.07046872,
+    "atr_at_entry": 0.00098222,
+    "atr_pct": 1.34,
     "atr_tf": "4h",
-    "be_trigger_price": 0.07201497
+    "be_trigger_price": 0.07181936
   },
   {
     "symbol": "DOTUSDT",
-    "current_price": 0.855,
-    "timestamp": "2026-07-16T19:03:47.657903+00:00",
+    "current_price": 0.857,
+    "timestamp": "2026-07-16T20:03:55.002520+00:00",
     "timeframe": "4h",
-    "position": "SHORT",
+    "position": "LONG",
     "confidence": "LOW",
-    "final_confluence": 40.7,
-    "ev_R": -0.1188,
-    "ev_pct": -0.1188,
-    "ev_positive": false,
-    "estimated_win_prob_pct": 29.4,
+    "final_confluence": 47.61,
+    "ev_R": 0.125,
+    "ev_pct": 0.125,
+    "ev_positive": true,
+    "estimated_win_prob_pct": 37.5,
     "entry_zone": {
-      "low": 0.85329,
-      "high": 0.85671
+      "low": 0.855286,
+      "high": 0.858714
     },
-    "stop_loss": 0.878887,
-    "take_profit_1": 0.807226,
-    "take_profit_2": 0.759452,
+    "stop_loss": 0.834391,
+    "take_profit_1": 0.902219,
+    "take_profit_2": 0.947437,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
           "wyckoff": 65,
           "smc": 70,
-          "elliott": 55,
+          "elliott": 60,
           "classical_ta": 87.5,
           "sentiment": 75,
           "ev_edge": 82.5
         },
-        "tf_confluence": 74.5,
+        "tf_confluence": 75.0,
         "ev_R": 0.65,
         "win_prob": 55
       },
       "30m": {
         "method_scores": {
+          "wyckoff": 55,
+          "smc": 60,
+          "elliott": 50,
+          "classical_ta": 75.0,
+          "sentiment": 75,
+          "ev_edge": 75.0
+        },
+        "tf_confluence": 65.0,
+        "ev_R": 0.5,
+        "win_prob": 50
+      },
+      "1h": {
+        "method_scores": {
           "wyckoff": 50,
-          "smc": 45,
-          "elliott": 40,
+          "smc": 55,
+          "elliott": 45,
           "classical_ta": 75.0,
           "sentiment": 75,
           "ev_edge": 67.5
         },
-        "tf_confluence": 58.0,
+        "tf_confluence": 61.5,
         "ev_R": 0.35,
         "win_prob": 45
       },
-      "1h": {
+      "4h": {
         "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 35,
-          "classical_ta": 75.0,
+          "wyckoff": 40,
+          "smc": 45,
+          "elliott": 40,
+          "classical_ta": 62.5,
           "sentiment": 75,
           "ev_edge": 60.0
         },
-        "tf_confluence": 54.5,
+        "tf_confluence": 52.0,
         "ev_R": 0.2,
         "win_prob": 40
       },
-      "4h": {
+      "1d": {
         "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
+          "wyckoff": 30,
+          "smc": 35,
           "elliott": 30,
-          "classical_ta": 57.1,
+          "classical_ta": 28.6,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 43.38,
+        "tf_confluence": 35.58,
         "ev_R": 0.05,
         "win_prob": 35
-      },
-      "1d": {
-        "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 25,
-          "classical_ta": 28.6,
-          "sentiment": 75,
-          "ev_edge": 37.5
-        },
-        "tf_confluence": 28.33,
-        "ev_R": -0.25,
-        "win_prob": 25
       },
       "1w": {
         "method_scores": {
           "wyckoff": 40,
-          "smc": 35,
-          "elliott": 30,
+          "smc": 40,
+          "elliott": 35,
           "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 45.0
+          "ev_edge": 60.0
         },
-        "tf_confluence": 42.75,
-        "ev_R": -0.1,
-        "win_prob": 30
+        "tf_confluence": 46.25,
+        "ev_R": 0.2,
+        "win_prob": 40
       }
     },
     "tf_aggregate": {
-      "final_confluence": 40.7,
+      "final_confluence": 47.61,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 74.5,
+          "score": 75.0,
           "weight": 0.05,
-          "contribution": 3.73
+          "contribution": 3.75
         },
         {
           "tf": "30m",
-          "score": 58.0,
+          "score": 65.0,
           "weight": 0.05,
-          "contribution": 2.9
+          "contribution": 3.25
         },
         {
           "tf": "1h",
-          "score": 54.5,
+          "score": 61.5,
           "weight": 0.1,
-          "contribution": 5.45
+          "contribution": 6.15
         },
         {
           "tf": "4h",
-          "score": 43.4,
+          "score": 52.0,
           "weight": 0.3,
-          "contribution": 13.01
+          "contribution": 15.6
         },
         {
           "tf": "1d",
-          "score": 28.3,
+          "score": 35.6,
           "weight": 0.4,
-          "contribution": 11.33
+          "contribution": 14.23
         },
         {
           "tf": "1w",
-          "score": 42.8,
+          "score": 46.2,
           "weight": 0.1,
-          "contribution": 4.28
+          "contribution": 4.62
         }
       ],
       "total_weight": 1.0
@@ -1360,27 +1360,27 @@
       "sub_phase": "B",
       "dominant_tf": "15m",
       "bias": "LONG",
-      "reasoning": "Price is showing signs of spring-like behavior on lower timeframes within a broader range, suggesting potential accumulation."
+      "reasoning": "Price is showing signs of re-accumulation within a range following a prolonged markdown, with recent volume spikes suggesting absorption."
     },
     "smc": {
       "order_block": "0.845",
-      "fvg": "0.848-0.852",
+      "fvg": "0.850-0.855",
       "liquidity_sweep": true,
       "bos_choch": "CHoCH",
       "dominant_tf": "15m",
       "bias": "LONG"
     },
     "elliott_wave": {
-      "current_wave": "C",
+      "current_wave": "1",
       "target_fib": "0.618",
       "invalidation_level": 0.825,
       "dominant_tf": "15m",
       "bias": "LONG"
     },
-    "memory_reflection": "Recent losses stemmed from over-leveraging on local momentum signals that were actually liquidity sweeps in a larger downtrend. This analysis shifts focus to identifying structural CHoCH on the 15m while respecting the bearish bias of the higher timeframes, avoiding premature entries until a clear retest of the 0.845 support is confirmed.",
+    "memory_reflection": "Recent losses stemmed from over-leveraging into liquidity sweeps that were actually trend continuations. I am now prioritizing structural CHoCH signals on lower timeframes to confirm the reversal before committing capital, avoiding the trap of fading the dominant bearish trend on higher timeframes.",
     "key_catalyst": "none identified",
-    "final_narrative": "DOT is currently trapped in a volatile range where lower timeframe bullish structure is attempting to form against a heavy macro bearish trend. While the 15m chart shows a constructive CHoCH and potential accumulation, the higher timeframes remain structurally weak. I am favoring a cautious long bias only if the 0.845 level holds as support, as the broader market sentiment remains in extreme fear.",
-    "decision_reason": "Confluence 40.7 <= SHORT-LOW gate 55",
+    "final_narrative": "DOT is exhibiting a localized bullish structure on the 15m timeframe, characterized by a recent liquidity sweep and a potential change of character. While the higher timeframes remain bearish, the current price action suggests a short-term relief rally or the start of a base-building phase. I am cautiously optimistic for a move toward the 0.87-0.88 resistance zone, provided the 0.825 support holds.",
+    "decision_reason": "Confluence 47.61 >= LOW gate 45",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -1394,37 +1394,37 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 0.878887,
-    "take_profit_ai": 0.807226,
+    "stop_loss_ai": 0.834391,
+    "take_profit_ai": 0.902219,
     "max_hold_hours": 48.0,
-    "stop_loss_atr": 0.87888692,
-    "take_profit_atr": 0.81518847,
-    "stop_loss_effective": 0.87888696,
-    "take_profit_effective": 0.81120723,
-    "atr_at_entry": 0.01592461,
-    "atr_pct": 1.86,
+    "stop_loss_atr": 0.83439072,
+    "take_profit_atr": 0.89468214,
+    "stop_loss_effective": 0.83439086,
+    "take_profit_effective": 0.89845057,
+    "atr_at_entry": 0.01507285,
+    "atr_pct": 1.76,
     "atr_tf": "4h",
-    "be_trigger_price": 0.83310361
+    "be_trigger_price": 0.87772528
   },
   {
     "symbol": "ETHUSDT",
-    "current_price": 1877.51,
-    "timestamp": "2026-07-16T19:01:44.123294+00:00",
+    "current_price": 1875.68,
+    "timestamp": "2026-07-16T20:01:41.539768+00:00",
     "timeframe": "4h",
     "position": "WAIT",
     "confidence": "SKIP",
-    "final_confluence": 49.23,
-    "ev_R": 0.2675,
-    "ev_pct": 0.2675,
+    "final_confluence": 49.06,
+    "ev_R": 0.05,
+    "ev_pct": 0.05,
     "ev_positive": true,
-    "estimated_win_prob_pct": 42.2,
+    "estimated_win_prob_pct": 35.0,
     "entry_zone": {
-      "low": 1873.75498,
-      "high": 1881.26502
+      "low": 1871.92864,
+      "high": 1879.43136
     },
-    "stop_loss": 1877.51,
-    "take_profit_1": 1877.51,
-    "take_profit_2": 1877.51,
+    "stop_loss": 1875.68,
+    "take_profit_1": 1875.68,
+    "take_profit_2": 1875.68,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
@@ -1432,37 +1432,37 @@
           "wyckoff": 45,
           "smc": 40,
           "elliott": 40,
-          "classical_ta": 66.7,
+          "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 63.0
+          "ev_edge": 52.5
         },
-        "tf_confluence": 52.81,
-        "ev_R": 0.26,
-        "win_prob": 42
+        "tf_confluence": 46.75,
+        "ev_R": 0.05,
+        "win_prob": 35
       },
       "30m": {
         "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 35,
+          "wyckoff": 45,
+          "smc": 45,
+          "elliott": 45,
           "classical_ta": 57.1,
           "sentiment": 75,
-          "ev_edge": 57.0
+          "ev_edge": 60.0
         },
-        "tf_confluence": 46.58,
-        "ev_R": 0.14,
-        "win_prob": 38
+        "tf_confluence": 51.63,
+        "ev_R": 0.2,
+        "win_prob": 40
       },
       "1h": {
         "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
-          "elliott": 30,
+          "wyckoff": 40,
+          "smc": 40,
+          "elliott": 40,
           "classical_ta": 28.6,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 34.83,
+        "tf_confluence": 39.58,
         "ev_R": 0.05,
         "win_prob": 35
       },
@@ -1473,11 +1473,11 @@
           "elliott": 50,
           "classical_ta": 71.4,
           "sentiment": 75,
-          "ev_edge": 78.0
+          "ev_edge": 67.5
         },
-        "tf_confluence": 61.22,
-        "ev_R": 0.56,
-        "win_prob": 52
+        "tf_confluence": 60.17,
+        "ev_R": 0.35,
+        "win_prob": 45
       },
       "1d": {
         "method_scores": {
@@ -1486,64 +1486,64 @@
           "elliott": 35,
           "classical_ta": 62.5,
           "sentiment": 75,
-          "ev_edge": 57.0
+          "ev_edge": 45.0
         },
-        "tf_confluence": 48.2,
-        "ev_R": 0.14,
-        "win_prob": 38
+        "tf_confluence": 47.0,
+        "ev_R": -0.1,
+        "win_prob": 30
       },
       "1w": {
         "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 25,
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 30,
           "classical_ta": 28.6,
           "sentiment": 75,
-          "ev_edge": 45.0
+          "ev_edge": 37.5
         },
-        "tf_confluence": 31.33,
-        "ev_R": -0.1,
-        "win_prob": 30
+        "tf_confluence": 33.33,
+        "ev_R": -0.25,
+        "win_prob": 25
       }
     },
     "tf_aggregate": {
-      "final_confluence": 49.23,
+      "final_confluence": 49.06,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 52.8,
+          "score": 46.8,
           "weight": 0.05,
-          "contribution": 2.64
+          "contribution": 2.34
         },
         {
           "tf": "30m",
-          "score": 46.6,
+          "score": 51.6,
           "weight": 0.05,
-          "contribution": 2.33
+          "contribution": 2.58
         },
         {
           "tf": "1h",
-          "score": 34.8,
+          "score": 39.6,
           "weight": 0.1,
-          "contribution": 3.48
+          "contribution": 3.96
         },
         {
           "tf": "4h",
-          "score": 61.2,
+          "score": 60.2,
           "weight": 0.3,
-          "contribution": 18.37
+          "contribution": 18.05
         },
         {
           "tf": "1d",
-          "score": 48.2,
+          "score": 47.0,
           "weight": 0.4,
-          "contribution": 19.28
+          "contribution": 18.8
         },
         {
           "tf": "1w",
-          "score": 31.3,
+          "score": 33.3,
           "weight": 0.1,
-          "contribution": 3.13
+          "contribution": 3.33
         }
       ],
       "total_weight": 1.0
@@ -1561,13 +1561,13 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to sustain higher levels after the recent liquidity sweep, suggesting a transition into a markdown phase."
+      "reasoning": "Price is failing to sustain higher levels despite bullish EMA alignment, suggesting a potential spring failure or secondary test of distribution."
     },
     "smc": {
-      "order_block": "1890-1900",
+      "order_block": "1860.00",
       "fvg": "1850-1865",
       "liquidity_sweep": true,
-      "bos_choch": "BOS",
+      "bos_choch": "CHoCH",
       "dominant_tf": "1h",
       "bias": "SHORT"
     },
@@ -1578,9 +1578,9 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during local liquidity sweeps that failed to confirm structural reversals. This analysis acknowledges the dominant bearish pressure on higher timeframes and avoids premature long entries, focusing instead on the failure to reclaim key resistance levels.",
-    "key_catalyst": "US stocks sell-off and broader market volatility following Micron losses.",
-    "final_narrative": "The market is exhibiting signs of exhaustion after failing to hold the 1900 level. With the 4h and daily trends showing bearish alignment and the Fear & Greed index at extreme levels, the path of least resistance remains downward. I am prioritizing a wait-and-see approach until a clear break of the 1860 support confirms the next leg of the markdown phase.",
+    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during liquidity sweeps that were actually continuation patterns in a larger bearish structure. This analysis now prioritizes the 4h/Daily bearish trend over local 15m/30m bullish noise to avoid premature long entries.",
+    "key_catalyst": "none identified",
+    "final_narrative": "ETH is currently trapped in a corrective phase within a broader bearish structure. While lower timeframes show minor bullish EMA alignments, the lack of follow-through and the failure to reclaim key resistance levels suggest that the market is still in a distribution phase. I am maintaining a cautious stance, favoring short-side opportunities if the current support levels at 1860-1870 are decisively broken.",
     "decision_reason": "In WAIT band (49-51)",
     "gates_used": {
       "long_high": 75,
@@ -1598,50 +1598,50 @@
   },
   {
     "symbol": "LINKUSDT",
-    "current_price": 8.398,
-    "timestamp": "2026-07-16T19:03:08.231289+00:00",
+    "current_price": 8.405,
+    "timestamp": "2026-07-16T20:03:11.048910+00:00",
     "timeframe": "4h",
-    "position": "LONG",
-    "confidence": "LOW",
-    "final_confluence": 46.72,
-    "ev_R": -0.0437,
-    "ev_pct": -0.0437,
-    "ev_positive": false,
-    "estimated_win_prob_pct": 31.9,
+    "position": "WAIT",
+    "confidence": "SKIP",
+    "final_confluence": 49.86,
+    "ev_R": 0.1775,
+    "ev_pct": 0.1775,
+    "ev_positive": true,
+    "estimated_win_prob_pct": 39.2,
     "entry_zone": {
-      "low": 8.381204,
-      "high": 8.414796
+      "low": 8.38819,
+      "high": 8.42181
     },
-    "stop_loss": 8.208,
-    "take_profit_1": 8.778,
-    "take_profit_2": 9.157999,
+    "stop_loss": 8.405,
+    "take_profit_1": 8.405,
+    "take_profit_2": 8.405,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 40,
-          "classical_ta": 33.3,
+          "wyckoff": 45,
+          "smc": 40,
+          "elliott": 45,
+          "classical_ta": 66.7,
           "sentiment": 75,
-          "ev_edge": 52.5
+          "ev_edge": 63.0
         },
-        "tf_confluence": 39.49,
-        "ev_R": 0.05,
-        "win_prob": 35
+        "tf_confluence": 53.31,
+        "ev_R": 0.26,
+        "win_prob": 42
       },
       "30m": {
         "method_scores": {
           "wyckoff": 40,
           "smc": 35,
           "elliott": 40,
-          "classical_ta": 37.5,
+          "classical_ta": 28.6,
           "sentiment": 75,
-          "ev_edge": 52.5
+          "ev_edge": 57.0
         },
-        "tf_confluence": 40.75,
-        "ev_R": 0.05,
-        "win_prob": 35
+        "tf_confluence": 38.53,
+        "ev_R": 0.14,
+        "win_prob": 38
       },
       "1h": {
         "method_scores": {
@@ -1663,53 +1663,53 @@
           "elliott": 50,
           "classical_ta": 71.4,
           "sentiment": 75,
-          "ev_edge": 67.5
+          "ev_edge": 72.0
         },
-        "tf_confluence": 60.17,
-        "ev_R": 0.35,
-        "win_prob": 45
+        "tf_confluence": 60.62,
+        "ev_R": 0.44,
+        "win_prob": 48
       },
       "1d": {
         "method_scores": {
-          "wyckoff": 30,
-          "smc": 30,
-          "elliott": 30,
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 35,
           "classical_ta": 62.5,
           "sentiment": 75,
-          "ev_edge": 37.5
+          "ev_edge": 52.5
         },
-        "tf_confluence": 42.75,
-        "ev_R": -0.25,
-        "win_prob": 25
+        "tf_confluence": 47.75,
+        "ev_R": 0.05,
+        "win_prob": 35
       },
       "1w": {
         "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 25,
+          "wyckoff": 30,
+          "smc": 25,
+          "elliott": 30,
           "classical_ta": 28.6,
           "sentiment": 75,
-          "ev_edge": 30.0
+          "ev_edge": 45.0
         },
-        "tf_confluence": 27.58,
-        "ev_R": -0.4,
-        "win_prob": 20
+        "tf_confluence": 31.83,
+        "ev_R": -0.1,
+        "win_prob": 30
       }
     },
     "tf_aggregate": {
-      "final_confluence": 46.72,
+      "final_confluence": 49.86,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 39.5,
+          "score": 53.3,
           "weight": 0.05,
-          "contribution": 1.97
+          "contribution": 2.67
         },
         {
           "tf": "30m",
-          "score": 40.8,
+          "score": 38.5,
           "weight": 0.05,
-          "contribution": 2.04
+          "contribution": 1.93
         },
         {
           "tf": "1h",
@@ -1719,21 +1719,21 @@
         },
         {
           "tf": "4h",
-          "score": 60.2,
+          "score": 60.6,
           "weight": 0.3,
-          "contribution": 18.05
+          "contribution": 18.19
         },
         {
           "tf": "1d",
-          "score": 42.8,
+          "score": 47.8,
           "weight": 0.4,
-          "contribution": 17.1
+          "contribution": 19.1
         },
         {
           "tf": "1w",
-          "score": 27.6,
+          "score": 31.8,
           "weight": 0.1,
-          "contribution": 2.76
+          "contribution": 3.18
         }
       ],
       "total_weight": 1.0
@@ -1751,11 +1751,11 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to hold higher levels after a failed breakout attempt, indicating potential distribution."
+      "reasoning": "Price is struggling to reclaim higher levels after a failed breakout, showing signs of a potential spring failure or secondary test of distribution."
     },
     "smc": {
-      "order_block": "8.15-8.25",
-      "fvg": "8.05-8.12",
+      "order_block": "8.35-8.37",
+      "fvg": "8.45-8.48",
       "liquidity_sweep": true,
       "bos_choch": "CHoCH",
       "dominant_tf": "1h",
@@ -1768,411 +1768,9 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during liquidity sweeps that lacked structural confirmation. This analysis shifts to a defensive stance, prioritizing the macro downtrend and waiting for clear structural breaks rather than anticipating reversals.",
+    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during liquidity sweeps that lacked structural confirmation. This analysis acknowledges the macro bearish trend and prioritizes waiting for a clear structural break rather than front-running potential reversals.",
     "key_catalyst": "none identified",
-    "final_narrative": "LINK is currently exhibiting signs of distribution across mid-term timeframes, with the 4h chart showing a failure to sustain momentum above key resistance. The confluence of a bearish macro trend and recent failed breakouts suggests that the path of least resistance is downward. I am maintaining a cautious, bearish bias, waiting for a confirmed break below the 8.35 support level before considering any short exposure, as current volatility remains high and prone to fake-outs.",
-    "decision_reason": "Confluence 46.72 >= LOW gate 45",
-    "gates_used": {
-      "long_high": 75,
-      "long_medium": 65,
-      "long_low": 45,
-      "short_high": 25,
-      "short_medium": 35,
-      "short_low": 55,
-      "wait_band": [
-        49,
-        51
-      ],
-      "ev_threshold": 3.0
-    },
-    "stop_loss_ai": 8.208,
-    "take_profit_ai": 8.778,
-    "max_hold_hours": 48.0,
-    "stop_loss_atr": 8.20800016,
-    "take_profit_atr": 8.71466641,
-    "stop_loss_effective": 8.20800008,
-    "take_profit_effective": 8.7463332,
-    "atr_at_entry": 0.12666656,
-    "atr_pct": 1.51,
-    "atr_tf": "4h",
-    "be_trigger_price": 8.5721666
-  },
-  {
-    "symbol": "OPUSDT",
-    "current_price": 0.0997,
-    "timestamp": "2026-07-16T19:04:15.235311+00:00",
-    "timeframe": "4h",
-    "position": "SHORT",
-    "confidence": "LOW",
-    "final_confluence": 36.64,
-    "ev_R": 0.4625,
-    "ev_pct": 0.4625,
-    "ev_positive": true,
-    "estimated_win_prob_pct": 48.8,
-    "entry_zone": {
-      "low": 0.099501,
-      "high": 0.099899
-    },
-    "stop_loss": 0.102854,
-    "take_profit_1": 0.093391,
-    "take_profit_2": 0.087082,
-    "risk_reward_ratio": 2.0,
-    "per_tf_details": {
-      "15m": {
-        "method_scores": {
-          "wyckoff": 30,
-          "smc": 20,
-          "elliott": 30,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 52.5
-        },
-        "tf_confluence": 22.5,
-        "ev_R": 0.05,
-        "win_prob": 35
-      },
-      "30m": {
-        "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 30,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 52.5
-        },
-        "tf_confluence": 24.0,
-        "ev_R": 0.05,
-        "win_prob": 35
-      },
-      "1h": {
-        "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
-          "elliott": 35,
-          "classical_ta": 12.5,
-          "sentiment": 75,
-          "ev_edge": 60.0
-        },
-        "tf_confluence": 31.25,
-        "ev_R": 0.2,
-        "win_prob": 40
-      },
-      "4h": {
-        "method_scores": {
-          "wyckoff": 40,
-          "smc": 35,
-          "elliott": 40,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 67.5
-        },
-        "tf_confluence": 31.0,
-        "ev_R": 0.35,
-        "win_prob": 45
-      },
-      "1d": {
-        "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 45,
-          "classical_ta": 28.6,
-          "sentiment": 75,
-          "ev_edge": 75.0
-        },
-        "tf_confluence": 43.08,
-        "ev_R": 0.5,
-        "win_prob": 50
-      },
-      "1w": {
-        "method_scores": {
-          "wyckoff": 50,
-          "smc": 45,
-          "elliott": 50,
-          "classical_ta": 28.6,
-          "sentiment": 75,
-          "ev_edge": 82.5
-        },
-        "tf_confluence": 46.58,
-        "ev_R": 0.65,
-        "win_prob": 55
-      }
-    },
-    "tf_aggregate": {
-      "final_confluence": 36.64,
-      "tf_trail": [
-        {
-          "tf": "15m",
-          "score": 22.5,
-          "weight": 0.05,
-          "contribution": 1.12
-        },
-        {
-          "tf": "30m",
-          "score": 24.0,
-          "weight": 0.05,
-          "contribution": 1.2
-        },
-        {
-          "tf": "1h",
-          "score": 31.2,
-          "weight": 0.1,
-          "contribution": 3.12
-        },
-        {
-          "tf": "4h",
-          "score": 31.0,
-          "weight": 0.3,
-          "contribution": 9.3
-        },
-        {
-          "tf": "1d",
-          "score": 43.1,
-          "weight": 0.4,
-          "contribution": 17.23
-        },
-        {
-          "tf": "1w",
-          "score": 46.6,
-          "weight": 0.1,
-          "contribution": 4.66
-        }
-      ],
-      "total_weight": 1.0
-    },
-    "methodology_weights_used": {
-      "wyckoff": 0.15,
-      "smc": 0.3,
-      "elliott": 0.1,
-      "classical_ta": 0.3,
-      "sentiment": 0.05,
-      "ev_edge": 0.1
-    },
-    "wyckoff": {
-      "phase": "Markdown",
-      "sub_phase": "C",
-      "dominant_tf": "4h",
-      "bias": "SHORT",
-      "reasoning": "Price is failing to reclaim key EMAs and is currently testing local support levels within a broader bearish structure."
-    },
-    "smc": {
-      "order_block": "0.0980-0.0990",
-      "fvg": "0.1010-0.1020",
-      "liquidity_sweep": true,
-      "bos_choch": "BOS",
-      "dominant_tf": "1h",
-      "bias": "SHORT"
-    },
-    "elliott_wave": {
-      "current_wave": "C",
-      "target_fib": "0.618",
-      "invalidation_level": 0.105,
-      "dominant_tf": "4h",
-      "bias": "SHORT"
-    },
-    "memory_reflection": "Recent trades failed by attempting to front-run reversals in a strong markdown phase without waiting for structural confirmation. This analysis shifts focus to respecting the bearish trend and waiting for a clear liquidity sweep or structural break before considering any counter-trend entries.",
-    "key_catalyst": "none identified",
-    "final_narrative": "OPUSDT remains in a clear bearish trend across all major timeframes, characterized by consistent lower highs and lower lows. The market is currently in a state of extreme fear, and while the price is approaching potential support, there is no evidence of a structural reversal. I am maintaining a cautious bearish bias, prioritizing trend-following setups over premature bottom-fishing.",
-    "decision_reason": "Confluence 36.64 <= SHORT-LOW gate 55",
-    "gates_used": {
-      "long_high": 75,
-      "long_medium": 65,
-      "long_low": 45,
-      "short_high": 25,
-      "short_medium": 35,
-      "short_low": 55,
-      "wait_band": [
-        49,
-        51
-      ],
-      "ev_threshold": 3.0
-    },
-    "stop_loss_ai": 0.102854,
-    "take_profit_ai": 0.093391,
-    "max_hold_hours": 48.0,
-    "stop_loss_atr": 0.10285448,
-    "take_profit_atr": 0.09444253,
-    "stop_loss_effective": 0.10285424,
-    "take_profit_effective": 0.09391676,
-    "atr_at_entry": 0.00210299,
-    "atr_pct": 2.11,
-    "atr_tf": "4h",
-    "be_trigger_price": 0.09680838
-  },
-  {
-    "symbol": "POLUSDT",
-    "current_price": 0.08261,
-    "timestamp": "2026-07-16T19:03:34.683849+00:00",
-    "timeframe": "4h",
-    "position": "WAIT",
-    "confidence": "SKIP",
-    "final_confluence": 50.32,
-    "ev_R": 0.575,
-    "ev_pct": 0.575,
-    "ev_positive": true,
-    "estimated_win_prob_pct": 52.5,
-    "entry_zone": {
-      "low": 0.082445,
-      "high": 0.082775
-    },
-    "stop_loss": 0.08261,
-    "take_profit_1": 0.08261,
-    "take_profit_2": 0.08261,
-    "risk_reward_ratio": 2.0,
-    "per_tf_details": {
-      "15m": {
-        "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 30,
-          "classical_ta": 12.5,
-          "sentiment": 75,
-          "ev_edge": 52.5
-        },
-        "tf_confluence": 25.5,
-        "ev_R": 0.05,
-        "win_prob": 35
-      },
-      "30m": {
-        "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 35,
-          "classical_ta": 25.0,
-          "sentiment": 75,
-          "ev_edge": 60.0
-        },
-        "tf_confluence": 32.75,
-        "ev_R": 0.2,
-        "win_prob": 40
-      },
-      "1h": {
-        "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
-          "elliott": 40,
-          "classical_ta": 37.5,
-          "sentiment": 75,
-          "ev_edge": 67.5
-        },
-        "tf_confluence": 40.0,
-        "ev_R": 0.35,
-        "win_prob": 45
-      },
-      "4h": {
-        "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 45,
-          "classical_ta": 50.0,
-          "sentiment": 75,
-          "ev_edge": 75.0
-        },
-        "tf_confluence": 49.5,
-        "ev_R": 0.5,
-        "win_prob": 50
-      },
-      "1d": {
-        "method_scores": {
-          "wyckoff": 55,
-          "smc": 50,
-          "elliott": 50,
-          "classical_ta": 62.5,
-          "sentiment": 75,
-          "ev_edge": 82.5
-        },
-        "tf_confluence": 59.0,
-        "ev_R": 0.65,
-        "win_prob": 55
-      },
-      "1w": {
-        "method_scores": {
-          "wyckoff": 50,
-          "smc": 45,
-          "elliott": 45,
-          "classical_ta": 42.9,
-          "sentiment": 75,
-          "ev_edge": 75.0
-        },
-        "tf_confluence": 49.62,
-        "ev_R": 0.5,
-        "win_prob": 50
-      }
-    },
-    "tf_aggregate": {
-      "final_confluence": 50.32,
-      "tf_trail": [
-        {
-          "tf": "15m",
-          "score": 25.5,
-          "weight": 0.05,
-          "contribution": 1.28
-        },
-        {
-          "tf": "30m",
-          "score": 32.8,
-          "weight": 0.05,
-          "contribution": 1.64
-        },
-        {
-          "tf": "1h",
-          "score": 40.0,
-          "weight": 0.1,
-          "contribution": 4.0
-        },
-        {
-          "tf": "4h",
-          "score": 49.5,
-          "weight": 0.3,
-          "contribution": 14.85
-        },
-        {
-          "tf": "1d",
-          "score": 59.0,
-          "weight": 0.4,
-          "contribution": 23.6
-        },
-        {
-          "tf": "1w",
-          "score": 49.6,
-          "weight": 0.1,
-          "contribution": 4.96
-        }
-      ],
-      "total_weight": 1.0
-    },
-    "methodology_weights_used": {
-      "wyckoff": 0.15,
-      "smc": 0.3,
-      "elliott": 0.1,
-      "classical_ta": 0.3,
-      "sentiment": 0.05,
-      "ev_edge": 0.1
-    },
-    "wyckoff": {
-      "phase": "Distribution",
-      "sub_phase": "C",
-      "dominant_tf": "1h",
-      "bias": "SHORT",
-      "reasoning": "Price is failing to hold higher levels with increasing volume on down-moves, suggesting a potential spring failure or secondary test of distribution."
-    },
-    "smc": {
-      "order_block": "0.0815-0.0820",
-      "fvg": "0.0835-0.0840",
-      "liquidity_sweep": true,
-      "bos_choch": "CHoCH",
-      "dominant_tf": "15m",
-      "bias": "SHORT"
-    },
-    "elliott_wave": {
-      "current_wave": "C",
-      "target_fib": "0.618",
-      "invalidation_level": 0.0855,
-      "dominant_tf": "4h",
-      "bias": "SHORT"
-    },
-    "memory_reflection": "Recent losses stemmed from over-optimism during liquidity sweeps that were actually continuation patterns in a markdown phase. This analysis shifts focus to the bearish structure on lower timeframes, prioritizing trend alignment over mean-reversion attempts.",
-    "key_catalyst": "none identified",
-    "final_narrative": "POLUSDT is exhibiting signs of a failed recovery attempt, with lower timeframes showing bearish market structure shifts. The confluence of extreme fear in the market and the inability to reclaim key EMA levels suggests that any bounce is likely a liquidity grab for further downside. I am maintaining a cautious, bearish bias until a clear structural break above the 4h EMA50 occurs.",
+    "final_narrative": "LINK is currently caught in a corrective phase following a failed attempt to sustain momentum above $8.50. The confluence of bearish MACD bias on lower timeframes and the failure to hold key support levels suggests that the path of least resistance remains downward. I am maintaining a cautious stance, favoring short-side setups only upon clear structural breakdown, as the market remains in a state of extreme fear.",
     "decision_reason": "In WAIT band (49-51)",
     "gates_used": {
       "long_high": 75,
@@ -2189,24 +1787,24 @@
     }
   },
   {
-    "symbol": "SEIUSDT",
-    "current_price": 0.04765,
-    "timestamp": "2026-07-16T19:04:54.900563+00:00",
+    "symbol": "OPUSDT",
+    "current_price": 0.0991,
+    "timestamp": "2026-07-16T20:04:24.023667+00:00",
     "timeframe": "4h",
     "position": "SHORT",
-    "confidence": "MEDIUM",
-    "final_confluence": 28.24,
-    "ev_R": 0.05,
-    "ev_pct": 0.05,
-    "ev_positive": true,
-    "estimated_win_prob_pct": 35.0,
+    "confidence": "LOW",
+    "final_confluence": 27.38,
+    "ev_R": -0.0062,
+    "ev_pct": -0.0062,
+    "ev_positive": false,
+    "estimated_win_prob_pct": 33.1,
     "entry_zone": {
-      "low": 0.047555,
-      "high": 0.047745
+      "low": 0.098902,
+      "high": 0.099298
     },
-    "stop_loss": 0.049047,
-    "take_profit_1": 0.044856,
-    "take_profit_2": 0.042061,
+    "stop_loss": 0.102061,
+    "take_profit_1": 0.093177,
+    "take_profit_2": 0.087255,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
@@ -2219,207 +1817,6 @@
           "ev_edge": 52.5
         },
         "tf_confluence": 25.5,
-        "ev_R": 0.05,
-        "win_prob": 35
-      },
-      "30m": {
-        "method_scores": {
-          "wyckoff": 20,
-          "smc": 15,
-          "elliott": 25,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 45.0
-        },
-        "tf_confluence": 18.25,
-        "ev_R": -0.1,
-        "win_prob": 30
-      },
-      "1h": {
-        "method_scores": {
-          "wyckoff": 20,
-          "smc": 15,
-          "elliott": 25,
-          "classical_ta": 12.5,
-          "sentiment": 75,
-          "ev_edge": 45.0
-        },
-        "tf_confluence": 22.0,
-        "ev_R": -0.1,
-        "win_prob": 30
-      },
-      "4h": {
-        "method_scores": {
-          "wyckoff": 15,
-          "smc": 10,
-          "elliott": 20,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 37.5
-        },
-        "tf_confluence": 14.75,
-        "ev_R": -0.25,
-        "win_prob": 25
-      },
-      "1d": {
-        "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 35,
-          "classical_ta": 37.5,
-          "sentiment": 75,
-          "ev_edge": 60.0
-        },
-        "tf_confluence": 36.5,
-        "ev_R": 0.2,
-        "win_prob": 40
-      },
-      "1w": {
-        "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 40,
-          "classical_ta": 50.0,
-          "sentiment": 75,
-          "ev_edge": 67.5
-        },
-        "tf_confluence": 48.25,
-        "ev_R": 0.35,
-        "win_prob": 45
-      }
-    },
-    "tf_aggregate": {
-      "final_confluence": 28.24,
-      "tf_trail": [
-        {
-          "tf": "15m",
-          "score": 25.5,
-          "weight": 0.05,
-          "contribution": 1.28
-        },
-        {
-          "tf": "30m",
-          "score": 18.2,
-          "weight": 0.05,
-          "contribution": 0.91
-        },
-        {
-          "tf": "1h",
-          "score": 22.0,
-          "weight": 0.1,
-          "contribution": 2.2
-        },
-        {
-          "tf": "4h",
-          "score": 14.8,
-          "weight": 0.3,
-          "contribution": 4.42
-        },
-        {
-          "tf": "1d",
-          "score": 36.5,
-          "weight": 0.4,
-          "contribution": 14.6
-        },
-        {
-          "tf": "1w",
-          "score": 48.2,
-          "weight": 0.1,
-          "contribution": 4.83
-        }
-      ],
-      "total_weight": 1.0
-    },
-    "methodology_weights_used": {
-      "wyckoff": 0.15,
-      "smc": 0.3,
-      "elliott": 0.1,
-      "classical_ta": 0.3,
-      "sentiment": 0.05,
-      "ev_edge": 0.1
-    },
-    "wyckoff": {
-      "phase": "Markdown",
-      "sub_phase": "D",
-      "dominant_tf": "4h",
-      "bias": "SHORT",
-      "reasoning": "Price is consistently failing to reclaim key EMAs, indicating a continuation of the markdown phase with no signs of accumulation."
-    },
-    "smc": {
-      "order_block": "0.0485-0.0490",
-      "fvg": "0.0480-0.0485",
-      "liquidity_sweep": true,
-      "bos_choch": "BOS",
-      "dominant_tf": "1h",
-      "bias": "SHORT"
-    },
-    "elliott_wave": {
-      "current_wave": "C",
-      "target_fib": "0.618",
-      "invalidation_level": 0.0495,
-      "dominant_tf": "4h",
-      "bias": "SHORT"
-    },
-    "memory_reflection": "My previous short failed because I ignored the potential for a mean reversion bounce within a bearish trend. This analysis incorporates a more conservative approach by acknowledging the liquidity sweep on the 1h timeframe rather than blindly chasing the trend.",
-    "key_catalyst": "none identified",
-    "final_narrative": "SEI remains in a clear structural downtrend across all major timeframes, characterized by consistent lower highs and lower lows. The recent volatility spike on the 1h chart suggests a liquidity sweep, but the lack of a subsequent structural break to the upside confirms the bearish bias. I am maintaining a cautious short-biased outlook, focusing on the resistance zone near 0.0485 as the primary area for potential rejection.",
-    "decision_reason": "Confluence 28.24 <= SHORT-MEDIUM gate 35",
-    "gates_used": {
-      "long_high": 75,
-      "long_medium": 65,
-      "long_low": 45,
-      "short_high": 25,
-      "short_medium": 35,
-      "short_low": 55,
-      "wait_band": [
-        49,
-        51
-      ],
-      "ev_threshold": 3.0
-    },
-    "stop_loss_ai": 0.049047,
-    "take_profit_ai": 0.044856,
-    "max_hold_hours": 36.0,
-    "stop_loss_atr": 0.04904714,
-    "take_profit_atr": 0.04532144,
-    "stop_loss_effective": 0.04904707,
-    "take_profit_effective": 0.04508872,
-    "atr_at_entry": 0.00093142,
-    "atr_pct": 1.95,
-    "atr_tf": "4h",
-    "be_trigger_price": 0.04636936
-  },
-  {
-    "symbol": "SOLUSDT",
-    "current_price": 75.82,
-    "timestamp": "2026-07-16T19:01:57.278793+00:00",
-    "timeframe": "4h",
-    "position": "SHORT",
-    "confidence": "MEDIUM",
-    "final_confluence": 28.26,
-    "ev_R": 0.0687,
-    "ev_pct": 0.0687,
-    "ev_positive": true,
-    "estimated_win_prob_pct": 35.6,
-    "entry_zone": {
-      "low": 75.66836,
-      "high": 75.97164
-    },
-    "stop_loss": 77.531607,
-    "take_profit_1": 72.396787,
-    "take_profit_2": 68.973574,
-    "risk_reward_ratio": 2.0,
-    "per_tf_details": {
-      "15m": {
-        "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 30,
-          "classical_ta": 0.0,
-          "sentiment": 75,
-          "ev_edge": 52.5
-        },
-        "tf_confluence": 21.75,
         "ev_R": 0.05,
         "win_prob": 35
       },
@@ -2451,27 +1848,630 @@
       },
       "4h": {
         "method_scores": {
+          "wyckoff": 15,
+          "smc": 10,
+          "elliott": 15,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 30.0
+        },
+        "tf_confluence": 17.25,
+        "ev_R": -0.4,
+        "win_prob": 20
+      },
+      "1d": {
+        "method_scores": {
+          "wyckoff": 30,
+          "smc": 25,
+          "elliott": 35,
+          "classical_ta": 28.6,
+          "sentiment": 75,
+          "ev_edge": 60.0
+        },
+        "tf_confluence": 33.83,
+        "ev_R": 0.2,
+        "win_prob": 40
+      },
+      "1w": {
+        "method_scores": {
           "wyckoff": 40,
           "smc": 35,
+          "elliott": 40,
+          "classical_ta": 37.5,
+          "sentiment": 75,
+          "ev_edge": 67.5
+        },
+        "tf_confluence": 42.25,
+        "ev_R": 0.35,
+        "win_prob": 45
+      }
+    },
+    "tf_aggregate": {
+      "final_confluence": 27.38,
+      "tf_trail": [
+        {
+          "tf": "15m",
+          "score": 25.5,
+          "weight": 0.05,
+          "contribution": 1.28
+        },
+        {
+          "tf": "30m",
+          "score": 22.0,
+          "weight": 0.05,
+          "contribution": 1.1
+        },
+        {
+          "tf": "1h",
+          "score": 20.8,
+          "weight": 0.1,
+          "contribution": 2.08
+        },
+        {
+          "tf": "4h",
+          "score": 17.2,
+          "weight": 0.3,
+          "contribution": 5.17
+        },
+        {
+          "tf": "1d",
+          "score": 33.8,
+          "weight": 0.4,
+          "contribution": 13.53
+        },
+        {
+          "tf": "1w",
+          "score": 42.2,
+          "weight": 0.1,
+          "contribution": 4.23
+        }
+      ],
+      "total_weight": 1.0
+    },
+    "methodology_weights_used": {
+      "wyckoff": 0.15,
+      "smc": 0.3,
+      "elliott": 0.1,
+      "classical_ta": 0.3,
+      "sentiment": 0.05,
+      "ev_edge": 0.1
+    },
+    "wyckoff": {
+      "phase": "Markdown",
+      "sub_phase": "D",
+      "dominant_tf": "4h",
+      "bias": "SHORT",
+      "reasoning": "Price is consistently failing to hold support levels, indicating a continuation of the markdown phase with no signs of a spring or accumulation."
+    },
+    "smc": {
+      "order_block": "0.1010",
+      "fvg": "0.1005-0.1015",
+      "liquidity_sweep": false,
+      "bos_choch": "BOS",
+      "dominant_tf": "1h",
+      "bias": "SHORT"
+    },
+    "elliott_wave": {
+      "current_wave": "C",
+      "target_fib": "0.618",
+      "invalidation_level": 0.1035,
+      "dominant_tf": "4h",
+      "bias": "SHORT"
+    },
+    "memory_reflection": "Recent losses stemmed from premature counter-trend entries during a strong markdown phase. I am now prioritizing trend alignment and avoiding 'bottom-fishing' until a clear structural reversal or liquidity sweep is confirmed.",
+    "key_catalyst": "none identified",
+    "final_narrative": "OPUSDT remains in a clear bearish trend across all timeframes, characterized by lower highs and lower lows. The lack of buying volume and the failure to reclaim key EMAs suggest that the path of least resistance is downward. I am maintaining a bearish bias, focusing on potential short entries on minor relief rallies rather than attempting to catch a falling knife.",
+    "decision_reason": "Confluence 27.38 <= SHORT-MEDIUM gate 35 | EV -0.006R below threshold \u2192 downgraded",
+    "gates_used": {
+      "long_high": 75,
+      "long_medium": 65,
+      "long_low": 45,
+      "short_high": 25,
+      "short_medium": 35,
+      "short_low": 55,
+      "wait_band": [
+        49,
+        51
+      ],
+      "ev_threshold": 3.0
+    },
+    "stop_loss_ai": 0.102061,
+    "take_profit_ai": 0.093177,
+    "max_hold_hours": 36.0,
+    "stop_loss_atr": 0.10206131,
+    "take_profit_atr": 0.09416449,
+    "stop_loss_effective": 0.10206115,
+    "take_profit_effective": 0.09367074,
+    "atr_at_entry": 0.0019742,
+    "atr_pct": 1.99,
+    "atr_tf": "4h",
+    "be_trigger_price": 0.09638537
+  },
+  {
+    "symbol": "POLUSDT",
+    "current_price": 0.0826,
+    "timestamp": "2026-07-16T20:03:40.598525+00:00",
+    "timeframe": "4h",
+    "position": "LONG",
+    "confidence": "LOW",
+    "final_confluence": 54.27,
+    "ev_R": 0.4888,
+    "ev_pct": 0.4888,
+    "ev_positive": true,
+    "estimated_win_prob_pct": 49.6,
+    "entry_zone": {
+      "low": 0.082435,
+      "high": 0.082765
+    },
+    "stop_loss": 0.080967,
+    "take_profit_1": 0.085866,
+    "take_profit_2": 0.089132,
+    "risk_reward_ratio": 2.0,
+    "per_tf_details": {
+      "15m": {
+        "method_scores": {
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 40,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 31.0,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "30m": {
+        "method_scores": {
+          "wyckoff": 40,
+          "smc": 35,
+          "elliott": 45,
+          "classical_ta": 25.0,
+          "sentiment": 75,
+          "ev_edge": 60.0
+        },
+        "tf_confluence": 38.25,
+        "ev_R": 0.2,
+        "win_prob": 40
+      },
+      "1h": {
+        "method_scores": {
+          "wyckoff": 45,
+          "smc": 40,
+          "elliott": 45,
+          "classical_ta": 37.5,
+          "sentiment": 75,
+          "ev_edge": 63.0
+        },
+        "tf_confluence": 44.55,
+        "ev_R": 0.26,
+        "win_prob": 42
+      },
+      "4h": {
+        "method_scores": {
+          "wyckoff": 55,
+          "smc": 50,
+          "elliott": 50,
+          "classical_ta": 57.1,
+          "sentiment": 75,
+          "ev_edge": 72.0
+        },
+        "tf_confluence": 56.33,
+        "ev_R": 0.44,
+        "win_prob": 48
+      },
+      "1d": {
+        "method_scores": {
+          "wyckoff": 60,
+          "smc": 55,
+          "elliott": 55,
+          "classical_ta": 62.5,
+          "sentiment": 75,
+          "ev_edge": 78.0
+        },
+        "tf_confluence": 61.3,
+        "ev_R": 0.56,
+        "win_prob": 52
+      },
+      "1w": {
+        "method_scores": {
+          "wyckoff": 50,
+          "smc": 45,
+          "elliott": 50,
+          "classical_ta": 42.9,
+          "sentiment": 75,
+          "ev_edge": 67.5
+        },
+        "tf_confluence": 49.37,
+        "ev_R": 0.35,
+        "win_prob": 45
+      }
+    },
+    "tf_aggregate": {
+      "final_confluence": 54.27,
+      "tf_trail": [
+        {
+          "tf": "15m",
+          "score": 31.0,
+          "weight": 0.05,
+          "contribution": 1.55
+        },
+        {
+          "tf": "30m",
+          "score": 38.2,
+          "weight": 0.05,
+          "contribution": 1.91
+        },
+        {
+          "tf": "1h",
+          "score": 44.5,
+          "weight": 0.1,
+          "contribution": 4.46
+        },
+        {
+          "tf": "4h",
+          "score": 56.3,
+          "weight": 0.3,
+          "contribution": 16.9
+        },
+        {
+          "tf": "1d",
+          "score": 61.3,
+          "weight": 0.4,
+          "contribution": 24.52
+        },
+        {
+          "tf": "1w",
+          "score": 49.4,
+          "weight": 0.1,
+          "contribution": 4.94
+        }
+      ],
+      "total_weight": 1.0
+    },
+    "methodology_weights_used": {
+      "wyckoff": 0.15,
+      "smc": 0.3,
+      "elliott": 0.1,
+      "classical_ta": 0.3,
+      "sentiment": 0.05,
+      "ev_edge": 0.1
+    },
+    "wyckoff": {
+      "phase": "Distribution",
+      "sub_phase": "C",
+      "dominant_tf": "1d",
+      "bias": "SHORT",
+      "reasoning": "Price is failing to sustain higher levels after a liquidity sweep, showing signs of secondary distribution."
+    },
+    "smc": {
+      "order_block": "0.0815-0.0820",
+      "fvg": "0.0835-0.0840",
+      "liquidity_sweep": true,
+      "bos_choch": "CHoCH",
+      "dominant_tf": "1h",
+      "bias": "SHORT"
+    },
+    "elliott_wave": {
+      "current_wave": "C",
+      "target_fib": "0.618",
+      "invalidation_level": 0.0855,
+      "dominant_tf": "4h",
+      "bias": "SHORT"
+    },
+    "memory_reflection": "Recent losses stemmed from over-interpreting local liquidity sweeps as structural reversals. This analysis now prioritizes the 1d/4h bearish trend alignment over 15m noise, avoiding premature entries into potential bull traps.",
+    "key_catalyst": "none identified",
+    "final_narrative": "POLUSDT is currently exhibiting signs of a failed breakout attempt, with the 1h and 4h timeframes showing bearish divergence and a rejection at key resistance. The market is in a state of extreme fear, and the lack of sustained volume on the recent push suggests that the current price action is a distribution phase rather than a genuine trend reversal. I am maintaining a cautious, slightly bearish stance, waiting for a confirmed break below the 0.0820 support level before considering any aggressive short exposure.",
+    "decision_reason": "Confluence 54.27 >= LOW gate 45",
+    "gates_used": {
+      "long_high": 75,
+      "long_medium": 65,
+      "long_low": 45,
+      "short_high": 25,
+      "short_medium": 35,
+      "short_low": 55,
+      "wait_band": [
+        49,
+        51
+      ],
+      "ev_threshold": 3.0
+    },
+    "stop_loss_ai": 0.080967,
+    "take_profit_ai": 0.085866,
+    "max_hold_hours": 72.0,
+    "stop_loss_atr": 0.08096709,
+    "take_profit_atr": 0.08532152,
+    "stop_loss_effective": 0.08096704,
+    "take_profit_effective": 0.08559376,
+    "atr_at_entry": 0.00108861,
+    "atr_pct": 1.32,
+    "atr_tf": "4h",
+    "be_trigger_price": 0.08409688
+  },
+  {
+    "symbol": "SEIUSDT",
+    "current_price": 0.04753,
+    "timestamp": "2026-07-16T20:05:07.807652+00:00",
+    "timeframe": "4h",
+    "position": "SHORT",
+    "confidence": "MEDIUM",
+    "final_confluence": 30.83,
+    "ev_R": 0.1063,
+    "ev_pct": 0.1063,
+    "ev_positive": true,
+    "estimated_win_prob_pct": 36.9,
+    "entry_zone": {
+      "low": 0.047435,
+      "high": 0.047625
+    },
+    "stop_loss": 0.04884,
+    "take_profit_1": 0.04491,
+    "take_profit_2": 0.042291,
+    "risk_reward_ratio": 2.0,
+    "per_tf_details": {
+      "15m": {
+        "method_scores": {
+          "wyckoff": 25,
+          "smc": 20,
+          "elliott": 30,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 25.5,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "30m": {
+        "method_scores": {
+          "wyckoff": 25,
+          "smc": 20,
+          "elliott": 30,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 25.5,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "1h": {
+        "method_scores": {
+          "wyckoff": 20,
+          "smc": 15,
+          "elliott": 25,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 45.0
+        },
+        "tf_confluence": 22.0,
+        "ev_R": -0.1,
+        "win_prob": 30
+      },
+      "4h": {
+        "method_scores": {
+          "wyckoff": 20,
+          "smc": 15,
+          "elliott": 25,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 45.0
+        },
+        "tf_confluence": 22.0,
+        "ev_R": -0.1,
+        "win_prob": 30
+      },
+      "1d": {
+        "method_scores": {
+          "wyckoff": 30,
+          "smc": 25,
+          "elliott": 35,
+          "classical_ta": 37.5,
+          "sentiment": 75,
+          "ev_edge": 60.0
+        },
+        "tf_confluence": 36.5,
+        "ev_R": 0.2,
+        "win_prob": 40
+      },
+      "1w": {
+        "method_scores": {
+          "wyckoff": 45,
+          "smc": 40,
+          "elliott": 45,
+          "classical_ta": 50.0,
+          "sentiment": 75,
+          "ev_edge": 67.5
+        },
+        "tf_confluence": 48.75,
+        "ev_R": 0.35,
+        "win_prob": 45
+      }
+    },
+    "tf_aggregate": {
+      "final_confluence": 30.83,
+      "tf_trail": [
+        {
+          "tf": "15m",
+          "score": 25.5,
+          "weight": 0.05,
+          "contribution": 1.28
+        },
+        {
+          "tf": "30m",
+          "score": 25.5,
+          "weight": 0.05,
+          "contribution": 1.28
+        },
+        {
+          "tf": "1h",
+          "score": 22.0,
+          "weight": 0.1,
+          "contribution": 2.2
+        },
+        {
+          "tf": "4h",
+          "score": 22.0,
+          "weight": 0.3,
+          "contribution": 6.6
+        },
+        {
+          "tf": "1d",
+          "score": 36.5,
+          "weight": 0.4,
+          "contribution": 14.6
+        },
+        {
+          "tf": "1w",
+          "score": 48.8,
+          "weight": 0.1,
+          "contribution": 4.88
+        }
+      ],
+      "total_weight": 1.0
+    },
+    "methodology_weights_used": {
+      "wyckoff": 0.15,
+      "smc": 0.3,
+      "elliott": 0.1,
+      "classical_ta": 0.3,
+      "sentiment": 0.05,
+      "ev_edge": 0.1
+    },
+    "wyckoff": {
+      "phase": "Markdown",
+      "sub_phase": "D",
+      "dominant_tf": "4h",
+      "bias": "SHORT",
+      "reasoning": "Price is consistently failing to reclaim key EMAs, indicating a continuation of the markdown phase with no signs of accumulation."
+    },
+    "smc": {
+      "order_block": "0.0485",
+      "fvg": "0.0480-0.0485",
+      "liquidity_sweep": true,
+      "bos_choch": "BOS",
+      "dominant_tf": "1h",
+      "bias": "SHORT"
+    },
+    "elliott_wave": {
+      "current_wave": "C",
+      "target_fib": "0.618",
+      "invalidation_level": 0.0495,
+      "dominant_tf": "4h",
+      "bias": "SHORT"
+    },
+    "memory_reflection": "Previous shorts failed by ignoring mean reversion potential near liquidity zones. This analysis incorporates a more conservative approach to entry, waiting for structural confirmation rather than blindly following the bearish trend.",
+    "key_catalyst": "none identified",
+    "final_narrative": "SEIUSDT remains in a clear downtrend across all lower timeframes, characterized by consistent EMA resistance and bearish MACD histograms. While the weekly timeframe shows some resilience, the immediate market structure is dominated by sellers. I am maintaining a cautious short bias, prioritizing structural breaks over aggressive entries to avoid the mean reversion traps that plagued previous trades.",
+    "decision_reason": "Confluence 30.83 <= SHORT-MEDIUM gate 35",
+    "gates_used": {
+      "long_high": 75,
+      "long_medium": 65,
+      "long_low": 45,
+      "short_high": 25,
+      "short_medium": 35,
+      "short_low": 55,
+      "wait_band": [
+        49,
+        51
+      ],
+      "ev_threshold": 3.0
+    },
+    "stop_loss_ai": 0.04884,
+    "take_profit_ai": 0.04491,
+    "max_hold_hours": 36.0,
+    "stop_loss_atr": 0.04883982,
+    "take_profit_atr": 0.04534697,
+    "stop_loss_effective": 0.04883991,
+    "take_profit_effective": 0.04512849,
+    "atr_at_entry": 0.00087321,
+    "atr_pct": 1.84,
+    "atr_tf": "4h",
+    "be_trigger_price": 0.04632925
+  },
+  {
+    "symbol": "SOLUSDT",
+    "current_price": 75.85,
+    "timestamp": "2026-07-16T20:01:56.566383+00:00",
+    "timeframe": "4h",
+    "position": "SHORT",
+    "confidence": "MEDIUM",
+    "final_confluence": 31.74,
+    "ev_R": 0.0687,
+    "ev_pct": 0.0687,
+    "ev_positive": true,
+    "estimated_win_prob_pct": 35.6,
+    "entry_zone": {
+      "low": 75.6983,
+      "high": 76.0017
+    },
+    "stop_loss": 77.446849,
+    "take_profit_1": 72.656302,
+    "take_profit_2": 69.462604,
+    "risk_reward_ratio": 2.0,
+    "per_tf_details": {
+      "15m": {
+        "method_scores": {
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 40,
+          "classical_ta": 33.3,
+          "sentiment": 75,
+          "ev_edge": 52.5
+        },
+        "tf_confluence": 37.24,
+        "ev_R": 0.05,
+        "win_prob": 35
+      },
+      "30m": {
+        "method_scores": {
+          "wyckoff": 30,
+          "smc": 25,
+          "elliott": 35,
+          "classical_ta": 0.0,
+          "sentiment": 75,
+          "ev_edge": 45.0
+        },
+        "tf_confluence": 23.75,
+        "ev_R": -0.1,
+        "win_prob": 30
+      },
+      "1h": {
+        "method_scores": {
+          "wyckoff": 25,
+          "smc": 20,
+          "elliott": 30,
+          "classical_ta": 12.5,
+          "sentiment": 75,
+          "ev_edge": 37.5
+        },
+        "tf_confluence": 24.0,
+        "ev_R": -0.25,
+        "win_prob": 25
+      },
+      "4h": {
+        "method_scores": {
+          "wyckoff": 40,
+          "smc": 45,
           "elliott": 45,
           "classical_ta": 14.3,
           "sentiment": 75,
           "ev_edge": 60.0
         },
-        "tf_confluence": 35.04,
+        "tf_confluence": 38.04,
         "ev_R": 0.2,
         "win_prob": 40
       },
       "1d": {
         "method_scores": {
           "wyckoff": 30,
-          "smc": 25,
-          "elliott": 30,
+          "smc": 35,
+          "elliott": 35,
           "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 45.0
         },
-        "tf_confluence": 23.25,
+        "tf_confluence": 26.75,
         "ev_R": -0.1,
         "win_prob": 30
       },
@@ -2490,37 +2490,37 @@
       }
     },
     "tf_aggregate": {
-      "final_confluence": 28.26,
+      "final_confluence": 31.74,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 21.8,
+          "score": 37.2,
           "weight": 0.05,
-          "contribution": 1.09
+          "contribution": 1.86
         },
         {
           "tf": "30m",
-          "score": 22.0,
+          "score": 23.8,
           "weight": 0.05,
-          "contribution": 1.1
+          "contribution": 1.19
         },
         {
           "tf": "1h",
-          "score": 20.8,
+          "score": 24.0,
           "weight": 0.1,
-          "contribution": 2.08
+          "contribution": 2.4
         },
         {
           "tf": "4h",
-          "score": 35.0,
+          "score": 38.0,
           "weight": 0.3,
-          "contribution": 10.51
+          "contribution": 11.41
         },
         {
           "tf": "1d",
-          "score": 23.2,
+          "score": 26.8,
           "weight": 0.4,
-          "contribution": 9.3
+          "contribution": 10.7
         },
         {
           "tf": "1w",
@@ -2540,15 +2540,15 @@
       "ev_edge": 0.1
     },
     "wyckoff": {
-      "phase": "Markdown",
+      "phase": "Distribution",
       "sub_phase": "C",
       "dominant_tf": "1h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to hold support levels, exhibiting signs of distribution and continued markdown pressure across lower timeframes."
+      "reasoning": "Price is failing to reclaim key EMAs across multiple timeframes, suggesting a test of lower liquidity levels."
     },
     "smc": {
-      "order_block": "76.80-77.00",
-      "fvg": "76.50-76.80",
+      "order_block": "76.80",
+      "fvg": "75.40-75.60",
       "liquidity_sweep": true,
       "bos_choch": "BOS",
       "dominant_tf": "15m",
@@ -2557,14 +2557,14 @@
     "elliott_wave": {
       "current_wave": "C",
       "target_fib": "0.618",
-      "invalidation_level": 77.85,
+      "invalidation_level": 77.95,
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from over-optimism on local structural support, which proved to be liquidity traps. This analysis shifts focus to the prevailing bearish trend and prioritizes confirmation of structural breaks over anticipatory long entries.",
+    "memory_reflection": "Recent losses stemmed from over-optimism on local structural breakouts that were actually liquidity traps. This analysis now prioritizes the bearish EMA alignment and the failure to hold support, avoiding premature long entries in a clearly trending markdown phase.",
     "key_catalyst": "none identified",
-    "final_narrative": "SOLUSDT is currently trapped in a bearish cycle across all major timeframes. The failure to reclaim key EMA levels and the consistent lower-low structure suggest that any minor bounces are likely to be met with aggressive selling pressure. The market sentiment remains in extreme fear, and until a clear structural shift or a significant liquidity event occurs, the path of least resistance remains to the downside.",
-    "decision_reason": "Confluence 28.26 <= SHORT-MEDIUM gate 35",
+    "final_narrative": "SOLUSDT is currently exhibiting a clear bearish structure across all major timeframes. The failure to maintain price above the 21/50/200 EMA stack, combined with the recent liquidity sweep on the 15m and 30m charts, suggests that the path of least resistance is downward. I am maintaining a cautious short bias, focusing on the potential for a retest of the 75.00 psychological support level.",
+    "decision_reason": "Confluence 31.74 <= SHORT-MEDIUM gate 35",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -2578,156 +2578,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 77.531607,
-    "take_profit_ai": 72.396787,
+    "stop_loss_ai": 77.446849,
+    "take_profit_ai": 72.656302,
     "max_hold_hours": 36.0,
-    "stop_loss_atr": 77.30339232,
-    "take_profit_atr": 73.53785797,
-    "stop_loss_effective": 77.41749966,
-    "take_profit_effective": 72.96732249,
-    "atr_at_entry": 1.14107101,
-    "atr_pct": 1.51,
+    "stop_loss_atr": 77.23393572,
+    "take_profit_atr": 73.72086812,
+    "stop_loss_effective": 77.34039236,
+    "take_profit_effective": 73.18858506,
+    "atr_at_entry": 1.06456594,
+    "atr_pct": 1.4,
     "atr_tf": "4h",
-    "be_trigger_price": 74.39366125
+    "be_trigger_price": 74.51929253
   },
   {
     "symbol": "SUIUSDT",
-    "current_price": 0.7493,
-    "timestamp": "2026-07-16T19:04:41.909602+00:00",
+    "current_price": 0.7481,
+    "timestamp": "2026-07-16T20:04:53.215827+00:00",
     "timeframe": "4h",
     "position": "SHORT",
     "confidence": "LOW",
-    "final_confluence": 43.63,
-    "ev_R": -0.3062,
-    "ev_pct": -0.3062,
+    "final_confluence": 41.31,
+    "ev_R": -0.0812,
+    "ev_pct": -0.0812,
     "ev_positive": false,
-    "estimated_win_prob_pct": 23.1,
+    "estimated_win_prob_pct": 30.6,
     "entry_zone": {
-      "low": 0.747801,
-      "high": 0.750799
+      "low": 0.746604,
+      "high": 0.749596
     },
-    "stop_loss": 0.77001,
-    "take_profit_1": 0.70788,
-    "take_profit_2": 0.66646,
+    "stop_loss": 0.767459,
+    "take_profit_1": 0.709381,
+    "take_profit_2": 0.670663,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
+          "wyckoff": 35,
+          "smc": 30,
           "elliott": 40,
-          "classical_ta": 50.0,
+          "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 46.75,
+        "tf_confluence": 27.25,
         "ev_R": 0.05,
         "win_prob": 35
       },
       "30m": {
         "method_scores": {
-          "wyckoff": 55,
-          "smc": 50,
-          "elliott": 50,
-          "classical_ta": 83.3,
+          "wyckoff": 45,
+          "smc": 40,
+          "elliott": 45,
+          "classical_ta": 66.7,
           "sentiment": 75,
-          "ev_edge": 67.5
+          "ev_edge": 60.0
         },
-        "tf_confluence": 63.74,
-        "ev_R": 0.35,
-        "win_prob": 45
+        "tf_confluence": 53.01,
+        "ev_R": 0.2,
+        "win_prob": 40
       },
       "1h": {
         "method_scores": {
-          "wyckoff": 50,
-          "smc": 50,
-          "elliott": 50,
-          "classical_ta": 83.3,
+          "wyckoff": 45,
+          "smc": 45,
+          "elliott": 45,
+          "classical_ta": 66.7,
           "sentiment": 75,
-          "ev_edge": 72.0
+          "ev_edge": 63.0
         },
-        "tf_confluence": 63.44,
-        "ev_R": 0.44,
-        "win_prob": 48
+        "tf_confluence": 54.81,
+        "ev_R": 0.26,
+        "win_prob": 42
       },
       "4h": {
         "method_scores": {
           "wyckoff": 30,
-          "smc": 35,
+          "smc": 25,
           "elliott": 30,
           "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 37.5
+          "ev_edge": 45.0
         },
-        "tf_confluence": 40.5,
-        "ev_R": -0.25,
-        "win_prob": 25
+        "tf_confluence": 38.25,
+        "ev_R": -0.1,
+        "win_prob": 30
       },
       "1d": {
         "method_scores": {
           "wyckoff": 30,
           "smc": 30,
-          "elliott": 30,
+          "elliott": 35,
           "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 30.0
+          "ev_edge": 45.0
         },
-        "tf_confluence": 38.25,
-        "ev_R": -0.4,
-        "win_prob": 20
+        "tf_confluence": 40.25,
+        "ev_R": -0.1,
+        "win_prob": 30
       },
       "1w": {
         "method_scores": {
           "wyckoff": 40,
-          "smc": 40,
+          "smc": 35,
           "elliott": 40,
           "classical_ta": 42.9,
           "sentiment": 75,
-          "ev_edge": 45.0
+          "ev_edge": 52.5
         },
-        "tf_confluence": 43.12,
-        "ev_R": -0.1,
-        "win_prob": 30
+        "tf_confluence": 42.37,
+        "ev_R": 0.05,
+        "win_prob": 35
       }
     },
     "tf_aggregate": {
-      "final_confluence": 43.63,
+      "final_confluence": 41.31,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 46.8,
+          "score": 27.2,
           "weight": 0.05,
-          "contribution": 2.34
+          "contribution": 1.36
         },
         {
           "tf": "30m",
-          "score": 63.7,
+          "score": 53.0,
           "weight": 0.05,
-          "contribution": 3.19
+          "contribution": 2.65
         },
         {
           "tf": "1h",
-          "score": 63.4,
+          "score": 54.8,
           "weight": 0.1,
-          "contribution": 6.34
+          "contribution": 5.48
         },
         {
           "tf": "4h",
-          "score": 40.5,
+          "score": 38.2,
           "weight": 0.3,
-          "contribution": 12.15
+          "contribution": 11.47
         },
         {
           "tf": "1d",
-          "score": 38.2,
+          "score": 40.2,
           "weight": 0.4,
-          "contribution": 15.3
+          "contribution": 16.1
         },
         {
           "tf": "1w",
-          "score": 43.1,
+          "score": 42.4,
           "weight": 0.1,
-          "contribution": 4.31
+          "contribution": 4.24
         }
       ],
       "total_weight": 1.0
@@ -2745,11 +2745,11 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to sustain higher levels within a broader bearish structure, indicating potential markdown continuation."
+      "reasoning": "Price is struggling to reclaim higher levels within a broader downtrend, showing signs of secondary distribution."
     },
     "smc": {
-      "order_block": "0.7650",
-      "fvg": "0.7350-0.7400",
+      "order_block": "0.7550",
+      "fvg": "0.7400-0.7430",
       "liquidity_sweep": true,
       "bos_choch": "BOS",
       "dominant_tf": "4h",
@@ -2762,10 +2762,10 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from over-optimism on local 15m/30m bullish divergences while ignoring the dominant 4h/1d bearish trend. This analysis now prioritizes the higher timeframe structure and acknowledges that local momentum is likely a trap within a larger distribution phase.",
+    "memory_reflection": "Recent losses stemmed from over-optimism on local 15m/30m micro-trends that failed to respect the dominant 4h/1d bearish structure. This analysis prioritizes the higher timeframe bearish bias and avoids 'catching falling knives' by acknowledging the lack of structural support.",
     "key_catalyst": "none identified",
-    "final_narrative": "SUI is currently trapped in a bearish macro environment where local attempts to reclaim higher levels are being met with significant selling pressure. The 4h and 1d timeframes confirm a bearish trend, and the recent failure to hold above key resistance levels suggests that the path of least resistance remains downward. I am maintaining a cautious, short-biased outlook, avoiding the temptation to trade against the primary trend despite neutral RSI readings.",
-    "decision_reason": "Confluence 43.63 <= SHORT-LOW gate 55",
+    "final_narrative": "SUI remains trapped in a bearish structure on the 4h and 1d timeframes, with recent attempts to rally failing to break key resistance levels. The market sentiment is heavily influenced by extreme fear, and the lack of clear bullish momentum on higher timeframes suggests that any local 15m/30m strength is likely a liquidity trap. I am maintaining a cautious, bearish outlook until a clear structural shift occurs on the 4h chart.",
+    "decision_reason": "Confluence 41.31 <= SHORT-LOW gate 55",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -2779,156 +2779,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 0.77001,
-    "take_profit_ai": 0.70788,
+    "stop_loss_ai": 0.767459,
+    "take_profit_ai": 0.709381,
     "max_hold_hours": 48.0,
-    "stop_loss_atr": 0.77000999,
-    "take_profit_atr": 0.71478334,
-    "stop_loss_effective": 0.77001,
-    "take_profit_effective": 0.71133167,
-    "atr_at_entry": 0.01380666,
-    "atr_pct": 1.84,
+    "stop_loss_atr": 0.76745928,
+    "take_profit_atr": 0.71583453,
+    "stop_loss_effective": 0.76745914,
+    "take_profit_effective": 0.71260777,
+    "atr_at_entry": 0.01290619,
+    "atr_pct": 1.73,
     "atr_tf": "4h",
-    "be_trigger_price": 0.73031584
+    "be_trigger_price": 0.73035388
   },
   {
     "symbol": "XRPUSDT",
-    "current_price": 1.0944,
-    "timestamp": "2026-07-16T19:02:23.819937+00:00",
+    "current_price": 1.0966,
+    "timestamp": "2026-07-16T20:02:27.004290+00:00",
     "timeframe": "4h",
     "position": "SHORT",
-    "confidence": "LOW",
-    "final_confluence": 40.73,
-    "ev_R": 0.3125,
-    "ev_pct": 0.3125,
+    "confidence": "MEDIUM",
+    "final_confluence": 33.79,
+    "ev_R": 0.05,
+    "ev_pct": 0.05,
     "ev_positive": true,
-    "estimated_win_prob_pct": 43.8,
+    "estimated_win_prob_pct": 35.0,
     "entry_zone": {
-      "low": 1.092211,
-      "high": 1.096589
+      "low": 1.094407,
+      "high": 1.098793
     },
-    "stop_loss": 1.117972,
-    "take_profit_1": 1.047257,
-    "take_profit_2": 1.000113,
+    "stop_loss": 1.118617,
+    "take_profit_1": 1.052567,
+    "take_profit_2": 1.008534,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 30,
-          "smc": 25,
-          "elliott": 35,
-          "classical_ta": 25.0,
+          "wyckoff": 35,
+          "smc": 30,
+          "elliott": 40,
+          "classical_ta": 14.3,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 32.0,
+        "tf_confluence": 31.54,
         "ev_R": 0.05,
         "win_prob": 35
       },
       "30m": {
         "method_scores": {
           "wyckoff": 30,
-          "smc": 20,
-          "elliott": 30,
+          "smc": 25,
+          "elliott": 35,
           "classical_ta": 25.0,
           "sentiment": 75,
           "ev_edge": 45.0
         },
-        "tf_confluence": 29.25,
+        "tf_confluence": 31.25,
         "ev_R": -0.1,
         "win_prob": 30
       },
       "1h": {
         "method_scores": {
-          "wyckoff": 25,
-          "smc": 20,
-          "elliott": 25,
+          "wyckoff": 30,
+          "smc": 25,
+          "elliott": 35,
           "classical_ta": 25.0,
           "sentiment": 75,
-          "ev_edge": 37.5
+          "ev_edge": 45.0
         },
-        "tf_confluence": 27.25,
-        "ev_R": -0.25,
-        "win_prob": 25
+        "tf_confluence": 31.25,
+        "ev_R": -0.1,
+        "win_prob": 30
       },
       "4h": {
         "method_scores": {
+          "wyckoff": 25,
+          "smc": 20,
+          "elliott": 30,
+          "classical_ta": 0.0,
+          "sentiment": 75,
+          "ev_edge": 37.5
+        },
+        "tf_confluence": 20.25,
+        "ev_R": -0.25,
+        "win_prob": 25
+      },
+      "1d": {
+        "method_scores": {
           "wyckoff": 40,
           "smc": 35,
-          "elliott": 40,
+          "elliott": 45,
           "classical_ta": 33.3,
           "sentiment": 75,
           "ev_edge": 60.0
         },
-        "tf_confluence": 40.24,
+        "tf_confluence": 40.74,
         "ev_R": 0.2,
         "win_prob": 40
-      },
-      "1d": {
-        "method_scores": {
-          "wyckoff": 45,
-          "smc": 40,
-          "elliott": 45,
-          "classical_ta": 33.3,
-          "sentiment": 75,
-          "ev_edge": 67.5
-        },
-        "tf_confluence": 43.74,
-        "ev_R": 0.35,
-        "win_prob": 45
       },
       "1w": {
         "method_scores": {
           "wyckoff": 50,
-          "smc": 50,
+          "smc": 45,
           "elliott": 50,
           "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 75.0
+          "ev_edge": 67.5
         },
-        "tf_confluence": 53.75,
-        "ev_R": 0.5,
-        "win_prob": 50
+        "tf_confluence": 51.5,
+        "ev_R": 0.35,
+        "win_prob": 45
       }
     },
     "tf_aggregate": {
-      "final_confluence": 40.73,
+      "final_confluence": 33.79,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 32.0,
+          "score": 31.5,
           "weight": 0.05,
-          "contribution": 1.6
+          "contribution": 1.58
         },
         {
           "tf": "30m",
-          "score": 29.2,
+          "score": 31.2,
           "weight": 0.05,
-          "contribution": 1.46
+          "contribution": 1.56
         },
         {
           "tf": "1h",
-          "score": 27.2,
+          "score": 31.2,
           "weight": 0.1,
-          "contribution": 2.73
+          "contribution": 3.12
         },
         {
           "tf": "4h",
-          "score": 40.2,
+          "score": 20.2,
           "weight": 0.3,
-          "contribution": 12.07
+          "contribution": 6.08
         },
         {
           "tf": "1d",
-          "score": 43.7,
+          "score": 40.7,
           "weight": 0.4,
-          "contribution": 17.5
+          "contribution": 16.3
         },
         {
           "tf": "1w",
-          "score": 53.8,
+          "score": 51.5,
           "weight": 0.1,
-          "contribution": 5.38
+          "contribution": 5.15
         }
       ],
       "total_weight": 1.0
@@ -2946,11 +2946,11 @@
       "sub_phase": "C",
       "dominant_tf": "4h",
       "bias": "SHORT",
-      "reasoning": "Price is currently in a markdown phase following a failed attempt to reclaim higher levels, showing signs of distribution."
+      "reasoning": "Price is failing to hold support levels after a failed rally attempt, indicating continued distribution pressure."
     },
     "smc": {
       "order_block": "1.0880",
-      "fvg": "1.1050-1.1100",
+      "fvg": "1.0850-1.0920",
       "liquidity_sweep": true,
       "bos_choch": "BOS",
       "dominant_tf": "1h",
@@ -2963,10 +2963,10 @@
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from premature counter-trend entries during liquidity sweeps. This analysis shifts focus to respecting the established bearish momentum on higher timeframes rather than attempting to catch falling knives.",
-    "key_catalyst": "US stocks sell-off and broader crypto market weakness",
-    "final_narrative": "XRP is currently exhibiting clear bearish structure across all intraday timeframes, with price failing to hold key support levels. The recent breakdown below $1.10 confirms a continuation of the markdown phase. I am maintaining a cautious stance, prioritizing trend-following shorts only if structural resistance is retested, as the market remains in extreme fear.",
-    "decision_reason": "Confluence 40.73 <= SHORT-LOW gate 55",
+    "memory_reflection": "Recent losses stemmed from aggressive counter-trend entries during liquidity sweeps that lacked structural confirmation. This analysis shifts focus to respecting the bearish momentum and waiting for clear breakdown confirmation rather than attempting to catch falling knives.",
+    "key_catalyst": "none identified",
+    "final_narrative": "XRP is currently exhibiting bearish structural characteristics across all short-to-medium timeframes. The failure to reclaim key EMA levels and the recent breakdown below 1.10 suggest that the market is in a markdown phase. I am prioritizing short-side setups, specifically looking for retests of broken support levels as resistance, while avoiding premature long entries until a clear accumulation pattern emerges.",
+    "decision_reason": "Confluence 33.79 <= SHORT-MEDIUM gate 35",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -2980,156 +2980,156 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 1.117972,
-    "take_profit_ai": 1.047257,
-    "max_hold_hours": 48.0,
-    "stop_loss_atr": 1.11797171,
-    "take_profit_atr": 1.05511382,
-    "stop_loss_effective": 1.11797186,
-    "take_profit_effective": 1.05118541,
-    "atr_at_entry": 0.01571447,
-    "atr_pct": 1.44,
+    "stop_loss_ai": 1.118617,
+    "take_profit_ai": 1.052567,
+    "max_hold_hours": 36.0,
+    "stop_loss_atr": 1.11861659,
+    "take_profit_atr": 1.05990569,
+    "stop_loss_effective": 1.11861679,
+    "take_profit_effective": 1.05623634,
+    "atr_at_entry": 0.01467773,
+    "atr_pct": 1.34,
     "atr_tf": "4h",
-    "be_trigger_price": 1.0727927
+    "be_trigger_price": 1.07641817
   },
   {
     "symbol": "ZECUSDT",
-    "current_price": 544.98,
-    "timestamp": "2026-07-16T19:04:28.811080+00:00",
+    "current_price": 545.74,
+    "timestamp": "2026-07-16T20:04:38.974870+00:00",
     "timeframe": "4h",
     "position": "LONG",
     "confidence": "LOW",
-    "final_confluence": 59.1,
-    "ev_R": 0.575,
-    "ev_pct": 0.575,
+    "final_confluence": 58.57,
+    "ev_R": 0.7063,
+    "ev_pct": 0.7063,
     "ev_positive": true,
-    "estimated_win_prob_pct": 52.5,
+    "estimated_win_prob_pct": 56.9,
     "entry_zone": {
-      "low": 543.89004,
-      "high": 546.06996
+      "low": 544.64852,
+      "high": 546.83148
     },
-    "stop_loss": 519.393163,
-    "take_profit_1": 596.153674,
-    "take_profit_2": 647.327348,
+    "stop_loss": 521.806151,
+    "take_profit_1": 593.607697,
+    "take_profit_2": 641.475394,
     "risk_reward_ratio": 2.0,
     "per_tf_details": {
       "15m": {
         "method_scores": {
-          "wyckoff": 30,
+          "wyckoff": 20,
           "smc": 25,
-          "elliott": 35,
-          "classical_ta": 25.0,
+          "elliott": 30,
+          "classical_ta": 0.0,
           "sentiment": 75,
           "ev_edge": 52.5
         },
-        "tf_confluence": 32.0,
+        "tf_confluence": 22.5,
         "ev_R": 0.05,
         "win_prob": 35
       },
       "30m": {
         "method_scores": {
-          "wyckoff": 35,
-          "smc": 30,
+          "wyckoff": 30,
+          "smc": 35,
           "elliott": 35,
-          "classical_ta": 37.5,
+          "classical_ta": 28.6,
           "sentiment": 75,
-          "ev_edge": 57.0
+          "ev_edge": 60.0
         },
-        "tf_confluence": 38.45,
-        "ev_R": 0.14,
-        "win_prob": 38
+        "tf_confluence": 36.83,
+        "ev_R": 0.2,
+        "win_prob": 40
       },
       "1h": {
         "method_scores": {
           "wyckoff": 35,
-          "smc": 30,
-          "elliott": 35,
+          "smc": 40,
+          "elliott": 40,
           "classical_ta": 37.5,
           "sentiment": 75,
-          "ev_edge": 60.0
+          "ev_edge": 67.5
         },
-        "tf_confluence": 38.75,
-        "ev_R": 0.2,
-        "win_prob": 40
+        "tf_confluence": 43.0,
+        "ev_R": 0.35,
+        "win_prob": 45
       },
       "4h": {
         "method_scores": {
           "wyckoff": 45,
-          "smc": 40,
+          "smc": 45,
           "elliott": 45,
           "classical_ta": 50.0,
           "sentiment": 75,
-          "ev_edge": 67.5
+          "ev_edge": 75.0
         },
-        "tf_confluence": 48.75,
-        "ev_R": 0.35,
-        "win_prob": 45
+        "tf_confluence": 51.0,
+        "ev_R": 0.5,
+        "win_prob": 50
       },
       "1d": {
         "method_scores": {
-          "wyckoff": 65,
-          "smc": 60,
-          "elliott": 60,
+          "wyckoff": 60,
+          "smc": 55,
+          "elliott": 55,
           "classical_ta": 87.5,
           "sentiment": 75,
-          "ev_edge": 82.5
+          "ev_edge": 90.0
         },
-        "tf_confluence": 72.0,
-        "ev_R": 0.65,
-        "win_prob": 55
+        "tf_confluence": 70.0,
+        "ev_R": 0.8,
+        "win_prob": 60
       },
       "1w": {
         "method_scores": {
-          "wyckoff": 75,
-          "smc": 70,
-          "elliott": 70,
+          "wyckoff": 70,
+          "smc": 65,
+          "elliott": 65,
           "classical_ta": 100.0,
           "sentiment": 75,
           "ev_edge": 97.5
         },
-        "tf_confluence": 82.75,
+        "tf_confluence": 80.0,
         "ev_R": 0.95,
         "win_prob": 65
       }
     },
     "tf_aggregate": {
-      "final_confluence": 59.1,
+      "final_confluence": 58.57,
       "tf_trail": [
         {
           "tf": "15m",
-          "score": 32.0,
+          "score": 22.5,
           "weight": 0.05,
-          "contribution": 1.6
+          "contribution": 1.12
         },
         {
           "tf": "30m",
-          "score": 38.5,
+          "score": 36.8,
           "weight": 0.05,
-          "contribution": 1.92
+          "contribution": 1.84
         },
         {
           "tf": "1h",
-          "score": 38.8,
+          "score": 43.0,
           "weight": 0.1,
-          "contribution": 3.88
+          "contribution": 4.3
         },
         {
           "tf": "4h",
-          "score": 48.8,
+          "score": 51.0,
           "weight": 0.3,
-          "contribution": 14.62
+          "contribution": 15.3
         },
         {
           "tf": "1d",
-          "score": 72.0,
+          "score": 70.0,
           "weight": 0.4,
-          "contribution": 28.8
+          "contribution": 28.0
         },
         {
           "tf": "1w",
-          "score": 82.8,
+          "score": 80.0,
           "weight": 0.1,
-          "contribution": 8.28
+          "contribution": 8.0
         }
       ],
       "total_weight": 1.0
@@ -3147,7 +3147,7 @@
       "sub_phase": "C",
       "dominant_tf": "1h",
       "bias": "SHORT",
-      "reasoning": "Price is failing to hold higher levels with increasing volume on down-moves, indicating a transition into a markdown phase."
+      "reasoning": "Price is failing to hold higher levels with increasing volume on down-moves, suggesting a test of supply."
     },
     "smc": {
       "order_block": "538.55",
@@ -3158,16 +3158,16 @@
       "bias": "SHORT"
     },
     "elliott_wave": {
-      "current_wave": "C",
+      "current_wave": "A",
       "target_fib": "0.618",
-      "invalidation_level": 570.0,
+      "invalidation_level": 561.59,
       "dominant_tf": "4h",
       "bias": "SHORT"
     },
-    "memory_reflection": "Recent losses stemmed from aggressive long-bias during bearish structural shifts and ignoring 4h distribution patterns. This analysis corrects for that by prioritizing the bearish CHoCH and the failure to reclaim key EMA levels, shifting to a defensive/short-biased stance.",
-    "key_catalyst": "US stocks sell-off and broader market volatility impacting crypto liquidity.",
-    "final_narrative": "ZEC is currently exhibiting signs of a distribution top across lower timeframes, with a clear breakdown in momentum and failure to hold critical support levels. While the daily and weekly trends remain technically bullish, the immediate price action suggests a corrective phase is underway. I am prioritizing the bearish structural shift on the 1h and 4h charts, anticipating a test of lower liquidity zones before any potential long-term stabilization.",
-    "decision_reason": "Confluence 59.1 >= LOW gate 45",
+    "memory_reflection": "Recent losses stemmed from aggressive long-bias in the face of clear 4h bearish structure and distribution patterns. I am now prioritizing the 4h/1h bearish momentum and respecting the failure to reclaim key EMA levels, shifting away from 'catching the bottom' toward trend-following.",
+    "key_catalyst": "none identified",
+    "final_narrative": "ZEC is currently undergoing a local distribution phase following a failed attempt to sustain higher levels above 560. While the daily and weekly trends remain structurally bullish, the short-term momentum has shifted to the downside with a clear CHoCH on the 1h timeframe. I am adopting a cautious stance, favoring short-term bearish setups until the price can reclaim the 555-560 resistance zone or find stable support at the 538-540 liquidity level.",
+    "decision_reason": "Confluence 58.57 >= LOW gate 45",
     "gates_used": {
       "long_high": 75,
       "long_medium": 65,
@@ -3181,16 +3181,16 @@
       ],
       "ev_threshold": 3.0
     },
-    "stop_loss_ai": 519.393163,
-    "take_profit_ai": 596.153674,
+    "stop_loss_ai": 521.806151,
+    "take_profit_ai": 593.607697,
     "max_hold_hours": 72.0,
-    "stop_loss_atr": 514.2757957,
-    "take_profit_atr": 596.15367384,
-    "stop_loss_effective": 516.83447935,
-    "take_profit_effective": 596.15367392,
-    "atr_at_entry": 17.05789128,
-    "atr_pct": 3.13,
+    "stop_loss_atr": 517.01938172,
+    "take_profit_atr": 593.60769714,
+    "stop_loss_effective": 519.41276636,
+    "take_profit_effective": 593.60769707,
+    "atr_at_entry": 15.95589905,
+    "atr_pct": 2.92,
     "atr_tf": "4h",
-    "be_trigger_price": 570.56683696
+    "be_trigger_price": 569.67384853
   }
 ]
