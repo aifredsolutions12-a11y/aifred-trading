@@ -81,13 +81,13 @@
   },
   {
     "coin": "LINKUSDT",
-    "date": "2026-07-17",
-    "trades_reviewed": 6,
+    "date": "2026-07-18",
+    "trades_reviewed": 7,
     "wins": 0,
-    "losses": 6,
-    "lesson": "The system is consistently failing by attempting to trade counter-trend liquidity sweeps during high-volatility regimes where structural bearish momentum dominates. Every trade was stopped out because the model prioritized localized RSI exhaustion or minor BOS over the macro structural downtrend.",
-    "adjustment": "Implement a 'Trend-Filter' rule: strictly prohibit long entries unless the 4H timeframe shows a confirmed bullish market structure shift, regardless of 15m/1h liquidity sweeps.",
-    "methodology_flag": "Trust SMC liquidity sweeps less when the macro trend is in a sustained bearish cascade."
+    "losses": 7,
+    "lesson": "The system is consistently attempting to fade macro trends with low-confidence counter-trend entries that fail to respect structural BOS. Every trade was stopped out because the entries relied on localized liquidity sweeps that were immediately invalidated by the dominant bearish momentum.",
+    "adjustment": "Implement a strict 'Trend Alignment Filter' that mandates a minimum 60% confidence score and prohibits counter-trend entries unless a confirmed 4h CHoCH is present.",
+    "methodology_flag": "Trust SMC liquidity sweeps less in a strong bearish regime; prioritize EMA alignment over localized price action."
   },
   {
     "coin": "OPUSDT",
@@ -101,23 +101,23 @@
   },
   {
     "coin": "POLUSDT",
-    "date": "2026-07-17",
-    "trades_reviewed": 4,
+    "date": "2026-07-18",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 4,
-    "lesson": "The system is consistently attempting to front-run reversals against strong momentum, failing to account for the lack of Wyckoff distribution or accumulation structures before entry. All four losses resulted from entering counter-trend or overextended positions without waiting for a confirmed shift in market structure (SMS).",
-    "adjustment": "Mandate a confirmed 15m market structure break (MSB) following a sweep of liquidity before initiating any position, regardless of RSI exhaustion or EMA rejection signals.",
-    "methodology_flag": "Trust RSI-based mean reversion signals less; prioritize SMC liquidity sweeps over oscillator-based exhaustion."
+    "losses": 5,
+    "lesson": "The system is consistently attempting to fade exhaustion signals (RSI divergence) in a trending market, leading to premature entries against the primary momentum. These losses confirm that the model is misinterpreting local distribution patterns as trend reversals, failing to account for the strength of the 4h bullish structure.",
+    "adjustment": "Implement a 'Trend Filter' rule that prohibits counter-trend entries unless a clear Wyckoff Change of Character (CHoCH) is confirmed on the 4h timeframe.",
+    "methodology_flag": "Trust RSI-based exhaustion signals LESS on POLUSDT; prioritize 4h Market Structure (SMC) over local oscillator extremes."
   },
   {
     "coin": "SEIUSDT",
-    "date": "2026-07-09",
-    "trades_reviewed": 1,
+    "date": "2026-07-18",
+    "trades_reviewed": 2,
     "wins": 0,
-    "losses": 1,
-    "lesson": "The short entry failed because it ignored the potential for a mean reversion bounce despite the bearish trend. Relying solely on EMA failure without waiting for a confirmed SMC structural break or liquidity sweep led to entering at the local bottom.",
-    "adjustment": "Require a confirmed bearish market structure shift (MSS) on the 15m timeframe before entering shorts, rather than entering based on trend-following EMA alignment alone.",
-    "methodology_flag": "Trust EMA trend-following less during oversold RSI conditions on SEIUSDT."
+    "losses": 2,
+    "lesson": "Both trades failed by entering short positions at local lows, indicating a failure to account for oversold exhaustion and potential liquidity sweeps. The system is incorrectly prioritizing trend alignment over mean reversion signals when price reaches extreme deviations.",
+    "adjustment": "Mandate a minimum 5% pullback from local lows before initiating any further short positions to avoid catching falling knives.",
+    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend alignment on SEI."
   },
   {
     "coin": "SOLUSDT",
