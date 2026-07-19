@@ -21,23 +21,23 @@
   },
   {
     "coin": "AVAXUSDT",
-    "date": "2026-07-10",
-    "trades_reviewed": 3,
+    "date": "2026-07-19",
+    "trades_reviewed": 4,
     "wins": 0,
-    "losses": 3,
-    "lesson": "The system is consistently entering against high-velocity momentum, mistaking exhaustion for a reversal without waiting for a Wyckoff Spring or Change of Character (CHoCH). All three trades failed by attempting to front-run volatility rather than waiting for structural confirmation.",
-    "adjustment": "Mandate a confirmed Market Structure Shift (MSS) on the 1h timeframe before entering any position, ignoring RSI/Bollinger overextension signals until the trend has demonstrably broken.",
-    "methodology_flag": "Trust RSI/Bollinger mean-reversion signals LESS during high-velocity volume spikes."
+    "losses": 4,
+    "lesson": "The system is consistently attempting to fade high-velocity momentum moves and trend continuations, resulting in premature entries against strong directional bias. By ignoring the Wyckoff distribution phase and attempting to catch reversals during high-volume spikes, the strategy is being trapped in liquidity sweeps.",
+    "adjustment": "Implement a mandatory 'Trend Alignment Filter' that prohibits counter-trend entries unless a confirmed Wyckoff Spring or Upthrust is identified on the 4H timeframe.",
+    "methodology_flag": "Trust RSI/Bollinger Band overbought/oversold signals LESS during high-velocity momentum phases."
   },
   {
     "coin": "BNBUSDT",
-    "date": "2026-07-15",
-    "trades_reviewed": 5,
+    "date": "2026-07-19",
+    "trades_reviewed": 6,
     "wins": 0,
-    "losses": 5,
-    "lesson": "The system is consistently entering shorts into local liquidity sweeps and oversold conditions, failing to account for mean reversion in a range-bound market. By ignoring the lack of structural breaks on higher timeframes, the model is mistaking localized exhaustion for trend continuation.",
-    "adjustment": "Implement a mandatory 'RSI Divergence' filter on the 1h timeframe to prevent shorting into potential accumulation zones or oversold liquidity pockets.",
-    "methodology_flag": "Trust SMC structure less on BNBUSDT until a clear HTF trend is established; prioritize Wyckoff accumulation/distribution patterns instead."
+    "losses": 6,
+    "lesson": "The system is consistently entering shorts during oversold conditions on lower timeframes, failing to account for liquidity sweeps that trigger mean-reversion rallies. The reliance on trend-following in a low-confidence environment has resulted in 6 consecutive stops as the market exhausts its bearish momentum.",
+    "adjustment": "Implement a mandatory 'Liquidity Sweep' filter: do not enter shorts when the 15m RSI is below 30 unless a clear Wyckoff Spring or failure-to-break structure is confirmed on the 1h timeframe.",
+    "methodology_flag": "Trust RSI-based trend continuation signals LESS in high-fear environments."
   },
   {
     "coin": "BTCUSDT",
@@ -101,13 +101,13 @@
   },
   {
     "coin": "POLUSDT",
-    "date": "2026-07-18",
-    "trades_reviewed": 5,
+    "date": "2026-07-19",
+    "trades_reviewed": 6,
     "wins": 0,
-    "losses": 5,
-    "lesson": "The system is consistently attempting to fade exhaustion signals (RSI divergence) in a trending market, leading to premature entries against the primary momentum. These losses confirm that the model is misinterpreting local distribution patterns as trend reversals, failing to account for the strength of the 4h bullish structure.",
-    "adjustment": "Implement a 'Trend Filter' rule that prohibits counter-trend entries unless a clear Wyckoff Change of Character (CHoCH) is confirmed on the 4h timeframe.",
-    "methodology_flag": "Trust RSI-based exhaustion signals LESS on POLUSDT; prioritize 4h Market Structure (SMC) over local oscillator extremes."
+    "losses": 6,
+    "lesson": "The system consistently entered long positions into exhaustion zones where RSI divergence and local resistance failures signaled distribution, effectively catching falling knives. The reliance on bullish higher-timeframe structures ignored the immediate SMC-based order flow shifts that preceded each stop-out.",
+    "adjustment": "Implement a mandatory 'Trend Alignment Filter' that prohibits long entries if the 1h RSI is above 70 or if price is failing to reclaim the previous session's high, regardless of the 4h trend.",
+    "methodology_flag": "Trust RSI-based exhaustion signals more than 4h structural trend bias on POLUSDT."
   },
   {
     "coin": "SEIUSDT",
@@ -121,13 +121,13 @@
   },
   {
     "coin": "SOLUSDT",
-    "date": "2026-07-15",
-    "trades_reviewed": 2,
+    "date": "2026-07-19",
+    "trades_reviewed": 3,
     "wins": 0,
-    "losses": 2,
-    "lesson": "Both trades failed due to over-reliance on local structure breakouts that lacked alignment with the broader trend, resulting in liquidity sweeps rather than trend continuations. The system is currently misinterpreting noise as structural shifts, failing to account for the lack of volume confirmation in the SMC framework.",
-    "adjustment": "Require a minimum 20% increase in relative volume on the breakout candle before entering any position to filter out low-conviction liquidity grabs.",
-    "methodology_flag": "Trust SMC liquidity sweeps less; prioritize volume profile confirmation over pure price action structure."
+    "losses": 3,
+    "lesson": "The system is failing to distinguish between genuine trend reversals and liquidity sweeps, resulting in entries during high-volatility distribution phases. Relying on low-confidence setups (21-25%) in a choppy market has led to consistent stop-outs as the price fails to sustain momentum.",
+    "adjustment": "Implement a minimum confidence threshold of 65% and filter all entries against the 4-hour RSI to avoid trading into overextended momentum.",
+    "methodology_flag": "Trust Wyckoff distribution patterns less on lower timeframes until a clear structural break is confirmed on the 4H chart."
   },
   {
     "coin": "SUIUSDT",
