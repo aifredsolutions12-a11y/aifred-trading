@@ -21,13 +21,13 @@
   },
   {
     "coin": "AVAXUSDT",
-    "date": "2026-07-19",
-    "trades_reviewed": 4,
+    "date": "2026-07-20",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 4,
-    "lesson": "The system is consistently attempting to fade high-velocity momentum moves and trend continuations, resulting in premature entries against strong directional bias. By ignoring the Wyckoff distribution phase and attempting to catch reversals during high-volume spikes, the strategy is being trapped in liquidity sweeps.",
-    "adjustment": "Implement a mandatory 'Trend Alignment Filter' that prohibits counter-trend entries unless a confirmed Wyckoff Spring or Upthrust is identified on the 4H timeframe.",
-    "methodology_flag": "Trust RSI/Bollinger Band overbought/oversold signals LESS during high-velocity momentum phases."
+    "losses": 5,
+    "lesson": "The system is consistently attempting to fade high-velocity momentum moves, resulting in 'catching a falling knife' during strong bearish impulses. The reliance on RSI and Bollinger Band extremes is failing to account for sustained Wyckoff distribution phases where price remains oversold for extended periods.",
+    "adjustment": "Implement a 'wait for structure' rule requiring a confirmed Wyckoff Spring or Change of Character (CHoCH) on the 1h timeframe before entering any counter-trend or continuation trade.",
+    "methodology_flag": "Trust RSI/Bollinger Band overbought/oversold signals less during high-velocity directional moves."
   },
   {
     "coin": "BNBUSDT",
@@ -151,12 +151,12 @@
   },
   {
     "coin": "ZECUSDT",
-    "date": "2026-07-17",
-    "trades_reviewed": 6,
+    "date": "2026-07-20",
+    "trades_reviewed": 7,
     "wins": 0,
-    "losses": 6,
-    "lesson": "The system is consistently attempting to catch 'bullish pullbacks' into overextended, blow-off top structures, effectively front-running distribution phases. By ignoring the Wyckoff distribution patterns and RSI exhaustion, the strategy is consistently buying into liquidity traps rather than waiting for structural support retests.",
-    "adjustment": "Mandate a minimum 15% price retracement from the local peak before considering a long entry, regardless of the higher timeframe bullish bias.",
-    "methodology_flag": "Trust RSI overbought signals more as a primary filter for trend exhaustion rather than secondary confirmation."
+    "losses": 7,
+    "lesson": "The system consistently entered LONG positions during Wyckoff distribution phases and overextended RSI conditions, effectively trying to catch falling knives in a local downtrend. It incorrectly prioritized higher-timeframe bullish bias while ignoring immediate signs of exhaustion and bearish order flow.",
+    "adjustment": "Implement a mandatory 'No-Long' filter when the 1h RSI exceeds 75 or when price is trading above the upper Bollinger Band, regardless of the daily trend.",
+    "methodology_flag": "Trust Wyckoff distribution signals more than higher-timeframe trend bias for short-term entries."
   }
 ]
