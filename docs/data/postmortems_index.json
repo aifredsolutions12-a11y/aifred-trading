@@ -1,13 +1,13 @@
 [
   {
     "coin": "ADAUSDT",
-    "date": "2026-07-01",
-    "trades_reviewed": 1,
+    "date": "2026-07-21",
+    "trades_reviewed": 2,
     "wins": 0,
-    "losses": 1,
-    "lesson": "The short entry failed due to a lack of confirmation on the lower timeframe, as the price reclaimed the EMA50 instead of respecting it as resistance. The system correctly identified the macro downtrend but ignored the potential for a Wyckoff spring or liquidity sweep before the continuation.",
-    "adjustment": "Require a confirmed Market Structure Shift (MSS) on the 15m timeframe before entering short positions in a downtrend to avoid front-running liquidity sweeps.",
-    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend-following on ADAUSDT."
+    "losses": 2,
+    "lesson": "Both trades failed due to chasing momentum into oversold conditions, resulting in immediate mean reversion against the short bias. The system is incorrectly prioritizing trend-following signals while ignoring Wyckoffian 'Spring' potential at established support levels.",
+    "adjustment": "Require a confirmed bearish retest of a broken structural level on the 15m timeframe before entering, rather than entering on initial breakdown momentum.",
+    "methodology_flag": "Trust momentum-based trend following LESS on ADAUSDT; prioritize Wyckoff accumulation/distribution patterns."
   },
   {
     "coin": "ARBUSDT",
@@ -31,33 +31,33 @@
   },
   {
     "coin": "BNBUSDT",
-    "date": "2026-07-19",
-    "trades_reviewed": 6,
+    "date": "2026-07-21",
+    "trades_reviewed": 7,
     "wins": 0,
-    "losses": 6,
-    "lesson": "The system is consistently entering shorts during oversold conditions on lower timeframes, failing to account for liquidity sweeps that trigger mean-reversion rallies. The reliance on trend-following in a low-confidence environment has resulted in 6 consecutive stops as the market exhausts its bearish momentum.",
-    "adjustment": "Implement a mandatory 'Liquidity Sweep' filter: do not enter shorts when the 15m RSI is below 30 unless a clear Wyckoff Spring or failure-to-break structure is confirmed on the 1h timeframe.",
-    "methodology_flag": "Trust RSI-based trend continuation signals LESS in high-fear environments."
+    "losses": 7,
+    "lesson": "The system is consistently entering shorts during local oversold conditions, failing to account for liquidity sweeps that trigger mean reversion. By prioritizing bearish HTF structure over immediate 15m/30m RSI exhaustion, the strategy is consistently catching the end of impulse moves rather than the start of distribution.",
+    "adjustment": "Implement a mandatory 'Volume Climax' filter: ignore all short entries if the 15m RSI is below 30 until a clear Wyckoff Spring or failure-to-break-low structure is confirmed.",
+    "methodology_flag": "Trust SMC liquidity concepts less on BNBUSDT during high-fear regimes; prioritize RSI divergence over structural breakdown."
   },
   {
     "coin": "BTCUSDT",
-    "date": "2026-07-17",
-    "trades_reviewed": 8,
+    "date": "2026-07-21",
+    "trades_reviewed": 10,
     "wins": 0,
-    "losses": 8,
-    "lesson": "The system is consistently attempting to fade liquidity sweeps in a strong trending market, resulting in 8 consecutive stop-outs as price ignores local exhaustion signals. By prioritizing low-confidence counter-trend setups, the strategy is getting trapped in 'catching falling knives' rather than waiting for structural confirmation.",
-    "adjustment": "Implement a mandatory 'Trend Filter' rule: only execute trades that align with the 4H EMA trend direction, strictly prohibiting counter-trend entries until a confirmed Wyckoff Spring or Change of Character (CHoCH) occurs on the 1H timeframe.",
-    "methodology_flag": "Trust SMC liquidity sweeps LESS when the 4H/1D trend is in a high-momentum markdown phase."
+    "losses": 10,
+    "lesson": "The system is consistently attempting to fade liquidity sweeps in a strong trending market, resulting in 10 consecutive stop-outs as price fails to initiate reversals. The reliance on low-confidence, low-win-probability setups against the prevailing daily trend has led to constant 'catching a falling knife' scenarios.",
+    "adjustment": "Implement a strict 'Trend-Filter' rule: only execute trades that align with the 4H EMA trend, ignoring all counter-trend liquidity sweeps until a confirmed Wyckoff Spring or Change of Character (CHoCH) occurs on the 1H timeframe.",
+    "methodology_flag": "Trust SMC liquidity sweeps LESS; prioritize structural trend alignment over localized exhaustion signals."
   },
   {
     "coin": "DOGEUSDT",
-    "date": "2026-07-12",
-    "trades_reviewed": 4,
+    "date": "2026-07-21",
+    "trades_reviewed": 5,
     "wins": 0,
-    "losses": 4,
-    "lesson": "The system is consistently failing to distinguish between genuine trend reversals and liquidity sweeps, as evidenced by the 0% win rate across both long and short setups. The low confidence scores (avg <39%) indicate the model is attempting to trade noise rather than established Wyckoff accumulation or distribution phases.",
-    "adjustment": "Implement a mandatory 'Trend Filter' rule: only execute trades if the 4h and 1d timeframes are in alignment, ignoring all setups where the higher timeframe structure contradicts the local CHoCH.",
-    "methodology_flag": "Trust SMC liquidity sweeps less on DOGEUSDT until higher timeframe trend alignment is confirmed."
+    "losses": 5,
+    "lesson": "The system is consistently failing by attempting to front-run trend reversals against strong momentum, resulting in five consecutive stop-outs during deep markdown or impulsive phases. Relying on RSI oversold conditions in a bearish structure has proven to be a liquidity trap rather than a reversal signal.",
+    "adjustment": "Implement a strict 'No-Counter-Trend' rule: only execute trades that align with the 4h/1d EMA ribbon direction, ignoring all RSI divergence signals until a confirmed Wyckoff Spring or structural CHoCH occurs.",
+    "methodology_flag": "Trust RSI-based mean reversion less; prioritize SMC structural flow and order flow confirmation."
   },
   {
     "coin": "DOTUSDT",
@@ -81,13 +81,12 @@
   },
   {
     "coin": "LINKUSDT",
-    "date": "2026-07-18",
-    "trades_reviewed": 7,
+    "trades_reviewed": 8,
     "wins": 0,
-    "losses": 7,
-    "lesson": "The system is consistently attempting to fade macro trends with low-confidence counter-trend entries that fail to respect structural BOS. Every trade was stopped out because the entries relied on localized liquidity sweeps that were immediately invalidated by the dominant bearish momentum.",
-    "adjustment": "Implement a strict 'Trend Alignment Filter' that mandates a minimum 60% confidence score and prohibits counter-trend entries unless a confirmed 4h CHoCH is present.",
-    "methodology_flag": "Trust SMC liquidity sweeps less in a strong bearish regime; prioritize EMA alignment over localized price action."
+    "losses": 8,
+    "lesson": "The system is consistently attempting to counter-trend trade against a dominant bearish macro structure, resulting in 8 consecutive losses. The reliance on short-term liquidity sweeps and local BOS signals is failing because these setups are being invalidated by the persistent macro downtrend.",
+    "adjustment": "Implement a strict 'Trend Filter' rule: only execute LONG trades if the 4H EMA is trending upward, and ignore all bullish SMC setups while the macro trend remains bearish.",
+    "methodology_flag": "Trust local SMC liquidity sweeps less when the higher timeframe EMA alignment is bearish."
   },
   {
     "coin": "OPUSDT",
@@ -111,23 +110,23 @@
   },
   {
     "coin": "SEIUSDT",
-    "date": "2026-07-18",
-    "trades_reviewed": 2,
-    "wins": 0,
-    "losses": 2,
-    "lesson": "Both trades failed by entering short positions at local lows, indicating a failure to account for oversold exhaustion and potential liquidity sweeps. The system is incorrectly prioritizing trend alignment over mean reversion signals when price reaches extreme deviations.",
-    "adjustment": "Mandate a minimum 5% pullback from local lows before initiating any further short positions to avoid catching falling knives.",
-    "methodology_flag": "Trust SMC liquidity sweeps more than EMA trend alignment on SEI."
-  },
-  {
-    "coin": "SOLUSDT",
-    "date": "2026-07-19",
+    "date": "2026-07-21",
     "trades_reviewed": 3,
     "wins": 0,
     "losses": 3,
-    "lesson": "The system is failing to distinguish between genuine trend reversals and liquidity sweeps, resulting in entries during high-volatility distribution phases. Relying on low-confidence setups (21-25%) in a choppy market has led to consistent stop-outs as the price fails to sustain momentum.",
-    "adjustment": "Implement a minimum confidence threshold of 65% and filter all entries against the 4-hour RSI to avoid trading into overextended momentum.",
-    "methodology_flag": "Trust Wyckoff distribution patterns less on lower timeframes until a clear structural break is confirmed on the 4H chart."
+    "lesson": "The system is consistently attempting to short local lows during a markdown phase, falling victim to mean-reversion bounces that occur when momentum stalls. These losses indicate that the strategy is misinterpreting oversold conditions as continuation signals rather than potential Wyckoffian 'Springs' or demand absorption zones.",
+    "adjustment": "Require a confirmed bearish retest of a broken support level (SMC flip) before entering any further shorts, rather than entering based on EMA alignment alone.",
+    "methodology_flag": "Trust EMA trend-following less on SEIUSDT; prioritize Wyckoff accumulation patterns to identify exhaustion."
+  },
+  {
+    "coin": "SOLUSDT",
+    "date": "2026-07-21",
+    "trades_reviewed": 4,
+    "wins": 0,
+    "losses": 4,
+    "lesson": "The system is consistently failing to distinguish between localized liquidity sweeps and genuine trend reversals, resulting in entries during high-volatility distribution phases. By prioritizing short-term EMA alignments over the broader bearish market structure, the model is consistently entering on the wrong side of the Wyckoff distribution cycle.",
+    "adjustment": "Implement a mandatory 'Trend Filter' that prohibits any long entries unless price is trading above the 200-day EMA, regardless of short-term structure.",
+    "methodology_flag": "Trust Wyckoff distribution analysis more; trust short-term EMA alignment less."
   },
   {
     "coin": "SUIUSDT",
