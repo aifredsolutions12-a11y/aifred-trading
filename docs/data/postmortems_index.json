@@ -1,13 +1,13 @@
 [
   {
     "coin": "ADAUSDT",
-    "date": "2026-07-21",
-    "trades_reviewed": 2,
+    "date": "2026-07-23",
+    "trades_reviewed": 3,
     "wins": 0,
-    "losses": 2,
-    "lesson": "Both trades failed due to chasing momentum into oversold conditions, resulting in immediate mean reversion against the short bias. The system is incorrectly prioritizing trend-following signals while ignoring Wyckoffian 'Spring' potential at established support levels.",
-    "adjustment": "Require a confirmed bearish retest of a broken structural level on the 15m timeframe before entering, rather than entering on initial breakdown momentum.",
-    "methodology_flag": "Trust momentum-based trend following LESS on ADAUSDT; prioritize Wyckoff accumulation/distribution patterns."
+    "losses": 3,
+    "lesson": "The system is consistently attempting to fade momentum or catch reversals in high-volatility environments, leading to premature entries against established trends. By ignoring the Wyckoff 'Sign of Weakness' or 'Strength' phases, the strategy is getting trapped in liquidity sweeps rather than identifying structural trend continuations.",
+    "adjustment": "Implement a mandatory 'Trend Alignment Filter' that forbids counter-trend entries unless a confirmed Wyckoff Spring or Upthrust is validated by a divergence on the 4H RSI.",
+    "methodology_flag": "Trust momentum indicators less during high-volatility regimes; prioritize structural market flow over RSI/Bollinger extremes."
   },
   {
     "coin": "ARBUSDT",
@@ -21,13 +21,13 @@
   },
   {
     "coin": "AVAXUSDT",
-    "date": "2026-07-20",
-    "trades_reviewed": 5,
+    "date": "2026-07-23",
+    "trades_reviewed": 6,
     "wins": 0,
-    "losses": 5,
-    "lesson": "The system is consistently attempting to fade high-velocity momentum moves, resulting in 'catching a falling knife' during strong bearish impulses. The reliance on RSI and Bollinger Band extremes is failing to account for sustained Wyckoff distribution phases where price remains oversold for extended periods.",
-    "adjustment": "Implement a 'wait for structure' rule requiring a confirmed Wyckoff Spring or Change of Character (CHoCH) on the 1h timeframe before entering any counter-trend or continuation trade.",
-    "methodology_flag": "Trust RSI/Bollinger Band overbought/oversold signals less during high-velocity directional moves."
+    "losses": 6,
+    "lesson": "The system is consistently attempting to fade high-velocity momentum or enter against the primary trend, resulting in 6 consecutive stop-outs during impulsive phases. The reliance on RSI and Bollinger Band overextension is failing to account for sustained Wyckoff-style markdown phases where price ignores traditional oscillators.",
+    "adjustment": "Implement a 'Trend-Filter' rule that prohibits all counter-trend entries unless a confirmed Wyckoff Spring or localized Change of Character (CHoCH) is identified on the 1h timeframe.",
+    "methodology_flag": "Trust RSI/Bollinger Band mean-reversion signals less during high-volume directional impulses."
   },
   {
     "coin": "BNBUSDT",
@@ -150,12 +150,12 @@
   },
   {
     "coin": "ZECUSDT",
-    "date": "2026-07-20",
-    "trades_reviewed": 7,
+    "date": "2026-07-23",
+    "trades_reviewed": 8,
     "wins": 0,
-    "losses": 7,
-    "lesson": "The system consistently entered LONG positions during Wyckoff distribution phases and overextended RSI conditions, effectively trying to catch falling knives in a local downtrend. It incorrectly prioritized higher-timeframe bullish bias while ignoring immediate signs of exhaustion and bearish order flow.",
-    "adjustment": "Implement a mandatory 'No-Long' filter when the 1h RSI exceeds 75 or when price is trading above the upper Bollinger Band, regardless of the daily trend.",
-    "methodology_flag": "Trust Wyckoff distribution signals more than higher-timeframe trend bias for short-term entries."
+    "losses": 8,
+    "lesson": "The system consistently attempted to catch 'longs' during Wyckoff distribution phases and blow-off tops, ignoring clear bearish structural breakdowns on the 1h and 4h timeframes. By prioritizing higher-timeframe bullish bias over immediate price action, the model failed to recognize that ZEC was actively rejecting resistance zones.",
+    "adjustment": "Implement a hard filter that prohibits long entries if the 4h timeframe shows a breakdown of market structure or RSI divergence, regardless of the daily trend.",
+    "methodology_flag": "Trust lower-timeframe Wyckoff distribution signals more than higher-timeframe bullish bias when ZEC is extended."
   }
 ]
