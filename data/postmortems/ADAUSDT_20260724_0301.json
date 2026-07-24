@@ -1,0 +1,10 @@
+{
+  "coin": "ADAUSDT",
+  "date": "2026-07-24",
+  "trades_reviewed": 4,
+  "wins": 0,
+  "losses": 4,
+  "lesson": "The system is consistently failing to distinguish between genuine trend reversals and liquidity sweeps, leading to premature entries during high-volatility chop. By prioritizing low-confidence setups (avg 43.5%) against the prevailing daily trend, the strategy is getting trapped in counter-trend traps rather than waiting for structural confirmation.",
+  "adjustment": "Implement a mandatory 'Trend Filter' rule: only execute trades that align with the 4H EMA200 direction, ignoring all counter-trend SMC setups unless a confirmed Wyckoff Spring or Upthrust is present on the 4H timeframe.",
+  "methodology_flag": "Trust lower-timeframe SMC liquidity sweeps less; prioritize higher-timeframe trend alignment."
+}
