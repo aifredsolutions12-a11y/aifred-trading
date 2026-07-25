@@ -1,0 +1,10 @@
+{
+  "coin": "BNBUSDT",
+  "date": "2026-07-25",
+  "trades_reviewed": 8,
+  "wins": 0,
+  "losses": 8,
+  "lesson": "The system is consistently entering short positions during oversold conditions, failing to account for liquidity sweeps that trigger mean-reversion bounces. By ignoring the divergence between HTF bearish structure and LTF exhaustion, the strategy is repeatedly selling into local support levels.",
+  "adjustment": "Implement a mandatory 'Liquidity Sweep Filter' that prohibits short entries if the price is within 1% of a significant HTF support level, regardless of bearish trend alignment.",
+  "methodology_flag": "Trust SMC liquidity concepts more; prioritize identifying 'Spring' or 'ST' (Secondary Test) patterns over trend-following during markdown phases."
+}
