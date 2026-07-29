@@ -1,0 +1,10 @@
+{
+  "coin": "SEIUSDT",
+  "date": "2026-07-29",
+  "trades_reviewed": 6,
+  "wins": 0,
+  "losses": 6,
+  "lesson": "The system is consistently entering short positions into extreme oversold conditions, failing to account for mean reversion potential in a persistent markdown phase. By ignoring RSI exhaustion and local accumulation signals, the strategy is essentially chasing momentum at the exact point of liquidity exhaustion.",
+  "adjustment": "Implement a 'No-Short' filter when RSI(14) on the 1h timeframe is below 25, requiring a confirmed bearish retest of a broken support level before entering.",
+  "methodology_flag": "Trust RSI exhaustion signals MORE than EMA trend alignment during extreme oversold conditions."
+}
