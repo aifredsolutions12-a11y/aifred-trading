@@ -1,0 +1,10 @@
+{
+  "coin": "BTCUSDT",
+  "date": "2026-07-30",
+  "trades_reviewed": 10,
+  "wins": 0,
+  "losses": 10,
+  "lesson": "The system is consistently attempting to front-run reversals against the dominant HTF markdown trend, resulting in 10 consecutive losses where liquidity sweeps were mistaken for structural trend changes. The low confidence scores (avg <50) indicate the model is forcing entries in range-bound, low-conviction environments rather than waiting for confirmed Wyckoff distribution completion.",
+  "adjustment": "Implement a strict 'Trend Alignment Filter' that mandates a minimum 60% confidence score and prohibits counter-trend entries unless a clear HTF Wyckoff Spring or Upthrust is confirmed by volume expansion.",
+  "methodology_flag": "Trust SMC liquidity sweeps less; prioritize HTF Wyckoff structural phases over local BOS signals."
+}
